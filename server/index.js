@@ -10,7 +10,7 @@ app.use(cors())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', `http://localhost:${port}`);
+  res.setHeader('Access-Control-Allow-Origin', `http://localhost:3000`);
   res.setHeader('Access-Control-Allow-Methods', 'GET, PUT','POST');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
   next();
@@ -20,8 +20,8 @@ const Pool = require('pg').Pool
 const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
-    database: 'BD_firmas',
-    password: 'Spectra321',
+    database: 'postgres',
+    password: 'P1s2q3l4',
     port: 5432, // default PostgreSQL port
 });
 
