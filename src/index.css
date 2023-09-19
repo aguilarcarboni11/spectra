@@ -87,14 +87,14 @@ img {
   align-items: center;
 }
 
-.arrowButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height:inherit;
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0);
-}
+  .arrowButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:inherit;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0);
+  }
 
 .baseContainer {
   display: flex;
@@ -113,12 +113,26 @@ img {
 }
 
   .logoContainer {
-    display: flex;
+    display: inline-flex;
     position: relative;
+    width: fit-content;
     height: 8vmax;
     justify-content: space-between;
     align-items: center;
-  }
+    text-decoration: none;
+  } 
+
+    .spectra { 
+      font-size: 5vmax  !important;
+      font-weight:bolder !important; 
+    }
+
+    .logo {
+      width: fit-content;
+      height:4.5vmax;
+    }
+
+/* Navbar */
 
 .navbarContainer {
   height: 5vmax;
@@ -180,6 +194,7 @@ img {
       padding: 1.4vw;
     }
 
+/* Footer */
 
 .footerContainer {
   display: flex;
@@ -193,57 +208,48 @@ img {
   background-color: var(--aqua);
 }
 
+  .footerText {
+    font-family: 'Lato Light', serif;
+    font-size: .75vmax;
+    color:var(--beige);
+    font-weight:bold;
+  }
+
 .title {
   font-family: 'Lato', serif;
   font-size: 3vmax;
   color:var(--black);
+  margin: 0 0 1vh 0;
   font-weight:bold;
 }
 
 .subtitle {
   font-family: 'Lato Light', serif;
+  margin: 0 0 1vh 0;
   font-size: 1vmax;
-  line-height: 1.8vmax;
   color:var(--grey);
+  line-height: 1.8vmax;
   font-weight:bold;
 }
 
-.footerText {
-  font-family: 'Lato Light', serif;
-  font-size: .75vmax;
-  color:var(--beige);
-  font-weight:bold;
-}
-.logoButton {
-  text-decoration: none;
-  height: fit-content;
-}
+  .indented {
+    margin: 0 0 0 2vw;
+  }
 
-.logo {
-  width: fit-content;
-  height:4.5vmax;
-}
-
-.spectra { 
-  font-size: 4.5vmax;
-  color:var(--black);
-  font-weight:bolder;
-}
 
 /* Homepage */
 
-.introContainer {
+.homeContainer {
   margin: 4vh 0 0 0;
   display: block;
   height: fit-content;
   width: 100%;
 }
 
-  .introTextContainer {
+  .homeTextContainer {
     width: 99%;
     height: fit-content;
     display:block;
-    margin: 2vh 1vw 0 1vw;
   }
 
     .introText {
@@ -253,12 +259,6 @@ img {
       color:var(--black);
       font-weight:bolder;
     }
-
-  .introTitleContainer {
-      display:flex;
-      width: 100%;
-      height: fit-content;
-  }
 
 .carrouselAndTextContainer {
   height: fit-content;
@@ -314,7 +314,7 @@ img {
         align-self: center;
       }
 
-.introButtonsContainer {
+.homeButtonsContainer {
   width: 100%;
   display: flex;
   align-items: flex-start;
@@ -323,18 +323,19 @@ img {
   margin: 0 0 5vh 0;
 }
 
-  .introButtonContainer {
+  .homeButtonContainer {
     display: block;
     justify-content: center;
     align-items: flex-start;
     border-radius: 2vmax;
     background-color: var(--orange);
     margin: 1vh 1vw 0 1vw;
-    height: 8vh;
+    height: fit-content;
+    padding: 1vh 0 1vh 0;
     width: 8vw;
   }
   
-    .introButton {
+    .homeButton {
       width: 100%;
       height: 100%;
       z-index: 100;
@@ -345,29 +346,6 @@ img {
       border-radius: 2vmax;
       text-decoration: none;
     }
-    
-      .introButtonTooltip {
-        background-color: var(--orange);
-        height: 0;
-        width: fit-content;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-decoration: none;
-        transition:all .5s;
-      }
-
-      .introButtonContainer:hover .introButtonTooltip {
-        height: fit-content;
-        padding: 0.5vmax;
-      }
-
-        .tooltipText {
-          color: var(--beige);
-          font-size: 0.7vmax;
-          white-space: nowrap;
-          text-decoration: none!important;
-        }
 
 /* About */
 
@@ -377,11 +355,6 @@ img {
   height: fit-content;
   width: 100%;
 }
-
-.infoPRIASsubtitleContainer {
-  margin: 2vh 0 2vh 1vw;
-}
-
 
 .ourTeamContainer {
   height: fit-content;
@@ -451,8 +424,8 @@ img {
       width: 75%;
       height: 3vh;
       border-radius: 2vmax;
-      background-color: var(--aqua);
-      color: var(--aqua);
+      background-color: var(--orange);
+      color: var(--orange);
       align-self: center;
     }
 
@@ -799,7 +772,6 @@ img {
   height: fit-content;
   display:flex;
   justify-content: space-between;
-  margin: 2vh 0 0 0;
 }
 
 .tableInfoContainer {

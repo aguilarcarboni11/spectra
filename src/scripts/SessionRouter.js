@@ -27,12 +27,12 @@ const SessionRouter = () => {
         <div>
           <Router>
             <Routes>
-                <Route  path='/' element={windowSize[0] > 1.5*windowSize[1] ? <Homepage/>:''}/>
-                <Route path='/about' element={windowSize[0] > 1.5*windowSize[1] ? <About/>:''} />
-                <Route path='/spectra' element={windowSize[0] > 1.5*windowSize[1] ?<Spectra/>:''} />
-                <Route path='/equipo' element={windowSize[0] > 1.5*windowSize[1] ? <Tools/>:''} />
-                <Route path='/trabajos' element={windowSize[0] > 1.5*windowSize[1] ? <Works/>:''} />
-                <Route path='/contacto' element={windowSize[0] > 1.5*windowSize[1] ? <Contact/>:''} />
+                <Route  path='/' element={windowSize[0] > windowSize[1] ? <Homepage/>:''}/>
+                <Route path='/about' element={windowSize[0] > windowSize[1] ? <About/>:''} />
+                <Route path='/spectra' element={windowSize[0] > windowSize[1] ?<Spectra/>:''} />
+                <Route path='/equipo' element={windowSize[0] > windowSize[1] ? <Tools/>:''} />
+                <Route path='/trabajos' element={windowSize[0] > windowSize[1] ? <Works/>:''} />
+                <Route path='/contacto' element={windowSize[0] > windowSize[1] ? <Contact/>:''} />
             </Routes>
           </Router>
         </div>

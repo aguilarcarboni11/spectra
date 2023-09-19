@@ -1,8 +1,8 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
+import { useFetch } from '../../../../hooks/useFetch'
 import Table, {createTheme} from 'react-data-table-component'
 
-import { useFetch } from '../../../../API/useFetch'
 import SpectraGraph from '../misc/SpectraGraph'
 import TableInfo from './TableInfo'
 import TableFilters from './TableFilters'

@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import IntroButtonTooltip from './IntroButtonTooltip'
 
 const HomeHeader = () => {
 
@@ -16,12 +15,10 @@ const HomeHeader = () => {
     }
 
   return (
-    <div className='introContainer'>
-      <div className='introTitleContainer'>
+    <div className='homeContainer'>
+      <div className='homeTextContainer'>
         <p className='title'> ¿Qué es Spectra? </p>
-      </div>
-      <div className='introTextContainer'>
-        <p className='subtitle'>
+        <p className='subtitle indented'>
           Una firma espectral es la respuesta que tiene una cubierta, objeto 
           o superficie sobre la tierra, a la interacción recibida del sol o una 
           fuente de luz externa. Cada registro espectral es único para el objeto
@@ -36,22 +33,20 @@ const HomeHeader = () => {
             disponer de el primer catálogo de firmas espectrales de diferentes objetos en Costa Rica, con 
             un enfoque inicial en vegetación y cuerpos de agua.  
         </p>
-        <p className='subtitle' style={{marginTop: '2vh'}}>
+        <p className='subtitle indented' style={{marginTop: '2vh'}}>
           En esta biblioteca tenés la opción de visualizar los datos que ha recolectado el
           PRIAS (o datos que vos hayás recolectado) como una base de datos o en un mapa. Presioná alguno de los dos botones siguientes para continuar:
         </p>
       </div>
-      <div className='introButtonsContainer'>
-        <div className='introButtonContainer'>
-          <Link className='introButton' to='/spectra' id = 'table' state={'table'} onMouseOver={handleMouseIn} onMouseOut={() => setActiveType()}>
-            <i class="bi bi-table" style={{fontSize: '2.5vmax', color: 'white', margin: '1.5vh 0 0 0'}} id='table'></i>
+      <div className='homeButtonsContainer'>
+        <div className='homeButtonContainer'>
+          <Link className='homeButton' to='/spectra' id = 'table' state={'table'} onMouseOver={handleMouseIn} onMouseOut={() => setActiveType()}>
+            <i class="bi bi-table" style={{fontSize: '2.5vmax', color: 'white'}} id='table'></i>
           </Link>
-          <IntroButtonTooltip id = {'table'}/>
         </div>
-        <div className='introButtonContainer'>
-          <Link className='introButton' to='/spectra' id = 'map' state={'map'} onMouseOver={handleMouseIn} onMouseOut={() => setActiveType()}>
-            <i class="bi bi-geo-alt-fill" style={{fontSize: '2.5vmax', color: 'white', margin: '1.5vh 0 0 0'}} id='map'></i>
-            {activeType === 'map' ?<IntroButtonTooltip id = 'map'/>:''}
+        <div className='homeButtonContainer'>
+          <Link className='homeButton' to='/spectra' id = 'map' state={'map'} onMouseOver={handleMouseIn} onMouseOut={() => setActiveType()}>
+            <i class="bi bi-geo-alt-fill" style={{fontSize: '2.5vmax', color: 'white'}} id='map'></i>
           </Link>
         </div>
       </div>

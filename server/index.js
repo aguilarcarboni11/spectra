@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser');
 const app = express()
 const cors = require('cors');
-const port = 5050
+const port = 3001
 
 var query = ''
 

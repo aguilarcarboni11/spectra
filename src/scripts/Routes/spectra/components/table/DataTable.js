@@ -1,6 +1,6 @@
 import Table, {createTheme} from 'react-data-table-component'
-import FetchingComponent from './FetchingComponent'
 import { useEffect, useState } from 'react'
+
 import ClearButton from './ClearButton'
 import TableFilters from './TableFilters'
 import TableInfo from './TableInfo'

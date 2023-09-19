@@ -47,10 +47,6 @@ const OurTeam = () => {
         </div>:''}
         {canShowInfo ? 
         <div className='employeeInfoForeground' onClick={() => onPhotoClick()}></div>:''}
-        <div className='ourTeamTitleContainer'>
-            <p className='title'> Equipo PRIAS: </p>
-            <div className='ourTeamBar'></div>
-        </div>
         <div className='ourTeamPhotosContainer'>
           <div className='ourTeamArrowContainer'>
             {index > 0 && <ArrowButton id={'left'} onClick={prevSlide} height={5} width={5}/>}

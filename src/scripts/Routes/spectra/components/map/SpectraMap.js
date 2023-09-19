@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { useFetch } from '../../../../API/useFetch'
+import { useFetch } from '../../../../hooks/useFetch'
 import { Map, Marker, Overlay, ZoomControl } from 'pigeon-maps'
 
 import SpectraGraph from '../misc/SpectraGraph'
