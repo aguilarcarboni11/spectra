@@ -1,0 +1,5 @@
+Número del Formulario,Tipo de Formulario,Fecha del Formulario,Sitio del Formulario,Anotador del Formulario,Descripción del Formulario,Edad,Especie,Genero,NombreComun,EstadoFenologico,EstadoFitosanitario,NumeroPlanta,Latitud,Longitud,Altitud,Codigo del Registro,Calibración,Observaciones,Muestra,FotoMuestra,FotoCielo,Condicion del Cielo,Instrumento,Nombre Blanco,Valor del Blanco,Wavelenght
+1,Planta,24/2/23,San Jose,Stephanie,Dato de prueba,1,Arbol,Floreado,Cerezo,Bueno,Bueno,1,5.513.927,-87.057.711,0.5,1,1.0,b,1,xx,yy,zz,Espectro 1,B1,1.0,0001
+2,Planta,10/9/20,San Jose,Andres,Dato de prueba,2,Arbol,Madera,Roble,Bueno,Bueno,2,5.517.128,-87.055.133,100,2,1.1,b,2,xx,yy,zz,Espectro 1,B2,1.9,0002
+3,Planta,3/10/18,Cartago,Heileen,Dato de prueba,0.5,Arbol,Madera,Higuero,Bueno,Bueno,3,5.556.415,-87.048.922,300,3,1.2,b,3,xx,yy,zz,Espectro 2,B1,1.0,0003
+4,Planta,1/11/22,Turrialba,Stephanie,Dato de prueba,3,Arbol,Madera,Rojizo,Bueno,Bueno,4,5.560.953,-87.047.712,500,4,1.3,b,4,xx,yy,zz,Espectro 2,B3,1.2,0002

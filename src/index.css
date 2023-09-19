@@ -1,0 +1,1027 @@
+/* Basic */
+
+@font-face {
+  font-family: 'Lato';
+  src: local('Lato'), url(./assets/fonts/Tommy/MADE\ Tommy\ Soft\ Regular\ PERSONAL\ USE.otf) format('opentype');
+  font-weight: bolder;
+}
+
+@font-face {
+  font-family: 'Lato Light';
+  src: local('Lato'), url(./assets/fonts/Tommy/MADE\ Tommy\ Soft\ Light\ PERSONAL\ USE.otf) format('opentype');
+}
+
+:root {
+  --lightBeige: #fff8f2;
+  --beige: #FFF3E8;
+  --clickedBeige: #f1dfc6;
+
+  --lightGrey: #E6E7E8;
+  --grey: #58595B;
+  --black: #231F20;
+
+  --lightAqua: #e8f1f1;
+  --aqua: #00746C;
+  --clickedAqua: #005a53;
+  --darkAqua: #002e2a;
+
+  --lightOrange: #E9BA76;
+  --orange: #FF914D;
+  --contactOrange: #e77c39;
+  --clickedOrange: #CF7136;
+
+  --lightBlue: #dfece7;
+  --midBlue: #869E95;
+  --lightBlueClicked: #43695B;
+}
+
+/* * {
+  outline: red dashed 1px;
+} */
+
+body {
+  margin: 0;
+}
+
+html {
+  background-color: var(--lightBeige);
+  margin: 1vh 2vw 0 2vw;
+  height: 100vh;
+}
+
+html::-webkit-scrollbar {
+  width: 0;
+}
+
+svg {
+  margin: 1vmax 0 0 0;
+}
+
+p {
+  font-family: 'Lato', serif;
+  width: fit-content;
+  height: fit-content;
+  margin:0;
+}
+
+button {
+  border-radius: 2vmax;
+  border:none;
+}
+
+img {
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.break {
+  flex-basis: 100%;
+  height: 1vh;
+  width: 100%;
+}
+
+.arrowButtonContainer {
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrowButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height:inherit;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.baseContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  height: 100vh;
+}
+
+.headerContainer {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+}
+
+  .logoContainer {
+    display: flex;
+    position: relative;
+    height: 8vmax;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+.navbarContainer {
+  height: 5vmax;
+  width: fit-content;
+  flex-wrap: nowrap;
+  background-color: var(--aqua);
+  border-radius: 2vmax;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  float: right;
+}
+
+  .navbarButton {
+    background-color: var(--aqua);
+    height: inherit;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    border-radius: 2vmax;
+  }
+
+  .navbarButtonActive {
+    text-align: center;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 2vmax;
+    background-color: var(--clickedAqua);
+  }
+
+    .navbarText {
+      font-size:1vmax;
+      padding: 1.4vw;
+      font-weight: bolder;
+      white-space: nowrap;
+      color:var(--beige);
+      text-decoration: none;
+    }
+
+    .navbarButton:active {
+      background-color: var(--clickedAqua);
+    }
+
+    .navbarButton:hover {
+      background-color: var(--clickedAqua);
+      animation-name: buttonHover;
+      animation-duration: .5s;
+    }
+
+    .navbarButton:hover > .navbarText {
+      animation-name:navbarTextHover;
+      animation-duration: 0.2s;
+      font-size: 1.05vmax;
+      padding: 1.4vw;
+    }
+
+
+.footerContainer {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  bottom: 0;
+  height: 8vh;
+  border-radius: 2vmax 2vmax 0 0;
+  background-color: var(--aqua);
+}
+
+.title {
+  font-family: 'Lato', serif;
+  font-size: 3vmax;
+  color:var(--black);
+  font-weight:bold;
+}
+
+.subtitle {
+  font-family: 'Lato Light', serif;
+  font-size: 1vmax;
+  line-height: 1.8vmax;
+  color:var(--grey);
+  font-weight:bold;
+}
+
+.footerText {
+  font-family: 'Lato Light', serif;
+  font-size: .75vmax;
+  color:var(--beige);
+  font-weight:bold;
+}
+.logoButton {
+  text-decoration: none;
+  height: fit-content;
+}
+
+.logo {
+  width: fit-content;
+  height:4.5vmax;
+}
+
+.spectra { 
+  font-size: 4.5vmax;
+  color:var(--black);
+  font-weight:bolder;
+}
+
+/* Homepage */
+
+.introContainer {
+  margin: 4vh 0 0 0;
+  display: block;
+  height: fit-content;
+  width: 100%;
+}
+
+  .introTextContainer {
+    width: 99%;
+    height: fit-content;
+    display:block;
+    margin: 2vh 1vw 0 1vw;
+  }
+
+    .introText {
+      font-family: 'Lato Light', serif;
+      font-size:1.4vmax;
+      margin: 0 0 0 2vw;
+      color:var(--black);
+      font-weight:bolder;
+    }
+
+  .introTitleContainer {
+      display:flex;
+      width: 100%;
+      height: fit-content;
+  }
+
+.carrouselAndTextContainer {
+  height: fit-content;
+  margin: 3vh 0 0 0;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+  .carrouselContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+    .carrouselPhotos {
+      overflow: hidden;
+      border-radius: 2vmax;
+      justify-content: center;
+      display: flex;
+      z-index: 0;
+      height: fit-content;
+      width: 100%;
+    }
+
+    .carrouselPhotoContainer {
+      z-index: 1;
+      height: inherit;
+      border-radius: 2vmax;
+    }
+
+      .carrouselPhoto {
+        align-self: center;
+        object-fit:fill;
+        opacity: 100%;
+        animation-name:fadeIn;
+        animation-duration: .5s;
+      }
+
+    .carrouselSubtitleContainer {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 2vh 0 2vh 0;
+    }
+
+      .carrouselSubtitle {
+        color:var(--black);
+        font-size: 0.8vmax;
+        align-self: center;
+      }
+
+.introButtonsContainer {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 10vh;
+  margin: 0 0 5vh 0;
+}
+
+  .introButtonContainer {
+    display: block;
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 2vmax;
+    background-color: var(--orange);
+    margin: 1vh 1vw 0 1vw;
+    height: 8vh;
+    width: 8vw;
+  }
+  
+    .introButton {
+      width: 100%;
+      height: 100%;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      border-radius: 2vmax;
+      text-decoration: none;
+    }
+    
+      .introButtonTooltip {
+        background-color: var(--orange);
+        height: 0;
+        width: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        transition:all .5s;
+      }
+
+      .introButtonContainer:hover .introButtonTooltip {
+        height: fit-content;
+        padding: 0.5vmax;
+      }
+
+        .tooltipText {
+          color: var(--beige);
+          font-size: 0.7vmax;
+          white-space: nowrap;
+          text-decoration: none!important;
+        }
+
+/* About */
+
+.infoPRIAScontainer {
+  margin: 4vh 0 0 0;
+  display: block;
+  height: fit-content;
+  width: 100%;
+}
+
+.infoPRIASsubtitleContainer {
+  margin: 2vh 0 2vh 1vw;
+}
+
+
+.ourTeamContainer {
+  height: fit-content;
+  width: 100%;
+}
+
+.ourTeamArrowContainer {
+  height: inherit;
+  display: flex;
+  align-items: center;
+}
+
+
+.employeeInfoContainer {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 2vmax;
+  z-index: 100;
+  background-color: var(--beige);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 80%;
+  height: 80%;
+}
+
+  .employeeInfoForeground {
+    border-radius: 2vmax;
+    z-index: 50;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+  }
+
+    .employeeInfoForeground:hover {
+      cursor: pointer;
+    }
+
+  .employeeInfoTitle {
+    font-size: 4vmax;
+    margin: 1.5vmax;
+    color:var(--black);
+  }
+
+  .employeeInfoText {
+    font-size: 1.5vmax;
+    margin: 2.5vmax;
+    color:var(--black);
+  }
+
+  .ourTeamTitleContainer {
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 2vh 0 0 0;
+  }
+
+    .ourTeamBar {
+      width: 75%;
+      height: 3vh;
+      border-radius: 2vmax;
+      background-color: var(--aqua);
+      color: var(--aqua);
+      align-self: center;
+    }
+
+    .ourTeamPhotosContainer {
+      width: 100%;
+      height: 16vw;
+      margin: 2vh 0 2vh 0;
+      display: inline-flex;
+      justify-content: space-between;
+    }
+    
+      .employeePhotoContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 100%;
+        height: fit-content;
+      }
+
+        .employeePhotoContainer:hover {
+          cursor: pointer;
+        }
+        
+        .employeePhotoContainer:hover > .employeePhoto{
+            opacity: 50%;
+            animation-name:midFadeOut;
+            animation-duration: 0.5s;
+          }
+        
+        .employeePhotoContainer:hover > .employeeDescriptionContainer {
+            opacity: 100%;
+            animation-name:fadeIn;
+            animation-duration: 0.5s;
+        }
+
+        .employeePhoto{
+          width: 15vw;
+          height: fit-content;
+          border-radius: 30vmax;
+        }
+
+        .employeeInfoPhoto{
+          width: 15vw;
+          height: fit-content;
+          border-radius: 2vmax;
+        }
+
+        .employeeText {
+          margin: auto;
+          text-align: center;
+          bottom: 25vh;
+        }
+
+        .employeeDescriptionContainer {
+          opacity: 0;
+          display: inline-block;
+          color: var(--black);
+          position: absolute;
+        }
+
+/* Spectra */
+
+.loadingContainer {
+  height: 50vh;
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+
+.spinnerContainer {
+  margin: 15vh 0 2vh 0;
+  width: inherit;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spectraContainer {
+  margin: 4vh 0 0 0;
+  display: block;
+  height: fit-content;
+  width: 100%;
+}
+
+.spectraHeaderContainer {
+  display:flex;
+  width: 100%;
+  height: fit-content;
+  justify-content:space-between;
+}
+
+  .sliderContainer {
+    padding: .5vmax;
+    border-radius: 2vmax;
+    float: right;
+    display: block;
+    background-color: var(--clickedAqua);
+    width: fit-content;
+    height: fit-content;
+  }
+
+    .sliderBackground {
+      width: inherit;
+      height: inherit;
+      display: inline-flex;
+      justify-content: space-between;
+      background-color: var(--aqua);
+      border-radius: 2vmax;
+    }
+
+    .sliderButton {
+      width: fit-content;
+      color: var(--black);
+      font-size: .75vmax;
+      font-weight: bolder;
+      width: fit-content;
+      height: fit-content;
+      padding: .5vmax;
+      background-color: var(--beige);
+      font-family: 'Lato', serif;
+    }
+    
+    .sliderButtonActive {
+      width: fit-content;
+      color: var(--beige);
+      font-weight: bolder;
+      width: fit-content;
+      height: fit-content;
+      font-family: 'Lato', serif;
+      font-size: .75vmax;
+      padding: .5vmax;
+      background-color: var(--aqua);
+      animation: sliderSwitch .3s;
+    }
+
+      .sliderButton:hover {
+        background-color: var(--lightBlue);
+        animation: sliderHover .25s;
+      }
+
+  .clearButton {
+    background-color: rgba(0, 0, 0, 0);
+    width: 3vw;
+    height: 5vh;
+    position: relative;
+    float: right;
+  }
+
+  .clearButton:hover > .backArrow {
+    opacity: 50%;
+    cursor: pointer;
+  }
+
+  
+  .spectraMap {
+    width: 100%;
+  }
+  .mapAndInfoContainer {
+    display: flex;
+    width: 100%;
+  }
+
+  .spectraCategoryText {
+    display: inherit;
+    font-size: 1.25vmax;
+    color: var(--black);
+    font-weight: bold;
+  }
+
+  .spectraFilterAndTextContainer {
+    width: 99%;
+    height: fit-content;
+    display:flex;
+    justify-content: space-between;
+  }
+
+  .spectraFilterAndTextContainerHidden {
+    overflow: hidden;
+    width: fit-content;
+    height: 0;
+    display: block;
+    overflow: hidden;
+  }
+
+    .spectraFilterBlock {
+      width: fit-content;
+      height: 7vh;
+      display: inline-flex;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+      .spectraFilterContainer {
+        display: flex;
+        background-color: var(--orange);
+        margin: 2vh 2vw 0 0;
+        padding: 1vh 0 1vh 0;
+        justify-content: center;
+        border-radius: 2vmax;
+        width: 14vw;
+        overflow: hidden;
+      }
+
+        .spectraFilterTitle {
+          font-family:'Lato';
+          font-size: 1vmax;
+          font-weight: bolder;
+          color: var(--beige);
+          text-align: center;
+        }
+        
+        .spectraFilterHoverContainer {
+          display: flex;
+          flex-wrap:wrap;
+          justify-content: center;
+          position: absolute;
+          margin: -1vh 0 0 0;
+          height: 16vh;
+          width: inherit;
+          background-color: var(--beige);
+          border-radius: 1.1vmax;
+          overflow: hidden;
+        }
+
+        .spectraFilterHoverContainerHidden {
+          display: none;
+          justify-content: center;
+          position: absolute;
+          margin: -1vh 0 0 0;
+          width: inherit;
+          background-color: var(--beige);
+          border-radius: 1.1vmax;
+          height: 0;
+        }
+
+
+.spectraFilterHover >* {
+  flex: 0 1 5vmax;
+}
+
+.spectraFilterHoverText {
+  margin: 1vh 0 0 0;
+  font-family:'Lato';
+  font-size: 0.7vmax;
+  color: var(--black);
+  text-align: center;
+}
+
+.spectraFilterHoverTextActive {
+  margin: 1vh 0 0 0;
+  font-family:'Lato';
+  font-size: 0.7vmax;
+  color: var(--aqua);
+  text-align: center;
+}
+
+.spectraFilterHoverTitle {
+  margin: 1vh 0 0 0;
+  font-family:'Lato';
+  font-size: 1vmax;
+  color: var(--black);
+  text-align: center;
+  font-weight: bolder;
+}
+
+.spectraFilter:hover {
+  cursor: pointer;
+}
+
+.mapSpectraGraph {
+  height: 20vh;
+  width: 100%;
+}
+
+.mapInfoContainer {
+  display: block;
+  background-color: var(--beige);
+  width: 80vw;
+  height: 80vh;
+  margin: 1vh 0 0 1vw;
+  animation: mapInfoExpand 0.5s;
+  overflow: hidden;
+  border-radius: 2vmax;
+}
+
+.mapInfoContainerHidden {
+  display: flex;
+  width: 0;
+  height: 60vh;
+  animation: mapInfoContract 0.5s;
+  overflow: hidden;
+  border-radius: 2vmax;
+}
+
+.mapInfoDivider {
+  height: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 4vw 0 4vw;
+}
+
+.mapInfoDivider >* {
+  flex: 1 1 7vmax;
+}
+
+.mapInfoText {
+  font-size: 0.7vmax;
+}
+
+.map {
+  object-fit: cover;
+}
+
+.wavelengthGraphContainer {
+  height: 26vh;
+  width: 20vw;
+  margin: -1vh 4vw 2vh 0;
+}
+
+.mapOverlay {
+  height: fit-content;
+  width: fit-content;
+  background-color: var(--beige);
+  padding: 1vmax;
+  border-radius: 2vmax;
+  font-family: 'Lato';
+  font-size: .6vmax;
+  animation: fadeIn 0.5s
+}
+.mapOverlayHidden {
+  animation: fadeOut 0.5s;
+  display: none;
+}
+
+.tableAndInfoContainer {
+  display: block;
+  height: fit-content;
+  width: 100%;
+}
+
+.tableHeader {
+  width: 99%;
+  height: fit-content;
+  display:flex;
+  justify-content: space-between;
+  margin: 2vh 0 0 0;
+}
+
+.tableInfoContainer {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  margin: 3vh 0 3vh 0;
+  animation: tableInfoExpand 0.5s;
+}
+
+.tableInfoContainerHidden {
+  display: flex;
+  width: 100%;
+  height: 0;
+  animation: tableInfoContract 0.5s
+}
+
+.tableInfoDivider {
+  height: 30vh;
+  width: 100%;
+  margin: 0 1vw 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: var(--lightAqua);
+  border-radius: 2vmax;
+  overflow: hidden;
+  padding: 2vmax;
+}
+
+.tableInfoDivider >* {
+    flex: 0 5 13.3vmax;
+}
+
+.tableInfoText {
+  font-size: 1vmax;
+}
+
+.tableInfoSetContainer {
+  position: relative;
+  width: inherit;
+  margin: 1vmax;
+  overflow: hidden;
+}
+
+.spectraCategoryTextHidden {
+  display: none;
+}
+
+.spinner {
+  height: 8vh;
+  width: 4vw;
+  border: 0.5vmax solid var(--black);
+  border-color: var(--black) transparent var(--black) transparent;
+  border-radius: 10vmax;
+  animation: spin 2s linear infinite;
+}
+
+/* Tools */
+
+/* Works */
+
+/* Contact */
+
+.contactContainer {
+  width: 100%;
+  height: 100vh;
+  margin: 3vh 0 1vh 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+  .contactDivisionContainer {
+    width: 40%;
+    margin: 0 2vw 0 2vw;
+    height: 15vw;
+    display:flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-items: center;
+  }
+
+  .contactDivisionContainer>* {
+    flex: 1 1 100vw;
+  }
+
+    .contactText {
+      font-family: 'Lato Light', serif;
+      font-size:1vmax;
+      line-height: 3vh;
+      font-weight: 600;
+      color:var(--contactOrange);
+    }
+
+      .contactText:hover {
+        color: var(--clickedOrange)
+      }
+
+    .socialMediaLink {
+      margin: 0 2vw 0 2vw;
+    }
+
+      .socialMediaLink:hover > .contactLogo {
+        opacity: 50%;
+        animation: midFadeOut 0.25s
+      }
+
+    .contactLogosContainer {
+      width: fit-content;
+      display: inline-flex;
+      justify-content:center;
+    }
+
+      .contactLogo {
+        width: 5vw;
+        margin: 3vh 0 0 0;
+      }
+
+
+.mapContainer {
+  border-radius: 2vmax;
+  position:relative;
+  height: 80vh;
+  width: 100%;
+  margin: 2vh 0 2vh 0;
+  overflow: hidden;
+}
+
+.tableGraphContainer {
+  width: 100vw;
+  height: 35vh;
+  margin: 0 1vw 0 0;
+}
+
+.mapInfoSetText {
+  color: var(--black);
+  font-size: .9vmax;
+}
+.mapInfoSetContainer {
+  margin: 1vmax;
+}
+
+/* Animations */
+
+@keyframes navbarTextHover {
+  from {font-size:1vmax;}
+  to {font-size:1.05vmax}
+}
+
+@keyframes buttonHover {
+  from {background-color: var(--aqua);}
+  to {background-color: var(--clickedAqua);}
+}
+
+@keyframes buttonHoverOrange {
+  from {background-color: var(--orange);}
+  to {background-color: var(--clickedOrange);}
+}
+
+@keyframes sliderHover {
+  from {background-color: var(--beige); color: var(--black);}
+  to {background-color: var(--lightBlue); color: var(--black);}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0%;}
+  to {opacity: 100%;}
+}
+
+@keyframes fadeOut {
+  from {opacity: 100%;}
+  to {opacity: 0%;}
+}
+
+@keyframes mapExpand {
+  from {width: 50%}
+  to {width: 100%}
+}
+
+@keyframes mapContract {
+  from {width: 100%}
+  to {width: 50%}
+}
+
+@keyframes mapInfoExpand {
+  from {width: 0}
+  to {width: 40vmax}
+}
+
+@keyframes mapInfoContract {
+  from {width: 40vmax}
+  to {width: 0}
+}
+
+@keyframes tableInfoExpand {
+  from {height: 0}
+  to {height: 35vh}
+}
+
+@keyframes tableInfoContract {
+  from {height: 35vh}
+  to {height: 0}
+}
+
+@keyframes sliderSwitch {
+  from {background-color: var(--lightBlue); color: var(--black)}
+  to {background-color: var(--aqua); color: var(--beige)}
+}
+
+@keyframes expandIntroButtonTooltip {
+  from {height: 4.7vmax}
+  to {height: 6vmax}
+}
+
+@keyframes contractIntroButtonTooltip {
+  from {height: 6vmax}
+  to {height: 4.7vmax}
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
