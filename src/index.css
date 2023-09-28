@@ -132,6 +132,10 @@ img {
       height:4.5vmax;
     }
 
+.hidden {
+  height: 0 !important;
+}
+
 /* Navbar */
 
 .navbarContainer {
@@ -580,124 +584,57 @@ img {
     cursor: pointer;
   }
 
-  
-  .spectraMap {
-    width: 100%;
-  }
-  .mapAndInfoContainer {
-    display: flex;
-    width: 100%;
-  }
+.spectraCategoryText {
+  display: inherit;
+  font-size: 1.25vmax;
+  color: var(--black);
+  font-weight: bold;
+}
 
-  .spectraCategoryText {
-    display: inherit;
-    font-size: 1.25vmax;
-    color: var(--black);
-    font-weight: bold;
-  }
+.filterAndTextContainer {
+  width: 99%;
+  height: fit-content;
+  display:flex;
+  justify-content: space-between;
+}
 
-  .spectraFilterAndTextContainer {
-    width: 99%;
-    height: fit-content;
-    display:flex;
-    justify-content: space-between;
-  }
-
-  .spectraFilterAndTextContainerHidden {
-    overflow: hidden;
+  .filterBlock {
     width: fit-content;
-    height: 0;
-    display: block;
+    height: 7vh;
+    display: inline-flex;
+    justify-content: space-between;
     overflow: hidden;
   }
 
-    .spectraFilterBlock {
-      width: fit-content;
-      height: 7vh;
-      display: inline-flex;
-      justify-content: space-between;
+    .filterContainer {
+      display: flex;
+      background-color: var(--orange);
+      margin: 2vh 2vw 0 0;
+      padding: 1vh 0 1vh 0;
+      justify-content: center;
+      border-radius: 2vmax;
+      width: 14vw;
       overflow: hidden;
     }
 
-      .spectraFilterContainer {
-        display: flex;
-        background-color: var(--orange);
-        margin: 2vh 2vw 0 0;
-        padding: 1vh 0 1vh 0;
-        justify-content: center;
-        border-radius: 2vmax;
-        width: 14vw;
-        overflow: hidden;
+      .filterTitle {
+        font-family:'Lato';
+        font-size: 1vmax;
+        font-weight: bolder;
+        color: var(--beige);
+        text-align: center;
       }
-
-        .spectraFilterTitle {
-          font-family:'Lato';
-          font-size: 1vmax;
-          font-weight: bolder;
-          color: var(--beige);
-          text-align: center;
-        }
-        
-        .spectraFilterHoverContainer {
-          display: flex;
-          flex-wrap:wrap;
-          justify-content: center;
-          position: absolute;
-          margin: -1vh 0 0 0;
-          height: 16vh;
-          width: inherit;
-          background-color: var(--beige);
-          border-radius: 1.1vmax;
-          overflow: hidden;
-        }
-
-        .spectraFilterHoverContainerHidden {
-          display: none;
-          justify-content: center;
-          position: absolute;
-          margin: -1vh 0 0 0;
-          width: inherit;
-          background-color: var(--beige);
-          border-radius: 1.1vmax;
-          height: 0;
-        }
-
-
-.spectraFilterHover >* {
-  flex: 0 1 5vmax;
-}
-
-.spectraFilterHoverText {
-  margin: 1vh 0 0 0;
-  font-family:'Lato';
-  font-size: 0.7vmax;
-  color: var(--black);
-  text-align: center;
-}
-
-.spectraFilterHoverTextActive {
-  margin: 1vh 0 0 0;
-  font-family:'Lato';
-  font-size: 0.7vmax;
-  color: var(--aqua);
-  text-align: center;
-}
-
-.spectraFilterHoverTitle {
-  margin: 1vh 0 0 0;
-  font-family:'Lato';
-  font-size: 1vmax;
-  color: var(--black);
-  text-align: center;
-  font-weight: bolder;
-}
-
-.spectraFilter:hover {
-  cursor: pointer;
-}
 
 .mapSpectraGraph {
   height: 20vh;
+  width: 100%;
+}
+
+.spectraMap {
+  width: 100%;
+}
+.mapAndInfoContainer {
+  display: flex;
   width: 100%;
 }
 
@@ -707,16 +644,6 @@ img {
   width: 80vw;
   height: 80vh;
   margin: 1vh 0 0 1vw;
-  animation: mapInfoExpand 0.5s;
-  overflow: hidden;
-  border-radius: 2vmax;
-}
-
-.mapInfoContainerHidden {
-  display: flex;
-  width: 0;
-  height: 60vh;
-  animation: mapInfoContract 0.5s;
   overflow: hidden;
   border-radius: 2vmax;
 }
@@ -747,18 +674,13 @@ img {
 }
 
 .mapOverlay {
-  height: fit-content;
+  height: 2vmax;
   width: fit-content;
   background-color: var(--beige);
-  padding: 1vmax;
   border-radius: 2vmax;
   font-family: 'Lato';
   font-size: .6vmax;
-  animation: fadeIn 0.5s
-}
-.mapOverlayHidden {
-  animation: fadeOut 0.5s;
-  display: none;
+  overflow: hidden;
 }
 
 .tableAndInfoContainer {
@@ -777,20 +699,11 @@ img {
 .tableInfoContainer {
   display: flex;
   width: 100%;
-  height: fit-content;
-  margin: 3vh 0 3vh 0;
-  animation: tableInfoExpand 0.5s;
-}
-
-.tableInfoContainerHidden {
-  display: flex;
-  width: 100%;
-  height: 0;
-  animation: tableInfoContract 0.5s
+  height: 35vh;
 }
 
 .tableInfoDivider {
-  height: 30vh;
+  height: inherit;
   width: 100%;
   margin: 0 1vw 0 0;
   display: flex;
@@ -799,7 +712,6 @@ img {
   background-color: var(--lightAqua);
   border-radius: 2vmax;
   overflow: hidden;
-  padding: 2vmax;
 }
 
 .tableInfoDivider >* {
@@ -808,17 +720,7 @@ img {
 
 .tableInfoText {
   font-size: 1vmax;
-}
-
-.tableInfoSetContainer {
-  position: relative;
-  width: inherit;
-  margin: 1vmax;
-  overflow: hidden;
-}
-
-.spectraCategoryTextHidden {
-  display: none;
+  padding: 1vmax;
 }
 
 .spinner {
@@ -968,13 +870,8 @@ img {
 }
 
 @keyframes tableInfoExpand {
-  from {height: 0}
-  to {height: 35vh}
-}
-
-@keyframes tableInfoContract {
-  from {height: 35vh}
-  to {height: 0}
+  from {max-height: 0}
+  to {max-height: 40vh}
 }
 
 @keyframes sliderSwitch {

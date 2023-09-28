@@ -1,0 +1,10 @@
+"CodigoRegistro","Observaciones","Muestra","CondicionCielo","Wavelength","IDFormulario","TipoFormulario","ZonaFormulario","FechaFormulario","IDInformacion","ID","Calibracion"
+1,"Color amarillo",1,"Lluvioso","{1,2,3,4,5,6,7,8,9,10}",36,"Planta","San Jose","2023-06-07",4,1,True
+2,"Color amarillo",1,"Lluvioso","{1,2,3,4,5,6,7,8,9,10}",36,"Planta","San Jose","2023-06-07",4,2,True
+3,"Color amarillo",1,"Lluvioso","{1,2,3,4,5,6,7,8,9,10}",36,"Planta","San Jose","2023-06-07",4,3,True
+4,"Color amarillo",2,"Lluvioso","{1,2,3,4,5,6,7,8,9,10}",36,"Planta","San Jose","2023-06-07",4,4,True
+5,"Color amarillo",2,"Lluvioso","{1,2,3,4,5,6,7,8,9,10}",36,"Planta","San Jose","2023-06-07",4,5,True
+6,"Color amarillo",2,"Lluvioso","{1,2,3,4,5,6,7,8,9,10}",36,"Planta","San Jose","2023-06-07",4,6,True
+7,"Blanco",3,"Lluvioso","{1,2,3,4,5,6,7,8,9,10}",36,"Planta","San Jose","2023-06-07",4,7,True
+8,"Blanco",3,"Lluvioso","{1,2,3,4,5,6,7,8,9,10}",36,"Planta","San Jose","2023-06-07",4,8,True
+9,"Blanco",3,"Lluvioso","{1,2,3,4,5,6,7,8,9,10}",36,"Planta","San Jose","2023-06-07",4,9,True

@@ -57,25 +57,6 @@ ALTER TABLE IF EXISTS public."Informacion"
 
 -----------------------------------------
 
--- Table: public.Prueba
-
--- DROP TABLE IF EXISTS public."Prueba";
-
-CREATE TABLE IF NOT EXISTS public."Prueba"
-(
-    "ID" integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
-    lat geometry,
-    lon geometry
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public."Prueba"
-    OWNER to postgres;
-
------------------------------------------------ 
-
-
 -- Table: public.Registro
 
 -- DROP TABLE IF EXISTS public."Registro";
