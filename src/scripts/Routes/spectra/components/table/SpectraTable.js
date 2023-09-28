@@ -15,6 +15,7 @@ const SpectraTable = ({height, tableState, setTableState}) => {
 
   const [formulario, setFormulario] = useState({})
   const [info, setInfo] = useState({})
+  const {data,Post} = useFetch()
 
   var wavelength = []
 
@@ -25,8 +26,6 @@ const SpectraTable = ({height, tableState, setTableState}) => {
 
     var columns = []
 
-    const {data,Post} = useFetch()
-  
     useEffect(() => {
         Post(`SELECT * from "Formulario"`)
     },[])
@@ -43,6 +42,9 @@ const SpectraTable = ({height, tableState, setTableState}) => {
                         setTableState('info')
                         setInfo(entry)
                         Post(`SELECT * from "Registro" WHERE "IDInformacion" : ${entry['ID']}`)
+                    } else if (tableState === 'info') {
+                        setTableState('wl')
+                        Post(`SELECT * from "Registro" WHERE "CodigoRegistro" : ${entry['ID']}`)
                     }
                 }
             })
@@ -54,11 +56,13 @@ const SpectraTable = ({height, tableState, setTableState}) => {
             setTableState('home')
             Post(`SELECT * from "Formulario"`)
             setFormulario({})
-        }
-        if (tableState === 'info') {
+        } else if (tableState === 'info') {
             setTableState('formulario')
             Post(`SELECT * from "Informacion" WHERE "IDFormulario" : ${formulario['ID']}`) // query de informacion !!
             setInfo({})
+        } else if (tableState === 'wl') {
+            setTableState('info')
+            Post(`SELECT * from "Registro" WHERE "IDInformacion" : ${info['ID']}`) // query de informacion !!
         }
     }
 
@@ -72,8 +76,11 @@ const SpectraTable = ({height, tableState, setTableState}) => {
     }
 
     switch(tableState) {
+        case 'wl':
+            height = '25vh'
+           wavelength = (data[0]['Wavelength'])
+            break;
         case 'info':
-            wavelength = (data[0]['Wavelength'])
             height = '25vh'
             break;
         case 'formulario':
@@ -92,24 +99,24 @@ const SpectraTable = ({height, tableState, setTableState}) => {
   return (
     <div className='tableAndInfoContainer'>
     <div className='tableHeader'>
-        <p className='subtitle'> {tableState === 'formulario' ? `Formulario #${formulario['ID']}`:'De click en una fila para ver más informacion acerca del formulario'} </p>
+        <p className='subtitle'> {tableState === 'formulario' ? `Formulario #${formulario['ID']}`:'De click en una fila para ver más informacion acerca del formulario'} </p>  {/* Pasar a component */}
         <ClearButton clearSelection={clearSelection} tableState={tableState}/>
     </div>
     <TableFilters tableState={tableState}/>
-    {tableState === 'formulario' ? 
-        <div className={tableState === 'formulario' ? 'tableInfoContainer':'tableInfoContainerHidden'}>
-            <TableInfo info = {formulario}/>
-        </div>:
-    ''}
-    {tableState === 'info' ?  
-        <div className={tableState === 'info' ? 'tableInfoContainer':'tableInfoContainerHidden'}>
-            <TableInfo info = {formulario}/>
-            <TableInfo info = {info}/>
-            <div className='tableGraphContainer'>
-                <SpectraGraph height={"100%"} width={"100%"} wavelength = {wavelength}/>
-            </div>
-        </div>:
-    ''}
+    <div className={tableState === 'formulario' ? 'tableInfoContainer':'tableInfoContainer hidden'}>
+        <TableInfo info = {formulario}/>
+    </div>
+    <div className={tableState === 'info' ? 'tableInfoContainer':'tableInfoContainer hidden'}>
+        <TableInfo info = {formulario}/>
+        <TableInfo info = {info}/>
+    </div>
+    <div className={tableState === 'wl' ? 'tableInfoContainer':'tableInfoContainer hidden'}>
+        <TableInfo info = {formulario}/>
+        <TableInfo info = {info}/>
+        <div className={tableState === 'wl' ? 'tableGraphContainer':'tableGraphContainer hidden'}>
+            <SpectraGraph height={"100%"} width={"100%"} wavelength = {wavelength}/>
+        </div>
+    </div>
     <Table data = {data} columns = {columns} theme="spectra" 
         customStyles = {customStyles} 
         fixedHeader fixedHeaderScrollHeight={height} onRowClicked={selectRows}

@@ -40,7 +40,7 @@ const Carrousel = () => {
         <div className='carrouselPhotos'>
         {carrouselPhotos.slice(index,index+2).map((image, count) => (
           <div className='carrouselPhotoContainer' key={count}>
-            <img src={require('../../../../assets/fotos/fotosPRIAS/' + image.path)} alt={'Diapositiva1' + image.key} className='carrouselPhoto'></img>
+            <img src={require('../../../../assets/fotos/fotosPRIAS/' + image.path)} alt={'Diapositiva' + image.key} className='carrouselPhoto'></img>
           </div>
         ))}
         </div>
