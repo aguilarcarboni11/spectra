@@ -8,20 +8,17 @@ import ArrayCompare from '../../../../misc/ArrayCompare'
 const SpectraMap = ({tableState, setTableState}) => {
 
     const [center, setCenter] = useState([9.7489, -83.7535])
-    const [info, setInfo] = useState({})
     const [currentHover, setHover] = useState([])
     const [columns, setColumns] = useState([])
 
   const {data,Post} = useFetch()
+  const {data: coords, Post: coordsPost} = useFetch()
 
-  var coords = []
   const markerColor = '#FF914D'
 
   useEffect(() => {
-      Post(`SELECT * from "Formulario"`)
-      data.forEach(element => { // loop through data and get coords
-        coords.push([element['Punto']])
-    },[])
+        Post(`SELECT * from "Formulario"`)
+        coordsPost(`SELECT "Punto" from "Formulario"`)
   },[])
 
   const handleHoverIn = (coord) => {
@@ -35,7 +32,7 @@ const SpectraMap = ({tableState, setTableState}) => {
   const selectMarker = (marker) => {
       if (tableState === 'map') {
           setTableState('mapInfo')
-          Post(`SELECT * from "Formulario" WHERE "ID" : ${marker['ID']}`) // changes query to specific ID
+          Post(`SELECT * from "Formulario", "Informacion" WHERE "ID" : ${marker['ID']}`) // changes query to specific ID
           setCenter(marker['Punto']) // sets map center
           setHover([])
           if (data[0]) {
