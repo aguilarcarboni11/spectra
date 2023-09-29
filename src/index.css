@@ -2,13 +2,13 @@
 
 @font-face {
   font-family: 'Lato';
-  src: local('Lato'), url(./assets/fonts/Tommy/MADE\ Tommy\ Soft\ Regular\ PERSONAL\ USE.otf) format('opentype');
+  src: local('Lato'), url(./assets/fonts/tommy-reg.otf) format('opentype');
   font-weight: bolder;
 }
 
 @font-face {
   font-family: 'Lato Light';
-  src: local('Lato'), url(./assets/fonts/Tommy/MADE\ Tommy\ Soft\ Light\ PERSONAL\ USE.otf) format('opentype');
+  src: local('Lato'), url(./assets/fonts/tommy-light.otf) format('opentype');
 }
 
 :root {

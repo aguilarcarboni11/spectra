@@ -11,15 +11,20 @@ const SpectraMap = ({tableState, setTableState}) => {
     const [currentHover, setHover] = useState([])
     const [columns, setColumns] = useState([])
 
-  const {data,Post} = useFetch()
+  const {data, Post, isError, isLoading} = useFetch()
   const {data: coords, Post: coordsPost} = useFetch()
 
   const markerColor = '#FF914D'
 
   useEffect(() => {
-        Post(`SELECT * from "Formulario"`)
-        coordsPost(`SELECT "Punto" from "Formulario"`)
-  },[])
+    Post(`SELECT * from "Formulario"`)
+    if (isLoading) {
+        setTableState('loading')
+    } if (isError) {
+        setTableState('error')
+    }
+    coordsPost(`SELECT "Punto" from "Formulario"`) // eslint-disable-next-line
+  },[]) // Only run once
 
   const handleHoverIn = (coord) => {
       setHover(coord)

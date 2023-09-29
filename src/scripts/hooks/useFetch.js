@@ -3,9 +3,13 @@ import { useState } from "react";
 export const useFetch = () => {
 
     const [data, setData] = useState([])
+    const [isLoading, setLoading] = useState(false)
+    const [isError, setError] = useState(false)
+    
     const port = 3001
 
     const Post = async (query) => {
+        setLoading(true)
         try {
             await fetch(`http://localhost:${port}/requests`, {
                 method: "POST",
@@ -16,8 +20,10 @@ export const useFetch = () => {
             })
 
         } catch(e) {
-            console.error('Error posting query', e);
-            return {data, Post};
+            console.error('Error posting query');
+            setError(true)
+            setLoading(false)
+            return {data, Post, isError, isLoading};
         }
         try {
             fetch(`http://localhost:${port}/requests`, {
@@ -26,11 +32,14 @@ export const useFetch = () => {
             .then(response => response.json())
             .then(data => {
                 setData(data)
+                setLoading(false)
             })
-        } catch (e) {
-            console.error('Error fetching data', e);
-            return {data, Post};
+        } catch(e) {
+            console.error('Error fetching data');
+            setError(true)
+            setLoading(false)
+            return {data, Post, isError, isLoading};
         }
     }
-    return {data, Post}
+    return {data, Post, isError, isLoading}
 }

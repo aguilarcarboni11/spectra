@@ -9,13 +9,11 @@ import TableFilters from './TableFilters'
 import ClearButton from '../misc/ClearButton'
 import TableLoadingComponent from './TableLoadingComponent'
 
-
-
 const SpectraTable = ({height, tableState, setTableState}) => {
 
   const [formulario, setFormulario] = useState({})
   const [info, setInfo] = useState({})
-  const {data,Post} = useFetch()
+  const {data,Post,isError,isLoading} = useFetch()
 
   var wavelength = []
 
@@ -28,7 +26,12 @@ const SpectraTable = ({height, tableState, setTableState}) => {
 
     useEffect(() => {
         Post(`SELECT * from "Formulario"`)
-    },[])
+        if (isLoading) {
+            setTableState('loading')
+        } if (isError) {
+            setTableState('error')
+        } // eslint-disable-next-line
+    },[]) // Only run once
     
     const selectRows = (row) => {
         if (data !== undefined) {
@@ -78,7 +81,7 @@ const SpectraTable = ({height, tableState, setTableState}) => {
     switch(tableState) {
         case 'wl':
             height = '25vh'
-           wavelength = (data[0]['Wavelength'])
+            wavelength = (data[0]['Wavelength'])
             break;
         case 'info':
             height = '25vh'
@@ -120,8 +123,8 @@ const SpectraTable = ({height, tableState, setTableState}) => {
     <Table data = {data} columns = {columns} theme="spectra" 
         customStyles = {customStyles} 
         fixedHeader fixedHeaderScrollHeight={height} onRowClicked={selectRows}
-        noDataComponent = 'No data'
-        progressPending = {tableState === 'loading' ? true:false} progressComponent={<TableLoadingComponent/>}>
+        noDataComponent = {isError ? 'Error':''}
+        progressPending = {isLoading ? true:false} progressComponent={<TableLoadingComponent/>}>
     </Table>
 </div>
   )

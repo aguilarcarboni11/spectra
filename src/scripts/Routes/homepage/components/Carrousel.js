@@ -1,15 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import ArrowButton from '../../../misc/ArrowButton'
 
-const carrouselPhotos = []
-
-for (var i = 1; i < 15; i++) {
-  var string = i.toString()
-  carrouselPhotos.push({path: string.concat('.JPG'), key: i})
-}
-
 const Carrousel = () => {
   const [index,setIndex] = useState(0)
+  const carrouselPhotos = []
+  //const images = require('../../../../assets/fotos/fotos-prias/')
+
+  for (var i = 1; i < 15; i++) {
+    var string = i.toString()
+    carrouselPhotos.push({path: string.concat('.JPG'), key: i})
+  }
 
   const nextSlide = () => {
     if (index !== carrouselPhotos.length-2) {
@@ -40,7 +40,7 @@ const Carrousel = () => {
         <div className='carrouselPhotos'>
         {carrouselPhotos.slice(index,index+2).map((image, count) => (
           <div className='carrouselPhotoContainer' key={count}>
-            <img src={require('../../../../assets/fotos/fotosPRIAS/' + image.path)} alt={'Diapositiva' + image.key} className='carrouselPhoto'></img>
+            <img src={require("../../../../assets/fotos/fotos-prias/" + image.path)} alt={'Diapositiva' + image.key} className='carrouselPhoto'></img>
           </div>
         ))}
         </div>

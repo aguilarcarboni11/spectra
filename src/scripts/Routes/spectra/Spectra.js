@@ -11,35 +11,23 @@ import SpectraTable from './components/table/SpectraTable'
 
 const Spectra = () => {
 
-  const [tableState, setTableState] = useState('loading')
-  const [isMap, setMap] = useState(false)
+  const [tableState, setTableState] = useState()
 
   const location = useLocation()
 
   useEffect(() => { // read csv data
-    if (tableState === 'loading') {
-      if (location.state === 'map') {
-        const timeout = setTimeout(() => {
-          setTableState('map');
-          setMap(true)
-        }, 2000);
-        return () => clearTimeout(timeout);
-      } else {
-        const timeout = setTimeout(() => {
-          setTableState('home');
-        }, 2000);
-        return () => clearTimeout(timeout);
+    if (tableState !== 'loading') {
+      if (tableState !== 'error') {
+        setTableState(location.state)
       }
-    }
-  }, [location.state, tableState]);
+    } // eslint-disable-next-line
+  }, [location.state]); // Run only when location.state changes
 
   const changeView = () => {
-    if (isMap) {
-      setMap(false)
-      setTableState('home')
-    } else {
-      setMap(true)
+    if (tableState === 'table') {
       setTableState('map')
+    } else {
+      setTableState('table')
     }
   }
 
@@ -49,12 +37,12 @@ const Spectra = () => {
       <div className='spectraContainer'>
         <div className='spectraHeaderContainer'>
           <p className='title'>Firmas Espectrales</p>
-          <Slider isMap = {isMap} onClick = {changeView}/>
+          <Slider tableState = {tableState} onClick = {changeView}/>
         </div>
-        {isMap ?
-          <SpectraMap tableState = {tableState} setTableState = {setTableState} isMap = {isMap}/>
+        {tableState === 'map' ?
+          <SpectraMap tableState = {tableState} setTableState = {setTableState}/>
           :
-          <SpectraTable tableState = {tableState} setTableState = {setTableState}/>
+          <SpectraTable tableState = {tableState} setTableState = {setTableState} location = {location}/>
         }
      </div>
     <Footer/>
