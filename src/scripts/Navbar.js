@@ -12,8 +12,8 @@ const Navbar = () => {
         <Link className={location.pathname === '/about' ? 'navbarButtonActive':'navbarButton'} to='/about'>
             <p className='navbarText'>Sobre nosotros</p>
         </Link>
-        <Link className={location.pathname === '/spectra' ? 'navbarButtonActive':'navbarButton'} to='/spectra'>
-            <p className='navbarText'>Spectra</p>
+        <Link className={location.pathname === '/spectra' ? 'navbarButtonActive':'navbarButton'} to='/spectra' state={'table'}>
+            <p className='navbarText' state={'table'}>Spectra</p>
         </Link>
         <Link className={location.pathname === '/equipo' ? 'navbarButtonActive':'navbarButton'} to='/equipo'>
             <p className='navbarText'>Equipo</p>

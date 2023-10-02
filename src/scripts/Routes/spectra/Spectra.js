@@ -11,22 +11,32 @@ import SpectraTable from './components/table/SpectraTable'
 
 const Spectra = () => {
 
+  // Spectra state - change states between queries
+  // isMap - change between map and table
+
   const [tableState, setTableState] = useState()
+  const [isMap, setIsMap] = useState(false)
 
   const location = useLocation()
 
   useEffect(() => { // read csv data
     if (tableState !== 'loading') {
       if (tableState !== 'error') {
+        if (location.state === 'map') {
+          setIsMap(true)
+        }
         setTableState(location.state)
       }
     } // eslint-disable-next-line
   }, [location.state]); // Run only when location.state changes
 
   const changeView = () => {
+    console.log(tableState)
     if (tableState === 'table') {
+      setIsMap(true)
       setTableState('map')
     } else {
+      setIsMap(false)
       setTableState('table')
     }
   }
@@ -37,12 +47,12 @@ const Spectra = () => {
       <div className='spectraContainer'>
         <div className='spectraHeaderContainer'>
           <p className='title'>Firmas Espectrales</p>
-          <Slider tableState = {tableState} onClick = {changeView}/>
+          <Slider isMap = {isMap} onClick = {changeView}/>
         </div>
-        {tableState === 'map' ?
+        {isMap ?
           <SpectraMap tableState = {tableState} setTableState = {setTableState}/>
           :
-          <SpectraTable tableState = {tableState} setTableState = {setTableState} location = {location}/>
+          <SpectraTable tableState = {tableState} setTableState = {setTableState}/>
         }
      </div>
     <Footer/>

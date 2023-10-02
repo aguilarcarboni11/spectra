@@ -9,7 +9,10 @@ import TableFilters from './TableFilters'
 import ClearButton from '../misc/ClearButton'
 import TableLoadingComponent from './TableLoadingComponent'
 
-const SpectraTable = ({height, tableState, setTableState}) => {
+const SpectraTable = ({tableState, setTableState}) => {
+
+    var height
+
 
   const [formulario, setFormulario] = useState({})
   const [info, setInfo] = useState({})
@@ -30,14 +33,16 @@ const SpectraTable = ({height, tableState, setTableState}) => {
             setTableState('loading')
         } if (isError) {
             setTableState('error')
+        } else {
+            setTableState('table')
         } // eslint-disable-next-line
-    },[]) // Only run once
+    },[isError]) // Run once and when isError changes
     
     const selectRows = (row) => {
         if (data !== undefined) {
             data.forEach((entry) => { // loop through data
                 if (entry['ID'] === row['ID']) { // check match
-                    if (tableState === 'home') { // check page state
+                    if (tableState === 'table') { // check page state
                         Post(`SELECT "ID","NumeroPlanta","EstadoFenologico" from "Informacion" WHERE "IDFormulario" : ${entry['ID']}`)
                         setTableState('formulario')
                         setFormulario(entry)
@@ -56,7 +61,7 @@ const SpectraTable = ({height, tableState, setTableState}) => {
       
     const clearSelection = () => {
         if (tableState === 'formulario') {
-            setTableState('home')
+            setTableState('table')
             Post(`SELECT * from "Formulario"`)
             setFormulario({})
         } else if (tableState === 'info') {
@@ -89,7 +94,7 @@ const SpectraTable = ({height, tableState, setTableState}) => {
         case 'formulario':
             height = '25vh'
             break;
-        case 'home':
+        case 'table':
             height = '50vh' 
             break;
         case 'loading':
@@ -123,7 +128,7 @@ const SpectraTable = ({height, tableState, setTableState}) => {
     <Table data = {data} columns = {columns} theme="spectra" 
         customStyles = {customStyles} 
         fixedHeader fixedHeaderScrollHeight={height} onRowClicked={selectRows}
-        noDataComponent = {isError ? 'Error':''}
+        noDataComponent = {isError ? 'Error':'No data'}
         progressPending = {isLoading ? true:false} progressComponent={<TableLoadingComponent/>}>
     </Table>
 </div>

@@ -5,13 +5,14 @@ export const useFetch = () => {
     const [data, setData] = useState([])
     const [isLoading, setLoading] = useState(false)
     const [isError, setError] = useState(false)
-    
+
+    const hostname = '172.17.26.145'
     const port = 3001
 
     const Post = async (query) => {
         setLoading(true)
         try {
-            await fetch(`http://localhost:${port}/requests`, {
+            await fetch(`http://${hostname}:${port}/requests`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -26,7 +27,7 @@ export const useFetch = () => {
             return {data, Post, isError, isLoading};
         }
         try {
-            fetch(`http://localhost:${port}/requests`, {
+            fetch(`http://${hostname}:${port}/requests`, {
                 method: "GET",
             })
             .then(response => response.json())

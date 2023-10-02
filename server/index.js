@@ -2,14 +2,15 @@ const express = require('express')
 const app = express()
 const cors = require('cors');
 const port = 3001
+const hostname = '172.17.26.145'
 
 var query = ''
 
 app.use(cors())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', `http://localhost:3000`);
+app.use(function (req, res, next, hostname) {
+  res.setHeader('Access-Control-Allow-Origin', `${hostname}:3000`);
   res.setHeader('Access-Control-Allow-Methods', 'GET, PUT','POST');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
   next();
@@ -20,7 +21,7 @@ const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
     database: 'postgres',
-    password: 'P1s2q3l4',
+    password: /*'P1s2q3l4'*/ 'Spectra321',
     port: 5432, // default PostgreSQL port
 });
 
@@ -47,6 +48,6 @@ app.post('/requests', async (req, res) => {
   }
 })
 
-app.listen(port, () => {
-  console.log(`App running on port ${port}.`)
+app.listen(port, hostname, () => {
+  console.log(`App running on ${hostname}:${port}.`)
 })
