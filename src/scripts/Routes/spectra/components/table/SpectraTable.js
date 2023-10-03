@@ -8,6 +8,7 @@ import TableInfo from './TableInfo'
 import TableFilters from './TableFilters'
 import ClearButton from '../misc/ClearButton'
 import TableLoadingComponent from './TableLoadingComponent'
+import NoDataComponent from './components/NoDataComponent'
 
 const SpectraTable = ({tableState, setTableState}) => {
 
@@ -107,7 +108,11 @@ const SpectraTable = ({tableState, setTableState}) => {
   return (
     <div className='tableAndInfoContainer'>
     <div className='tableHeader'>
-        <p className='subtitle'> {tableState === 'formulario' ? `Formulario #${formulario['ID']}`:'De click en una fila para ver más informacion acerca del formulario'} </p>  {/* Pasar a component */}
+        <p className='subtitle'> {tableState === 'formulario' ? `Formulario #${formulario['ID']}`: 
+                                    tableState === 'info' ? `Informacion #${info['ID']}`: 
+                                        tableState === 'wl' ? `Registro #${data[0]['ID']}`:
+                                            'De click en una fila para ver más informacion acerca del formulario'} 
+        </p>
         <ClearButton clearSelection={clearSelection} tableState={tableState}/>
     </div>
     <TableFilters tableState={tableState}/>
@@ -128,7 +133,7 @@ const SpectraTable = ({tableState, setTableState}) => {
     <Table data = {data} columns = {columns} theme="spectra" 
         customStyles = {customStyles} 
         fixedHeader fixedHeaderScrollHeight={height} onRowClicked={selectRows}
-        noDataComponent = {isError ? 'Error':'No data'}
+        noDataComponent = {<NoDataComponent isError = {isError}/>}
         progressPending = {isLoading ? true:false} progressComponent={<TableLoadingComponent/>}>
     </Table>
 </div>

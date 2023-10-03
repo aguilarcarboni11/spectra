@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors');
 const port = 3001
-const hostname = '172.17.26.145'
+const hostname = 'localhost'
 
 var query = ''
 
@@ -21,7 +21,7 @@ const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
     database: 'postgres',
-    password: /*'P1s2q3l4'*/ 'Spectra321',
+    password: 'P1s2q3l4' /*'Spectra321'*/,
     port: 5432, // default PostgreSQL port
 });
 

@@ -116,20 +116,18 @@ img {
     display: inline-flex;
     position: relative;
     width: fit-content;
-    height: 8vmax;
+    height: 10vmax;
     justify-content: space-between;
     align-items: center;
     text-decoration: none;
   } 
-
-    .spectra { 
-      font-size: 5vmax  !important;
-      font-weight:bolder !important; 
-    }
-
-    .logo {
+    .logoSpectra {
       width: fit-content;
-      height:4.5vmax;
+      height:10vmax;
+    }
+    .logoText {
+      height: 30vh;
+      width: fit-content;
     }
 
 .hidden {
@@ -730,6 +728,22 @@ img {
   border-color: var(--black) transparent var(--black) transparent;
   border-radius: 10vmax;
   animation: spin 2s linear infinite;
+}
+
+.errorComponent {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+}
+
+.noDataComponent {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
 }
 
 /* Tools */
