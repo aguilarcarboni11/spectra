@@ -1,12 +1,9 @@
 import React from 'react'
-import Header from '../../Header'
-import Footer from '../../Footer'
 import OurTeam from '../about/components/OurTeam'
 
 const About = () => {
   return (
     <div className='baseContainer'>
-      <Header/>
       <div className='infoPRIAScontainer'>
         <p className='title'>¿Qué es el PRIAS?</p>
         <p className='subtitle indented'>
@@ -32,7 +29,6 @@ const About = () => {
           <div className='ourTeamBar'></div>
      </div>
       <OurTeam/>
-      <Footer/>
     </div>
   )
 }

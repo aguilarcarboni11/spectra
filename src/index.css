@@ -100,7 +100,8 @@ img {
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
-  height: 100vh;
+  min-height: 80vh;
+  height: fit-content;
 }
 
 .headerContainer {
@@ -128,6 +129,7 @@ img {
     .logoText {
       height: 30vh;
       width: fit-content;
+      max-width: 30vw;
     }
 
 .hidden {
@@ -659,10 +661,6 @@ img {
 
 .mapInfoText {
   font-size: 0.7vmax;
-}
-
-.map {
-  object-fit: cover;
 }
 
 .wavelengthGraphContainer {

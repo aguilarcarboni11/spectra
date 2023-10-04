@@ -6,7 +6,7 @@ export const useFetch = () => {
     const [isLoading, setLoading] = useState(false)
     const [isError, setError] = useState(false)
 
-    const hostname = 'localhost'
+    const hostname = '192.168.1.28'
     const port = 3001
 
     const Post = async (query) => {

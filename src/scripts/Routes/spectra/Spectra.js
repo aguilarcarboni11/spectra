@@ -1,9 +1,8 @@
 import React from 'react'
 import {useEffect, useState} from 'react'
 import {useLocation} from 'react-router-dom'
+import {spectraState} from '../../misc/types/types.tsx'
 
-import Header from '../../Header'
-import Footer from '../../Footer'
 import Slider from './components/misc/Slider'
 import SpectraMap from './components/map/SpectraMap'
 import SpectraTable from './components/table/SpectraTable'
@@ -14,48 +13,47 @@ const Spectra = () => {
   // Spectra state - change states between queries
   // isMap - change between map and table
 
-  const [tableState, setTableState] = useState()
+  const [state, setState] = useState(null)
   const [isMap, setIsMap] = useState(false)
+
+  const [formulario, setFormulario] = useState({})
+  const [informacion, setInformacion] = useState({})
+  const [registro, setRegistro] = useState({})
 
   const location = useLocation()
 
-  useEffect(() => { // read csv data
-    if (tableState !== 'loading') {
-      if (tableState !== 'error') {
+  useEffect(() => { // initialize Spectra
+    if (state !== spectraState.LOADING) {
+      if (state !== spectraState.ERROR) {
         if (location.state === 'map') {
           setIsMap(true)
         }
-        setTableState(location.state)
+        setState(spectraState.HOME)
       }
     } // eslint-disable-next-line
-  }, [location.state]); // Run only when location.state changes
+  }, [location.state]); // Run when Spectra gets mounted and when location.state changes
 
   const changeView = () => {
-    console.log(tableState)
-    if (tableState === 'table') {
-      setIsMap(true)
-      setTableState('map')
-    } else {
+    if (isMap) {
       setIsMap(false)
-      setTableState('table')
+    } else {
+      setIsMap(true)
     }
   }
 
   return (
     <div className='baseContainer'> 
-      <Header/>
       <div className='spectraContainer'>
         <div className='spectraHeaderContainer'>
           <p className='title'>Firmas Espectrales</p>
           <Slider isMap = {isMap} onClick = {changeView}/>
         </div>
         {isMap ?
-          <SpectraMap tableState = {tableState} setTableState = {setTableState}/>
+          <SpectraMap state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario}/>
           :
-          <SpectraTable tableState = {tableState} setTableState = {setTableState}/>
+          <SpectraTable state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario}/>
         }
      </div>
-    <Footer/>
     </div>
   )
 }

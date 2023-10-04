@@ -1,13 +1,10 @@
 import React from 'react'
-import Header from '../../Header'
-import Footer from '../../Footer'
 
 const Contact = () => {
   const orange = '#e77c39'
 
   return (
     <div className='baseContainer'>
-        <Header/>
         <div className='contactContainer'>
           <div className='contactDivisionContainer'>
             <i class="bi bi-map-fill" style={{fontSize: '5vmax', color: orange}}></i>
@@ -45,7 +42,6 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <Footer/>
     </div>
   )
 }
