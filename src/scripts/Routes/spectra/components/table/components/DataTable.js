@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import ClearButton from './ClearButton'
 import TableFilters from './TableFilters'
 import TableInfo from './TableInfo'
-import SpectraGraph from '../misc/SpectraGraph'
+import SpectraGraph from '../../misc/SpectraGraph'
 
 const DataTable = ({formulario, info, setFormulario, setInfo, height, tableState, setTableState}) => {
 

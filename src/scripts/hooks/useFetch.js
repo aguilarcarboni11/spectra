@@ -6,7 +6,7 @@ export const useFetch = () => {
     const [isLoading, setLoading] = useState(false)
     const [isError, setError] = useState(false)
 
-    const hostname = '192.168.1.28'
+    const hostname = 'localhost'
     const port = 3001
 
     const Post = async (query) => {
@@ -19,14 +19,6 @@ export const useFetch = () => {
                 },
                 body: query
             })
-
-        } catch(e) {
-            console.error('Error posting query');
-            setError(true)
-            setLoading(false)
-            return {data, Post, isError, isLoading};
-        }
-        try {
             fetch(`http://${hostname}:${port}/requests`, {
                 method: "GET",
             })
@@ -36,7 +28,7 @@ export const useFetch = () => {
                 setLoading(false)
             })
         } catch(e) {
-            console.error('Error fetching data');
+            console.error('Error posting query');
             setError(true)
             setLoading(false)
             return {data, Post, isError, isLoading};

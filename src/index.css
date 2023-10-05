@@ -681,6 +681,7 @@ img {
 
 .tableAndInfoContainer {
   display: block;
+  margin: 0 0 0 0;
   height: fit-content;
   width: 100%;
 }
@@ -701,7 +702,7 @@ img {
 .tableInfoDivider {
   height: inherit;
   width: 100%;
-  margin: 0 1vw 0 0;
+  margin: 2vh 1vw 0 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

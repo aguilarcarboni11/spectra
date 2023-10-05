@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom'
 
 const HomeHeader = () => {
 
-    const [activeType, setActiveType] = useState(undefined)
+    const [activeType, setActiveType] = useState(null) // use for css highlighting -- find better solutions
 
     const handleMouseIn = (e) => {
         if (e.target.id === 'map') {
-        setActiveType(e.target.id)
+          setActiveType(e.target.id)
         } else if (e.target.id === 'table') {
-        setActiveType(e.target.id)
+          setActiveType(e.target.id)
         }
     }
 
@@ -40,12 +40,12 @@ const HomeHeader = () => {
       </div>
       <div className='homeButtonsContainer'>
         <div className='homeButtonContainer'>
-          <Link className='homeButton' to='/spectra' id = 'table' state={'table'} onMouseOver={handleMouseIn} onMouseOut={() => setActiveType(undefined)}>
+          <Link className='homeButton' to='/spectra' id = 'table' state={'table'} onMouseOver={handleMouseIn} onMouseOut={() => setActiveType(null)}>
             <i className="bi bi-table" style={{fontSize: '2.5vmax', color: 'white'}} id='table'></i>
           </Link>
         </div>
         <div className='homeButtonContainer'>
-          <Link className='homeButton' to='/spectra' id = 'map' state={'map'} onMouseOver={handleMouseIn} onMouseOut={() => setActiveType(undefined)}>
+          <Link className='homeButton' to='/spectra' id = 'map' state={'map'} onMouseOver={handleMouseIn} onMouseOut={() => setActiveType(null)}>
             <i className="bi bi-geo-alt-fill" style={{fontSize: '2.5vmax', color: 'white'}} id='map'></i>
           </Link>
         </div>

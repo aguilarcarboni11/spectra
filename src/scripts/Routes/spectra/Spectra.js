@@ -14,7 +14,7 @@ const Spectra = () => {
   // isMap - change between map and table
 
   const [state, setState] = useState(null)
-  const [isMap, setIsMap] = useState(false)
+  const [isMap, setIsMap] = useState(null)
 
   const [formulario, setFormulario] = useState({})
   const [informacion, setInformacion] = useState({})
@@ -27,6 +27,8 @@ const Spectra = () => {
       if (state !== spectraState.ERROR) {
         if (location.state === 'map') {
           setIsMap(true)
+        } else {
+          setIsMap(false)
         }
         setState(spectraState.HOME)
       }
@@ -49,9 +51,9 @@ const Spectra = () => {
           <Slider isMap = {isMap} onClick = {changeView}/>
         </div>
         {isMap ?
-          <SpectraMap state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario}/>
+          <SpectraMap state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario} informacion = {informacion} setInformacion = {setInformacion}/>
           :
-          <SpectraTable state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario}/>
+          <SpectraTable state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario} informacion = {informacion} setInformacion = {setInformacion}/>
         }
      </div>
     </div>
