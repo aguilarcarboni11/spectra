@@ -35,23 +35,22 @@ const Carrousel = () => {
   });
 
   return (
-    <div className='carrouselAndTextContainer'>
-      <div className='carrouselContainer'>
-        <div className='carrouselPhotos'>
+    <div className='carrouselContainer'>
+      <div className='carrousel'>
+        <div className='photosContainer'>
         {carrouselPhotos.slice(index,index+2).map((image, count) => (
           <div className='carrouselPhotoContainer' key={count}>
-            <img src={require("../../../../assets/fotos/fotos-prias/" + image.path)} alt={'Diapositiva' + image.key} className='carrouselPhoto'></img>
+            <img src={require("../../../../assets/fotos/fotos-prias/" + image.path)} alt={'Diapositiva' + image.key} className='image'></img>
           </div>
         ))}
         </div>
       </div>
-      <div className='carrouselSubtitleContainer'>
-        <ArrowButton id = 'left' onClick={prevSlide} height={2} width={2}/>
+      <div className='textContainer'>
+        <ArrowButton id = 'left' onClick={prevSlide}/>
         <p className='subtitle'> Biblioteca de fotos del PRIAS</p>
         <ArrowButton id = 'right' onClick={nextSlide} height={2} width={2}/>
       </div>
     </div>
-
   )
 }
 

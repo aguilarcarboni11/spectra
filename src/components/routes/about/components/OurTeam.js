@@ -41,29 +41,26 @@ const OurTeam = () => {
 
   return (
     <div className='ourTeamContainer'>
+      <div className='ourTeamTitle'>
+        <p className='title'> Equipo PRIAS: </p>
+        <div className='bar'></div>
+      </div>
       {canShowInfo ? 
-        <div className='employeeInfoContainer'>
-          <EmployeeInfo employee = {currentEmployee}/>
-        </div>:''}
-        {canShowInfo ? 
-        <div className='employeeInfoForeground' onClick={() => onPhotoClick()}></div>:''}
-        <div className='ourTeamPhotosContainer'>
-          <div className='ourTeamArrowContainer'>
-            {index > 0 && <ArrowButton id={'left'} onClick={prevSlide} height={5} width={5}/>}
+        <EmployeeInfo employee = {currentEmployee} handleExit={onPhotoClick}/>:''
+      }
+      <div className='photos'>
+        {index > 0 && <ArrowButton id={'left'} onClick={prevSlide} height={5} width={5}/>}
+        {ourTeam.slice(index, index+4).map((employee, count) => (
+          <div key={count} className='employeePhotoContainer' onClick = {() => onPhotoClick(employee)}>
+            <img className='image' src={require('../../../../assets/fotos/team/' + employee.path)} alt={employee.name}></img>
+            <div className='description'>
+              <p className='subtitle' style={{fontSize: '1.8vmax', fontWeight:'bolder'}}>{employee.name} {employee.lastNames}</p>
+              <p className='subtitle' style={{fontSize: '1vmax'}}>{employee.position}</p>
+            </div>
           </div>
-          {ourTeam.slice(index, index+4).map((employee, count) => (
-            <div key={count} className='employeePhotoContainer' onClick = {() => onPhotoClick(employee)}>
-              <img className='employeePhoto' src={require('../../../../assets/fotos/team/' + employee.path)} alt={employee.name}></img>
-              <div className='employeeDescriptionContainer'>
-                <p className='employeeText' style={{fontSize: '1.2vmax', fontWeight:'bolder'}}>{employee.name} {employee.lastNames}</p>
-                <p className='employeeText' style={{fontSize: '1vmax'}}>{employee.position}</p>
-              </div>
-            </div>
-          ))}
-            <div className='ourTeamArrowContainer'>
-            {index < ourTeam.length-4 && <ArrowButton id={'right'} onClick={nextSlide} height={5} width={5}/>}
-            </div>
-        </div>
+        ))}
+        {index < ourTeam.length-4 && <ArrowButton id={'right'} onClick={nextSlide} height={5} width={5}/>}
+      </div>
     </div>
   )
 }

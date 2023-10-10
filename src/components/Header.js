@@ -8,8 +8,8 @@ const Header = () => {
   return (
     <div className='headerContainer'>
         <Link className='logoContainer' to='/'>
-          <img className='logoSpectra' src={spectraLogo} alt = 'Spectra Logo'></img>
-          <img className='logoText' src={spectraText} alt = 'Spectra Text'></img>
+          <img className='logo' src={spectraLogo} alt = 'Spectra Logo'></img>
+          <h1>Spectra</h1>
         </Link>
     <Navbar/>
   </div>

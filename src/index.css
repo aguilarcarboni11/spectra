@@ -39,29 +39,19 @@
   outline: red dashed 1px;
 } */
 
-body {
-  margin: 0;
-}
-
 html {
   background-color: var(--lightBeige);
   margin: 1vh 2vw 0 2vw;
   height: 100vh;
 }
 
-html::-webkit-scrollbar {
-  width: 0;
+
+body {
+  margin: 0;
 }
 
-svg {
-  margin: 1vmax 0 0 0;
-}
-
-p {
-  font-family: 'Lato', serif;
-  width: fit-content;
-  height: fit-content;
-  margin:0;
+::-webkit-scrollbar {
+  display: none;
 }
 
 button {
@@ -70,154 +60,21 @@ button {
 }
 
 img {
-  max-width: 100%;
+  width: 100%;
   object-fit: contain;
 }
 
-.break {
-  flex-basis: 100%;
-  height: 1vh;
-  width: 100%;
+p {
+  font-family: 'Lato', serif;
 }
 
-.arrowButtonContainer {
-  display: flex;
-  cursor: pointer;
-  justify-content: center;
-  align-items: center;
+h1 {
+  font-family: 'Lato', serif;
+  font-size: 5vmax;
+  color:var(--black);
+  margin: 0 0 1vh 1vw;
+  font-weight:bold;
 }
-
-  .arrowButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height:inherit;
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0);
-  }
-
-.baseContainer {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: space-between;
-  min-height: 80vh;
-  height: fit-content;
-}
-
-.headerContainer {
-  width: 100%;
-  height: fit-content;
-  display: flex;
-  position: relative;
-  justify-content: space-between;
-  align-items: center;
-}
-
-  .logoContainer {
-    display: inline-flex;
-    position: relative;
-    width: fit-content;
-    height: 10vmax;
-    justify-content: space-between;
-    align-items: center;
-    text-decoration: none;
-  } 
-    .logoSpectra {
-      width: fit-content;
-      height:10vmax;
-    }
-    .logoText {
-      height: 30vh;
-      width: fit-content;
-      max-width: 30vw;
-    }
-
-.hidden {
-  height: 0 !important;
-}
-
-/* Navbar */
-
-.navbarContainer {
-  height: 5vmax;
-  width: fit-content;
-  flex-wrap: nowrap;
-  background-color: var(--aqua);
-  border-radius: 2vmax;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  float: right;
-}
-
-  .navbarButton {
-    background-color: var(--aqua);
-    height: inherit;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
-    border-radius: 2vmax;
-  }
-
-  .navbarButtonActive {
-    text-align: center;
-    height: inherit;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    border-radius: 2vmax;
-    background-color: var(--clickedAqua);
-  }
-
-    .navbarText {
-      font-size:1vmax;
-      padding: 1.4vw;
-      font-weight: bolder;
-      white-space: nowrap;
-      color:var(--beige);
-      text-decoration: none;
-    }
-
-    .navbarButton:active {
-      background-color: var(--clickedAqua);
-    }
-
-    .navbarButton:hover {
-      background-color: var(--clickedAqua);
-      animation-name: buttonHover;
-      animation-duration: .5s;
-    }
-
-    .navbarButton:hover > .navbarText {
-      animation-name:navbarTextHover;
-      animation-duration: 0.2s;
-      font-size: 1.05vmax;
-      padding: 1.4vw;
-    }
-
-/* Footer */
-
-.footerContainer {
-  display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  bottom: 0;
-  height: 8vh;
-  border-radius: 2vmax 2vmax 0 0;
-  background-color: var(--aqua);
-}
-
-  .footerText {
-    font-family: 'Lato Light', serif;
-    font-size: .75vmax;
-    color:var(--beige);
-    font-weight:bold;
-  }
 
 .title {
   font-family: 'Lato', serif;
@@ -236,35 +93,164 @@ img {
   font-weight:bold;
 }
 
-  .indented {
-    margin: 0 0 0 2vw;
-  }
+.indented {
+  margin: 0 0 0 2vw;
+}
 
-
-/* Homepage */
-
-.homeContainer {
-  margin: 4vh 0 0 0;
-  display: block;
-  height: fit-content;
+.break {
+  flex-basis: 100%;
+  height: 1vh;
   width: 100%;
 }
 
-  .homeTextContainer {
-    width: 99%;
-    height: fit-content;
-    display:block;
+.arrowButtonContainer {
+  height: 100%;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  .button {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+.hidden {
+  height: 0 !important;
+}
+
+/* Header */
+
+.headerContainer {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  .logoContainer {
+    display: inline-flex;
+    position: relative;
+    width: fit-content;
+    height: 10vmax;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+  } 
+  .logo {
+    width: fit-content;
+    height:10vmax;
+  }
+  .text {
+    height: 30vh;
+    width: fit-content;
+    max-width: 30vw;
+  }
+}
+
+/* Navbar */
+
+.navbarContainer {
+  height: 5vmax;
+  width: fit-content;
+  flex-wrap: nowrap;
+  background-color: var(--aqua);
+  border-radius: 2vmax;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  float: right;
+  .button {
+    background-color: var(--aqua);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    height: 100%;
+    text-decoration: none;
+    border-radius: 2vmax;
+    .subtitle {
+      padding: 1.4vw;
+      white-space: nowrap;
+      color:var(--beige);
+    }
+  }
+  .button:hover {
+    background-color: var(--clickedAqua);
+  }
+  .button:hover > .subtitle {
+    color: blue;
+  }
+  .active {
+    background-color: var(--clickedAqua);
+  }
+}
+
+/* Footer */
+
+.footerContainer {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  bottom: 0;
+  height: 8vh;
+  border-radius: 2vmax 2vmax 0 0;
+  background-color: var(--aqua);
+  .subtitle {
+    font-size: .75vmax;
+    color:var(--beige);
   }
 
-    .introText {
-      font-family: 'Lato Light', serif;
-      font-size:1.4vmax;
-      margin: 0 0 0 2vw;
-      color:var(--black);
-      font-weight:bolder;
-    }
+}
 
-.carrouselAndTextContainer {
+/* Homepage */
+
+.homepageContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  min-height: 80vh;
+  height: fit-content;
+  .infoContainer {
+    .text {
+      width: 100%;
+      height: fit-content;
+      display:block;
+    }
+    .buttons {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      height: 10vh;
+      margin: 0 0 5vh 0;
+      .homeButton {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        border-radius: 2vmax;
+        background-color: var(--orange);
+        height: fit-content;
+        width: fit-content;
+        padding: 1vh 2vw 1vh 2vw;
+        margin: 0 2vw 0 2vw;
+        z-index: 100;
+        display: flex;
+        border-radius: 2vmax;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.carrouselContainer {
   height: fit-content;
   margin: 3vh 0 0 0;
   width: 100%;
@@ -272,15 +258,11 @@ img {
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-}
-
-  .carrouselContainer {
+  .carrousel {
     display: flex;
     justify-content: center;
     width: 100%;
-  }
-
-    .carrouselPhotos {
+    .photosContainer {
       overflow: hidden;
       border-radius: 2vmax;
       justify-content: center;
@@ -288,207 +270,137 @@ img {
       z-index: 0;
       height: fit-content;
       width: 100%;
-    }
-
-    .carrouselPhotoContainer {
-      z-index: 1;
-      height: inherit;
-      border-radius: 2vmax;
-    }
-
-      .carrouselPhoto {
+      .carrouselPhotoContainer {
+        z-index: 1;
+        height: inherit;
+        border-radius: 2vmax;
+      }
+      .image {
         align-self: center;
         object-fit:fill;
         opacity: 100%;
         animation-name:fadeIn;
         animation-duration: .5s;
       }
-
-    .carrouselSubtitleContainer {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 2vh 0 2vh 0;
     }
-
-      .carrouselSubtitle {
-        color:var(--black);
-        font-size: 0.8vmax;
-        align-self: center;
-      }
-
-.homeButtonsContainer {
-  width: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  height: 10vh;
-  margin: 0 0 5vh 0;
-}
-
-  .homeButtonContainer {
-    display: block;
-    justify-content: center;
-    align-items: flex-start;
-    border-radius: 2vmax;
-    background-color: var(--orange);
-    margin: 1vh 1vw 0 1vw;
-    height: fit-content;
-    padding: 1vh 0 1vh 0;
-    width: 8vw;
   }
-  
-    .homeButton {
-      width: 100%;
-      height: 100%;
-      z-index: 100;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      border-radius: 2vmax;
-      text-decoration: none;
+  .textContainer {
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2vh 0 2vh 0;
+    .subtitle {
+      font-size: 0.8vmax;
+      margin: 0;
     }
+  }
+}
 
 /* About */
 
-.infoPRIAScontainer {
-  margin: 4vh 0 0 0;
-  display: block;
-  height: fit-content;
-  width: 100%;
-}
-
-.ourTeamContainer {
-  height: fit-content;
-  width: 100%;
-}
-
-.ourTeamArrowContainer {
-  height: inherit;
+.aboutContainer {
   display: flex;
-  align-items: center;
-}
-
-
-.employeeInfoContainer {
-  display: flex;
-  justify-content: space-between;
-  border-radius: 2vmax;
-  z-index: 100;
-  background-color: var(--beige);
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  width: 80%;
-  height: 80%;
-}
-
-  .employeeInfoForeground {
-    border-radius: 2vmax;
-    z-index: 50;
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
+  flex-wrap: wrap;
+  align-content: space-between;
+  min-height: 80vh;
+  height: fit-content;
+  .info {
+    display: block;
+    height: fit-content;
     width: 100%;
-    height: 100%;
   }
-
-    .employeeInfoForeground:hover {
-      cursor: pointer;
-    }
-
-  .employeeInfoTitle {
-    font-size: 4vmax;
-    margin: 1.5vmax;
-    color:var(--black);
-  }
-
-  .employeeInfoText {
-    font-size: 1.5vmax;
-    margin: 2.5vmax;
-    color:var(--black);
-  }
-
-  .ourTeamTitleContainer {
-    display: inline-flex;
+  .ourTeamContainer {
+    height: fit-content;
     width: 100%;
-    justify-content: space-between;
-    margin: 2vh 0 0 0;
-  }
-
-    .ourTeamBar {
-      width: 75%;
-      height: 3vh;
-      border-radius: 2vmax;
-      background-color: var(--orange);
-      color: var(--orange);
-      align-self: center;
-    }
-
-    .ourTeamPhotosContainer {
+    .ourTeamTitle {
+      display: inline-flex;
       width: 100%;
-      height: 16vw;
+      justify-content: space-between;
+      margin: 2vh 0 0 0;
+      .bar {
+        width: 75%;
+        height: 3vh;
+        border-radius: 2vmax;
+        background-color: var(--orange);
+        color: var(--orange);
+        align-self: center;
+      }
+    }
+    .photos {
+      width: 100%;
+      height: fit-content;
       margin: 2vh 0 2vh 0;
       display: inline-flex;
       justify-content: space-between;
-    }
-    
+      align-items: center;
       .employeePhotoContainer {
         display: flex;
         justify-content: center;
         align-items: center;
-        opacity: 100%;
+        width: fit-content;
         height: fit-content;
-      }
-
-        .employeePhotoContainer:hover {
-          cursor: pointer;
-        }
-        
-        .employeePhotoContainer:hover > .employeePhoto{
-            opacity: 50%;
-            animation-name:midFadeOut;
-            animation-duration: 0.5s;
-          }
-        
-        .employeePhotoContainer:hover > .employeeDescriptionContainer {
-            opacity: 100%;
-            animation-name:fadeIn;
-            animation-duration: 0.5s;
-        }
-
-        .employeePhoto{
+        .image {
           width: 15vw;
-          height: fit-content;
           border-radius: 30vmax;
         }
-
-        .employeeInfoPhoto{
-          width: 15vw;
-          height: fit-content;
-          border-radius: 2vmax;
-        }
-
-        .employeeText {
-          margin: auto;
-          text-align: center;
-          bottom: 25vh;
-        }
-
-        .employeeDescriptionContainer {
+        .description {
           opacity: 0;
           display: inline-block;
           color: var(--black);
           position: absolute;
         }
+        .subtitle {
+          margin: auto;
+          text-align: center;
+          bottom: 25vh;
+        }
+      }
+      .employeePhotoContainer:hover > .image {
+        opacity: 50%;
+      }
+      .employeePhotoContainer:hover > .description {
+          opacity: 100%;
+      }
+    }
+    .employeeInfo {
+      display: flex;
+      justify-content: space-between;
+      border-radius: 2vmax;
+      z-index: 100;
+      background-color: var(--beige);
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      width: 80%;
+      height: 80%;
+      .image {
+        opacity: 100%;
+        height: fit-content;
+        border-radius: 2vmax;
+      }
+      .foreground {
+        border-radius: 2vmax;
+        z-index: 50;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .foreground:hover {
+      cursor: pointer;
+    }
+  }
+}
 
 /* Spectra */
 
@@ -513,76 +425,90 @@ img {
   display: block;
   height: fit-content;
   width: 100%;
-}
-
-.spectraHeaderContainer {
-  display:flex;
-  width: 100%;
-  height: fit-content;
-  justify-content:space-between;
-}
-
-  .sliderContainer {
-    padding: .5vmax;
-    border-radius: 2vmax;
-    float: right;
-    display: block;
-    background-color: var(--clickedAqua);
-    width: fit-content;
+  .header {
+    display:flex;
+    width: 100%;
     height: fit-content;
-  }
-
-    .sliderBackground {
-      width: inherit;
-      height: inherit;
-      display: inline-flex;
-      justify-content: space-between;
-      background-color: var(--aqua);
+    justify-content:space-between;
+    .slider {
+      padding: 1vh 0.5vw 1vh 0.5vw;
       border-radius: 2vmax;
-    }
-
-    .sliderButton {
-      width: fit-content;
-      color: var(--black);
-      font-size: .75vmax;
-      font-weight: bolder;
+      float: right; /* fix */
+      display: flex;
+      background-color: var(--clickedAqua);
       width: fit-content;
       height: fit-content;
-      padding: .5vmax;
-      background-color: var(--beige);
-      font-family: 'Lato', serif;
-    }
-    
-    .sliderButtonActive {
-      width: fit-content;
-      color: var(--beige);
-      font-weight: bolder;
-      width: fit-content;
-      height: fit-content;
-      font-family: 'Lato', serif;
-      font-size: .75vmax;
-      padding: .5vmax;
-      background-color: var(--aqua);
-      animation: sliderSwitch .3s;
-    }
-
-      .sliderButton:hover {
-        background-color: var(--lightBlue);
-        animation: sliderHover .25s;
+      .background {
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--aqua);
+        border-radius: 2vmax;
+        .button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: fit-content;
+          height: fit-content;
+          padding: 0.5vw 1vw 0.5vw 1vw;
+          background-color: var(--beige);
+          .subtitle {
+            color: var(--black);
+            margin: 0;
+          }
+        }
+        .active {
+          background-color: var(--aqua);
+          .subtitle {
+            color: var(--beige)
+          }
+        }
       }
-
-  .clearButton {
-    background-color: rgba(0, 0, 0, 0);
-    width: 3vw;
-    height: 5vh;
-    position: relative;
-    float: right;
+    }
   }
-
-  .clearButton:hover > .backArrow {
-    opacity: 50%;
-    cursor: pointer;
+  .mapContainer {
+    width: 100%;
+    height: 80vh;
+    .mapAndInfo {
+      display: flex;
+      height: 90%;
+      .map {
+        border-radius: 2vmax;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        margin: 0 1vw 0 0;
+      }
+      .info {
+        display: block;
+        background-color: var(--beige);
+        width: 100%;
+        height: 100%;
+        margin: 0 0 0 1vw;
+        overflow: hidden;
+        border-radius: 2vmax;
+      }
+    }
   }
+}
+.overlay {
+  height: 2vmax;
+  width: fit-content;
+  background-color: var(--beige);
+  border-radius: 2vmax;
+}
+
+.clearButton {
+  background-color: rgba(0, 0, 0, 0);
+  width: 3vw;
+  height: 5vh;
+  position: relative;
+  float: right;
+}
+.clearButton:hover > .backArrow {
+  opacity: 50%;
+  cursor: pointer;
+}
 
 .spectraCategoryText {
   display: inherit;
@@ -624,60 +550,6 @@ img {
         color: var(--beige);
         text-align: center;
       }
-
-.mapSpectraGraph {
-  height: 20vh;
-  width: 100%;
-}
-
-.spectraMap {
-  width: 100%;
-}
-.mapAndInfoContainer {
-  display: flex;
-  width: 100%;
-}
-
-.mapInfoContainer {
-  display: block;
-  background-color: var(--beige);
-  width: 80vw;
-  height: 80vh;
-  margin: 1vh 0 0 1vw;
-  overflow: hidden;
-  border-radius: 2vmax;
-}
-
-.mapInfoDivider {
-  height: 60%;
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 4vw 0 4vw;
-}
-
-.mapInfoDivider >* {
-  flex: 1 1 7vmax;
-}
-
-.mapInfoText {
-  font-size: 0.7vmax;
-}
-
-.wavelengthGraphContainer {
-  height: 26vh;
-  width: 20vw;
-  margin: -1vh 4vw 2vh 0;
-}
-
-.mapOverlay {
-  height: 2vmax;
-  width: fit-content;
-  background-color: var(--beige);
-  border-radius: 2vmax;
-  font-family: 'Lato';
-  font-size: .6vmax;
-  overflow: hidden;
-}
 
 .tableAndInfoContainer {
   display: block;
@@ -758,9 +630,7 @@ img {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-}
-
-  .contactDivisionContainer {
+  .divisor {
     width: 40%;
     margin: 0 2vw 0 2vw;
     height: 15vw;
@@ -768,52 +638,21 @@ img {
     flex-wrap: wrap;
     text-align: center;
     justify-items: center;
-  }
-
-  .contactDivisionContainer>* {
-    flex: 1 1 100vw;
-  }
-
-    .contactText {
-      font-family: 'Lato Light', serif;
-      font-size:1vmax;
-      line-height: 3vh;
-      font-weight: 600;
-      color:var(--contactOrange);
+    .subtitle:hover {
+      color: var(--clickedOrange)
     }
-
-      .contactText:hover {
-        color: var(--clickedOrange)
-      }
-
-    .socialMediaLink {
-      margin: 0 2vw 0 2vw;
-    }
-
-      .socialMediaLink:hover > .contactLogo {
-        opacity: 50%;
-        animation: midFadeOut 0.25s
-      }
-
-    .contactLogosContainer {
+    .logos {
       width: fit-content;
       display: inline-flex;
       justify-content:center;
-    }
-
-      .contactLogo {
-        width: 5vw;
-        margin: 3vh 0 0 0;
+      .link {
+        margin: 0 2vw 0 2vw;
       }
-
-
-.mapContainer {
-  border-radius: 2vmax;
-  position:relative;
-  height: 80vh;
-  width: 100%;
-  margin: 2vh 0 2vh 0;
-  overflow: hidden;
+    }
+  }
+  .divisor >* {
+    flex: 1 1 100vw;
+  }
 }
 
 .tableGraphContainer {

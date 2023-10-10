@@ -3,8 +3,8 @@ import OurTeam from '../about/components/OurTeam'
 
 const About = () => {
   return (
-    <div className='baseContainer'>
-      <div className='infoPRIAScontainer'>
+    <div className='aboutContainer'>
+      <div className='info'>
         <p className='title'>¿Qué es el PRIAS?</p>
         <p className='subtitle indented'>
           Somos un laboratorio de Geomática con énfasis en la Observación de la Tierra. También somos enlace nacional para 
@@ -24,10 +24,6 @@ const About = () => {
           a través de la articulación intersectorial.
         </p>
       </div>
-      <div className='ourTeamTitleContainer'>
-          <p className='title'> Equipo PRIAS: </p>
-          <div className='ourTeamBar'></div>
-     </div>
       <OurTeam/>
     </div>
   )

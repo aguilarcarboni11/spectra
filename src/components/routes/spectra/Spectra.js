@@ -10,9 +10,6 @@ import SpectraTable from './components/table/SpectraTable'
 
 const Spectra = () => {
 
-  // Spectra state - change states between queries
-  // isMap - change between map and table
-
   const [state, setState] = useState(null)
   const [isMap, setIsMap] = useState(null)
 
@@ -44,18 +41,16 @@ const Spectra = () => {
   }
 
   return (
-    <div className='baseContainer'> 
-      <div className='spectraContainer'>
-        <div className='spectraHeaderContainer'>
-          <p className='title'>Firmas Espectrales</p>
-          <Slider isMap = {isMap} onClick = {changeView}/>
-        </div>
-        {isMap ?
-          <SpectraMap state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario} informacion = {informacion} setInformacion = {setInformacion}/>
-          :
-          <SpectraTable state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario} informacion = {informacion} setInformacion = {setInformacion}/>
-        }
-     </div>
+    <div className='spectraContainer'>
+      <div className='header'>
+        <p className='title'>Firmas Espectrales</p>
+        <Slider isMap = {isMap} onClick = {changeView}/>
+      </div>
+      {isMap ?
+        <SpectraMap state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario} informacion = {informacion} setInformacion = {setInformacion}/>
+        :
+        <SpectraTable state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario} informacion = {informacion} setInformacion = {setInformacion}/>
+      }
     </div>
   )
 }

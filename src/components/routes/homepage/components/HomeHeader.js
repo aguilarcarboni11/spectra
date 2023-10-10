@@ -15,8 +15,8 @@ const HomeHeader = () => {
     }
 
   return (
-    <div className='homeContainer'>
-      <div className='homeTextContainer'>
+    <div className='infoContainer'>
+      <div className='text'>
         <p className='title'> ¿Qué es Spectra? </p>
         <p className='subtitle indented'>
           Una firma espectral es la respuesta que tiene una cubierta, objeto 
@@ -38,17 +38,13 @@ const HomeHeader = () => {
           PRIAS (o datos que vos hayás recolectado) como una base de datos o en un mapa. Presioná alguno de los dos botones siguientes para continuar:
         </p>
       </div>
-      <div className='homeButtonsContainer'>
-        <div className='homeButtonContainer'>
-          <Link className='homeButton' to='/spectra' id = 'table' state={'table'} onMouseOver={handleMouseIn} onMouseOut={() => setActiveType(null)}>
-            <i className="bi bi-table" style={{fontSize: '2.5vmax', color: 'white'}} id='table'></i>
-          </Link>
-        </div>
-        <div className='homeButtonContainer'>
-          <Link className='homeButton' to='/spectra' id = 'map' state={'map'} onMouseOver={handleMouseIn} onMouseOut={() => setActiveType(null)}>
-            <i className="bi bi-geo-alt-fill" style={{fontSize: '2.5vmax', color: 'white'}} id='map'></i>
-          </Link>
-        </div>
+      <div className='buttons'>
+        <Link className='homeButton' to='/spectra' id = 'table' state={'table'} onMouseOver={handleMouseIn} onMouseOut={() => setActiveType(null)}>
+          <i className="bi bi-table" style={{fontSize: '2.5vmax', color: 'white'}} id='table'></i>
+        </Link>
+        <Link className='homeButton' to='/spectra' id = 'map' state={'map'} onMouseOver={handleMouseIn} onMouseOut={() => setActiveType(null)}>
+          <i className="bi bi-geo-alt-fill" style={{fontSize: '2.5vmax', color: 'white'}} id='map'></i>
+        </Link>
       </div>
     </div>
   )

@@ -5,7 +5,7 @@ import HomeHeader from './components/HomeHeader'
 
 const homepage = () => {
   return (
-    <div className='baseContainer'>
+    <div className='homepageContainer'>
       <HomeHeader/>
       <Carrousel/>
     </div>
