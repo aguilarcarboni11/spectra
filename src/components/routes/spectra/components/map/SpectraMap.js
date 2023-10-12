@@ -64,7 +64,7 @@ const SpectraMap = ({state, setState, formulario, setFormulario}) => {
 
     const myIcon = L.divIcon({
         className: 'marker',
-        iconAnchor: [15,30],
+        iconAnchor: [12,24],
         html: `<i class="bi bi-geo-alt-fill"></i>`
     });
 
