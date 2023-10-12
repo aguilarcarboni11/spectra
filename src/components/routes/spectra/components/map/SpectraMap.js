@@ -94,26 +94,10 @@ const SpectraMap = ({state, setState, formulario, setFormulario}) => {
                     </Marker>
                     <Marker className='marker' position={center} icon={myIcon}>
                         <Popup>
-                            A pretty CSS3 popup. <br /> Easily customizable.
+                            {center}
                         </Popup>
                     </Marker>
                 </MapContainer>
-                {/* 
-                    <Map
-                        minZoom={7}
-                        center={center} 
-                    >
-                        {dataFetch.data.length !== 0 ? dataFetch.data.map((element, index) => 
-                            <Marker key = {index} width={'2vw'} anchor={[parseFloat(element.Latitud),parseFloat(element.Longitud)]} onMouseOver={() => handleHoverIn([element['Punto']])} onMouseOut={() => handleHoverOut()} onClick = {() => selectMarker(element)} color = {markerColor}></Marker>
-                        ):''}
-                        {coordsFetch.data.length !== 0 ? coordsFetch.data.map((coord, index) => 
-                            <Overlay key = {index} className = {(ArrayCompare(currentHover, coord)) ? 'overlay':'overlay hidden'} anchor={coord} offset={[50,-5]} >
-                                <p className='subtitle'> {coord[0]} , {coord[1]} </p>
-                            </Overlay>
-                        ):''}
-                        <ZoomControl style = {{top: '1vh', left: '1vw'}}/>
-                    </Map> 
-                */}
             </div>
             {state === spectraState.FORMULARIO ? 
                 <div className={state === spectraState.FORMULARIO ? 'info': 'info hidden'}> 

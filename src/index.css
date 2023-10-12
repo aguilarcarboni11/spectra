@@ -405,22 +405,6 @@ h1 {
 
 /* Spectra */
 
-.loadingContainer {
-  height: 50vh;
-  width: 100%;
-  display: block;
-  text-align: center;
-}
-
-.spinnerContainer {
-  margin: 15vh 0 2vh 0;
-  width: inherit;
-  height: fit-content;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .spectraContainer {
   margin: 4vh 0 0 0;
   display: block;
@@ -515,103 +499,64 @@ h1 {
       }
     }
   }
-}
-.overlay {
-  height: 2vmax;
-  width: fit-content;
-  background-color: var(--beige);
-  border-radius: 2vmax;
-}
-
-.spectraCategoryText {
-  display: inherit;
-  font-size: 1.25vmax;
-  color: var(--black);
-  font-weight: bold;
-}
-
-.filterAndTextContainer {
-  width: 99%;
-  height: fit-content;
-  display:flex;
-  justify-content: space-between;
-}
-
-  .filterBlock {
-    width: fit-content;
-    height: 7vh;
-    display: inline-flex;
-    justify-content: space-between;
-    overflow: hidden;
-  }
-
-    .filterContainer {
-      display: flex;
-      background-color: var(--orange);
-      margin: 2vh 2vw 0 0;
-      padding: 1vh 0 1vh 0;
-      justify-content: center;
-      border-radius: 2vmax;
-      width: 14vw;
-      overflow: hidden;
+  .tableContainer {
+    display: block;
+    margin: 0 0 0 0;
+    height: fit-content;
+    width: 100%;
+    .header {
+      width: 99%;
+      height: fit-content;
+      display:flex;
+      justify-content: space-between;
     }
-
-      .filterTitle {
-        font-family:'Lato';
-        font-size: 1vmax;
-        font-weight: bolder;
-        color: var(--beige);
-        text-align: center;
+    .infoContainer {
+      display: flex;
+      width: 100%;
+      height: 35vh;
+      .tableInfoDivider {
+        height: inherit;
+        width: 100%;
+        margin: 2vh 1vw 0 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        background-color: var(--lightAqua);
+        border-radius: 2vmax;
+        overflow: hidden;
+        .title {
+          font-size: 1vmax;
+          padding: 1vmax;
+        }
       }
-
-.tableAndInfoContainer {
-  display: block;
-  margin: 0 0 0 0;
-  height: fit-content;
-  width: 100%;
-}
-
-.tableHeader {
-  width: 99%;
-  height: fit-content;
-  display:flex;
-  justify-content: space-between;
-}
-
-.tableInfoContainer {
-  display: flex;
-  width: 100%;
-  height: 35vh;
-}
-
-.tableInfoDivider {
-  height: inherit;
-  width: 100%;
-  margin: 2vh 1vw 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  background-color: var(--lightAqua);
-  border-radius: 2vmax;
-  overflow: hidden;
-}
-
-.tableInfoDivider >* {
-    flex: 0 5 13.3vmax;
-}
-
-.tableInfoText {
-  font-size: 1vmax;
-  padding: 1vmax;
-}
-
-.spinner {
-  height: 8vh;
-  width: 4vw;
-  border: 0.5vmax solid var(--black);
-  border-color: var(--black) transparent var(--black) transparent;
-  border-radius: 10vmax;
-  animation: spin 2s linear infinite;
+      .tableInfoDivider >* {
+          flex: 0 5 13.3vmax;
+      }
+    }    
+  }
+  .filtersContainer {
+    width: 99%;
+    height: fit-content;
+    display:flex;
+    justify-content: space-between;
+    .block {
+      width: fit-content;
+      height: 7vh;
+      display: inline-flex;
+      justify-content: space-between;
+      overflow: hidden;
+      .filter {
+        display: flex;
+        background-color: var(--orange);
+        margin: 2vh 2vw 0 0;
+        padding: 1vh 0 1vh 0;
+        justify-content: center;
+        border-radius: 2vmax;
+        width: 14vw;
+        overflow: hidden;
+      }
+    }
+  }
 }
 
 .errorComponent {
@@ -628,6 +573,30 @@ h1 {
   justify-content: center;
   align-items: center;
   height: 20vh;
+}
+
+
+.loadingContainer {
+  height: 50vh;
+  width: 100%;
+  display: block;
+  text-align: center;
+  .spinnerContainer {
+    margin: 15vh 0 2vh 0;
+    width: inherit;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .spinner {
+      height: 8vh;
+      width: 4vw;
+      border: 0.5vmax solid var(--black);
+      border-color: var(--black) transparent var(--black) transparent;
+      border-radius: 10vmax;
+      animation: spin 2s linear infinite;
+    }
+  }
 }
 
 /* Tools */

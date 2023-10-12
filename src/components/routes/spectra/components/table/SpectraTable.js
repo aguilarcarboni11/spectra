@@ -99,8 +99,8 @@ const SpectraTable = ({state, setState, formulario, setFormulario, informacion, 
     console.log(state)
     
   return (
-    <div className='tableAndInfoContainer'>
-        <div className='tableHeader'>
+    <div className='tableContainer'>
+        <div className='header'>
             <p className='subtitle'> {state === spectraState.FORMULARIO ? `Formulario #${formulario['ID']}`: 
                                         state === spectraState.INFORMACION ? `Formulario #${formulario['ID']} > Informacion #${informacion['ID']}`: 
                                             state === spectraState.REGISTRO ? `Formulario #${formulario['ID']} > Informacion #${informacion['ID']} > Registro #${data[0]['ID']}`:
@@ -109,14 +109,14 @@ const SpectraTable = ({state, setState, formulario, setFormulario, informacion, 
         <ClearButton clearSelection={clearSelection} state={state}/>
         </div>
         <TableFilters state={state}/>
-        <div className={state === spectraState.FORMULARIO && formulario !== null? 'tableInfoContainer':'tableInfoContainer hidden'}> {/* Elegant solution for adding boxes? Inline switch */}
+        <div className={state === spectraState.FORMULARIO && formulario !== null? 'infoContainer':'infoContainer hidden'}> {/* Elegant solution for adding boxes? Inline switch */}
             <TableInfo info = {formulario}/>
         </div>
-        <div className={state === spectraState.INFORMACION && informacion !== null ? 'tableInfoContainer':'tableInfoContainer hidden'}>
+        <div className={state === spectraState.INFORMACION && informacion !== null ? 'infoContainer':'infoContainer hidden'}>
             <TableInfo info = {formulario}/>
             <TableInfo info = {informacion}/>
         </div>
-        <div className={state === spectraState.REGISTRO ? 'tableInfoContainer':'tableInfoContainer hidden'}>
+        <div className={state === spectraState.REGISTRO ? 'infoContainer':'infoContainer hidden'}>
             <TableInfo info = {formulario}/>
             <TableInfo info = {informacion}/>
             <div className={state === spectraState.REGISTRO ? 'tableGraphContainer':'tableGraphContainer hidden'}>
