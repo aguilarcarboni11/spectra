@@ -12,14 +12,14 @@ export const useFetch = () => {
     const Post = async (query) => {
         setLoading(true)
         try {
-            await fetch(`http://${hostname}:${port}/requests`, {
+            fetch(`http://${hostname}:${port}/requests`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 body: query
             })
-            fetch(`http://${hostname}:${port}/requests`, {
+            await fetch(`http://${hostname}:${port}/requests`, {
                 method: "GET",
             })
             .then(response => response.json())

@@ -34,42 +34,55 @@ const SpectraTable = ({state, setState, formulario, setFormulario, informacion, 
     },[isError]) // Run once and when isError changes
     
     const selectRows = (row) => {
-        if (data !== null) {
+        if (data.length > 0) {
             data.forEach((entry) => { // loop through data
                 if (entry['ID'] === row['ID']) { // check matchs
-                    if (state === spectraState.HOME) { // check page state --  add switch
-                        Post(`SELECT "ID","NumeroPlanta","EstadoFenologico" from "Informacion" WHERE "IDFormulario" : ${entry['ID']}`)
-                        setState(spectraState.FORMULARIO)
-                        setFormulario(entry)
-                    } else if (state === spectraState.FORMULARIO) {
-                        setState(spectraState.INFORMACION)
-                        setInformacion(entry)
-                        Post(`SELECT * from "Registro" WHERE "IDInformacion" : ${entry['ID']}`)
-                    } else if (state === spectraState.INFORMACION) {
-                        setState(spectraState.REGISTRO)
-                        Post(`SELECT * from "Registro" WHERE "CodigoRegistro" : ${entry['ID']}`)
+                    switch(state) {
+                        case spectraState.HOME:
+                            Post(`SELECT "ID","NumeroPlanta","EstadoFenologico" from "Informacion" WHERE "IDFormulario" : ${entry['ID']}`)
+                            setState(spectraState.FORMULARIO)
+                            setFormulario(entry)
+                            break
+                        case spectraState.FORMULARIO:
+                            setState(spectraState.INFORMACION)
+                            setInformacion(entry)
+                            Post(`SELECT * from "Registro" WHERE "IDInformacion" : ${entry['ID']}`)
+                            break;
+                        case spectraState.INFORMACION:
+                            setState(spectraState.REGISTRO)
+                            Post(`SELECT * from "Registro" WHERE "CodigoRegistro" : ${entry['ID']}`)
+                            break;
+                        default:
+                            break;
                     }
                 }
             })
         }
-      }
+    }
+
       
     const clearSelection = () => {
-        if (state === spectraState.FORMULARIO) { // add switch
-            setState(spectraState.HOME)
-            Post(`SELECT * from "Formulario"`)
-            setFormulario(null)
-        } else if (state === spectraState.INFORMACION) {
-            setState(spectraState.FORMULARIO)
-            Post(`SELECT * from "Informacion" WHERE "IDFormulario" : ${formulario['ID']}`)
-            setInformacion(null)
-        } else if (state === spectraState.REGISTRO) {
-            setState(spectraState.INFORMACION)
-            Post(`SELECT * from "Registro" WHERE "IDInformacion" : ${informacion['ID']}`)
+        switch(state) {
+            case spectraState.FORMULARIO:
+                setState(spectraState.HOME)
+                Post(`SELECT * from "Formulario"`)
+                setFormulario(null)
+                break;
+            case spectraState.INFORMACION:
+                setState(spectraState.FORMULARIO)
+                Post(`SELECT * from "Informacion" WHERE "IDFormulario" : ${formulario['ID']}`)
+                setInformacion(null)
+                break;
+            case spectraState.REGISTRO:
+                setState(spectraState.INFORMACION)
+                Post(`SELECT * from "Registro" WHERE "IDInformacion" : ${informacion['ID']}`)
+                break;
+            default:
+                break;
         }
     }
 
-    if (data.length !== 0) { // check another case
+    if (data.length > 0) {
         Object.keys(data[0]).forEach((element) => {
             column.name = element;
             column.selector = row => row[element];
@@ -78,7 +91,7 @@ const SpectraTable = ({state, setState, formulario, setFormulario, informacion, 
         }, {});
     }
 
-    switch(state) { // Maybe use effect?
+    switch(state) {
         case spectraState.LOADING:
         case spectraState.ERROR: 
         case spectraState.HOME:
@@ -96,7 +109,7 @@ const SpectraTable = ({state, setState, formulario, setFormulario, informacion, 
             break;
     }
 
-    console.log(state)
+    console.log(height)
     
   return (
     <div className='tableContainer'>
