@@ -546,11 +546,15 @@ h1 {
         display: flex;
         background-color: var(--orange);
         margin: 2vh 2vw 0 0;
-        padding: 1vh 0 1vh 0;
         justify-content: center;
+        align-items: center;
         border-radius: 2vmax;
         width: 14vw;
+        height: fit-content;
         overflow: hidden;
+        .title {
+          font-size: 1.5vmax;
+        }
       }
     }
   }

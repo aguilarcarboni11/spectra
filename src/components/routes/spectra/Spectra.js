@@ -7,6 +7,8 @@ import Slider from './components/misc/Slider'
 import SpectraMap from './components/map/SpectraMap'
 import SpectraTable from './components/table/SpectraTable'
 
+import TableFilters from './components/Filters.js'
+
 
 const Spectra = () => {
 
@@ -46,7 +48,7 @@ const Spectra = () => {
         <p className='title'>Firmas Espectrales</p>
         <Slider isMap = {isMap} onClick = {changeView}/>
       </div>
-      {isMap ?
+      {isMap && state < spectraState.INFORMACION ?
         <SpectraMap state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario} informacion = {informacion} setInformacion = {setInformacion}/>
         :
         <SpectraTable state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario} informacion = {informacion} setInformacion = {setInformacion}/>

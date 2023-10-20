@@ -6,9 +6,9 @@ import { spectraState } from '../../../../misc/types/types.tsx'
 
 import SpectraGraph from '../misc/SpectraGraph'
 import TableInfo from './components/TableInfo'
-import TableFilters from './components/TableFilters'
+import TableFilters from '../Filters'
 import ClearButton from '../misc/ClearButton'
-import TableLoadingComponent from './components/TableLoadingComponent'
+import TableLoadingComponent from '../misc/LoadingComponent'
 import NoDataComponent from './components/NoDataComponent'
 
 const SpectraTable = ({state, setState, formulario, setFormulario, informacion, setInformacion}) => {
@@ -95,11 +95,11 @@ const SpectraTable = ({state, setState, formulario, setFormulario, informacion, 
         case spectraState.LOADING:
         case spectraState.ERROR: 
         case spectraState.HOME:
-            height = '47vh'
+            height = '45vh'
             break;
         case spectraState.FORMULARIO:
         case spectraState.INFORMACION: 
-            height = '30vh'
+            height = '20vh'
             break;
         case spectraState.REGISTRO:
             height = '20vh'
@@ -108,8 +108,6 @@ const SpectraTable = ({state, setState, formulario, setFormulario, informacion, 
         default:
             break;
     }
-
-    console.log(height)
     
   return (
     <div className='tableContainer'>

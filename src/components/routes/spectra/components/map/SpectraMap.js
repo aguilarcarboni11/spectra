@@ -1,53 +1,88 @@
 import React, {useState, useEffect} from 'react'
-import { useFetch } from '../../../../hooks/useFetch'
-
 import { spectraState } from '../../../../misc/types/types.tsx'
 
-import SpectraGraph from '../misc/SpectraGraph'
+import {MapContainer, TileLayer, Marker, Popup} from 'react-leaflet'
+import 'leaflet/dist/leaflet.css'
+import L, { latLng } from 'leaflet'
+
+import TableLoadingComponent from '../misc/LoadingComponent'
+import MapData from './components/MapData.js'
 import ClearButton from '../misc/ClearButton'
-import Map from './components/Map';
 
 const SpectraMap = ({state, setState, formulario, setFormulario}) => {
 
+    const [id, setID] = useState()
+    const [isActive, setActive] = useState(false)
+
     const [center, setCenter] = useState([9.7489, -83.7535])
-    const dataFetch = useFetch()
 
-    useEffect(() => {
-        dataFetch.Post(`SELECT * from "Formulario"`)
-        if (dataFetch.isLoading) {
-            setState(spectraState.LOADING)
-        } if (dataFetch.isError) {
-            setState(spectraState.ERROR)
-        }        // eslint-disable-next-line
-    },[]) // Only run once
+    const {data, coords} = MapData(setState = {setState})
 
-    const clearSelection = () => {
-        if (state === spectraState.FORMULARIO) {
-            setState(spectraState.HOME)
-            dataFetch.Post(`SELECT * from "Formulario"`)
-            setFormulario(null)
-        }
-    }
+    const myIcon = L.divIcon({
+        className: 'marker',
+        iconAnchor: [12,24],
+        html: `<i class="bi bi-geo-alt-fill"></i>`
+    });
+
+if (state === spectraState.LOADING) {
+    return (
+        <TableLoadingComponent />
+    )
+} else {
+    return (
+        <div className='mapContainer'>
+            <div className='header'>
+                <p className='subtitle'> {state === spectraState.FORMULARIO ? `Formulario #${formulario['ID']}`:'De click en un punto para ver más informacion acerca del mismo'} </p>
+                <ClearButton state={state}/>
+            </div>
+            <div className='mapAndInfo'>
+            <div id='map'>
+                    <MapContainer 
+                        center={center} 
+                        zoom={8} 
+                        minZoom={8}
+                        scrollWheelZoom={true}
+                        className='full-height-map'
+                    >
+                        <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        {coords.map((coord, index) => (
+                            <Marker 
+                                className='marker' 
+                                position={[coord['st_y'], coord['st_x']]} 
+                                icon={myIcon}
+                                key={index}
+                                eventHandlers={{
+                                    click: () => {
+                                        console.log(latLng.getLatLng())
+                                        if (isActive) {
+                                            setActive(false)
+                                            setID(null)
+                                        } else {
+                                            setActive(true)
+                                            setID(coord['ID'])
+                                        }
+                                    },
+                                }}
+                            >
+                            </Marker>
+                        ))}
+                    </MapContainer>
+                </div>
+                {isActive && data.filter(data => data['ID'] === id).map((formulario)=> (
+                    Object.keys(formulario).map((col) => (
+                        <div >
+                            {formulario[col]}
+                        </div>
+                    ))
+                ))}
+            </div>
+        </div>
+    )
     
-  return (
-    <div className='mapContainer'>
-        <div className='header'>
-            <p className='subtitle'> {state === spectraState.FORMULARIO ? `Formulario #${formulario['ID']}`:'De click en un punto para ver más informacion acerca del mismo'} </p>
-            <ClearButton clearSelection={clearSelection} state={state}/>
-        </div>
-        <div className='mapAndInfo'>
-            <Map center = {center} setCenter = {setCenter}/>
-            {state === spectraState.FORMULARIO ? 
-                <div className={state === spectraState.FORMULARIO ? 'info': 'info hidden'}> 
-                    {dataFetch.data.length !== 0 ? Object.keys(dataFetch.data[0]).map((element, index) => 
-                        <p key = {index} className='subtitle'>{formulario[element]}</p>
-                    ):''}
-                    <SpectraGraph height={'40%'} width={'90%'}/>
-                </div> : ''
-            }
-        </div>
-     </div>
-  )
+}
 }
 
 export default SpectraMap

@@ -3,7 +3,7 @@ import { useState } from "react";
 export const useFetch = () => {
 
     const [data, setData] = useState([])
-    const [isLoading, setLoading] = useState(false)
+    const [isLoading, setLoading] = useState(true)
     const [isError, setError] = useState(false)
 
     const hostname = 'localhost'
