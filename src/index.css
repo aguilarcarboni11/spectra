@@ -610,31 +610,41 @@ h1 {
   width: 100%;
   height: 100vh;
   margin: 3vh 0 1vh 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(2, 1fr);
   .divisor {
-    width: 40%;
-    margin: 0 2vw 0 2vw;
-    height: 15vw;
-    display:flex;
-    flex-wrap: wrap;
-    text-align: center;
-    justify-items: center;
-    .subtitle:hover {
-      color: var(--clickedOrange)
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    .icon:hover + .link {
+      opacity: 100;
+    }
+    .link {
+      position: relative;
+      margin: auto 0 auto 0;
+      opacity: 0;
+      text-decoration: none;
+      text-align: center;
+      .subtitle {
+        padding: 1vh 1vw 1vh 1vw;
+        border-radius: 2vmax;
+        margin: 0 2vw 0 2vw;
+        color: var(--black);
+        text-decoration: none;
+      }
+    }
+    .link:hover {
+      opacity: 100;
     }
     .logos {
       width: fit-content;
       display: inline-flex;
       justify-content:center;
-      .link {
-        margin: 0 2vw 0 2vw;
-      }
     }
-  }
-  .divisor >* {
-    flex: 1 1 100vw;
   }
 }
 

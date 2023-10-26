@@ -1,14 +1,13 @@
 import React from 'react'
 import {useEffect, useState} from 'react'
 import {useLocation} from 'react-router-dom'
+
+import { RouteTypes } from '../../misc/types/types.tsx'
 import {spectraState} from '../../misc/types/types.tsx'
 
 import Slider from './components/misc/Slider'
 import SpectraMap from './components/map/SpectraMap'
 import SpectraTable from './components/table/SpectraTable'
-
-import TableFilters from './components/Filters.js'
-
 
 const Spectra = () => {
 
@@ -22,19 +21,14 @@ const Spectra = () => {
   const location = useLocation()
 
   useEffect(() => { // initialize Spectra
-    if (state !== spectraState.LOADING) {
-      if (state !== spectraState.ERROR) {
-        if (location.state === 'map') {
-          setIsMap(true)
-        } else {
-          setIsMap(false)
-        }
-        setState(spectraState.HOME)
+      if (location.state === RouteTypes.TABLE) {
+        setIsMap(false)
+      } else {
+        setIsMap(true)
       }
-    } // eslint-disable-next-line
   }, [location.state]); // Run when Spectra gets mounted and when location.state changes
 
-  const changeView = () => {
+ function changeView () {
     if (isMap) {
       setIsMap(false)
     } else {

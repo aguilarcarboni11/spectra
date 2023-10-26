@@ -2,18 +2,9 @@ import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
+import { RouteTypes } from '../../../misc/types/types.tsx'
+
 const HomeHeader = () => {
-
-    const [activeType, setActiveType] = useState(null) // use for css highlighting -- find better solutions
-
-    const handleMouseIn = (e) => {
-        if (e.target.id === 'map') {
-          setActiveType(e.target.id)
-        } else if (e.target.id === 'table') {
-          setActiveType(e.target.id)
-        }
-    }
-
   return (
     <div className='infoContainer'>
       <div className='text'>
@@ -39,11 +30,11 @@ const HomeHeader = () => {
         </p>
       </div>
       <div className='buttons'>
-        <Link className='homeButton' to='/spectra' id = 'table' state={'table'} onMouseOver={handleMouseIn} onMouseOut={() => setActiveType(null)}>
-          <i className="bi bi-table" style={{fontSize: '2.5vmax', color: 'white'}} id='table'></i>
+        <Link className='homeButton' to='/spectra' state = {RouteTypes.TABLE}>
+          <i className="bi bi-table" style={{fontSize: '2.5vmax', color: 'white'}}></i>
         </Link>
-        <Link className='homeButton' to='/spectra' id = 'map' state={'map'} onMouseOver={handleMouseIn} onMouseOut={() => setActiveType(null)}>
-          <i className="bi bi-geo-alt-fill" style={{fontSize: '2.5vmax', color: 'white'}} id='map'></i>
+        <Link className='homeButton' to='/spectra' state = {RouteTypes.MAP}>
+          <i className="bi bi-geo-alt-fill" style={{fontSize: '2.5vmax', color: 'white'}}></i>
         </Link>
       </div>
     </div>

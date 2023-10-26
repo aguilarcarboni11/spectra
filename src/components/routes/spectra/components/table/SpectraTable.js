@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useFetch } from '../../../../hooks/useFetch'
 import Table, {createTheme} from 'react-data-table-component'
@@ -14,29 +14,34 @@ import NoDataComponent from './components/NoDataComponent'
 const SpectraTable = ({state, setState, formulario, setFormulario, informacion, setInformacion}) => {
 
     const {data,Post,isError,isLoading} = useFetch()
+    var query = `SELECT * from "Formulario"`
 
     var height
-    var wavelength
+    var wavelength // pass down
     
-    var column = {
-        name: '',
-        selector: '',
-    }
     var columns = []
 
     useEffect(() => {
-        Post(`SELECT * from "Formulario"`)
+        Post(query)
         if (isLoading) {
             setState(spectraState.LOADING)
         } if (isError) {
             setState(spectraState.ERROR)
+        } else {
+            setState(spectraState.HOME)
         } // eslint-disable-next-line
-    },[isError]) // Run once and when isError changes
-    
+    },[query]) // Run when query changes
+
+    if (data[0]) { // fill columns array
+        Object.keys(data[0]).forEach((element) => {
+            columns.push({name: element, selector: (row => row[element])})
+        }, {});
+    }
+
     const selectRows = (row) => {
         if (data.length > 0) {
             data.forEach((entry) => { // loop through data
-                if (entry['ID'] === row['ID']) { // check matchs
+                if (entry['ID'] === row['ID']) { // check matches
                     switch(state) {
                         case spectraState.HOME:
                             Post(`SELECT "ID","NumeroPlanta","EstadoFenologico" from "Informacion" WHERE "IDFormulario" : ${entry['ID']}`)
@@ -80,15 +85,6 @@ const SpectraTable = ({state, setState, formulario, setFormulario, informacion, 
             default:
                 break;
         }
-    }
-
-    if (data.length > 0) {
-        Object.keys(data[0]).forEach((element) => {
-            column.name = element;
-            column.selector = row => row[element];
-            columns.push(column)
-            column = {}
-        }, {});
     }
 
     switch(state) {

@@ -12,13 +12,17 @@ export const useFetch = () => {
     const Post = async (query) => {
         setLoading(true)
         try {
-            fetch(`http://${hostname}:${port}/requests`, {
+            await fetch(`http://${hostname}:${port}/requests`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 body: query
             })
+        } catch(e) {
+            console.error('Error posting query')
+        }
+        try {
             await fetch(`http://${hostname}:${port}/requests`, {
                 method: "GET",
             })
@@ -28,7 +32,7 @@ export const useFetch = () => {
                 setLoading(false)
             })
         } catch(e) {
-            console.error('Error posting query');
+            console.error('Error fetching query');
             setError(true)
             setLoading(false)
             return {data, Post, isError, isLoading};
