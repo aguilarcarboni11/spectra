@@ -14,25 +14,19 @@
 :root {
   --lightBeige: #fff8f2;
   --beige: #FFF3E8;
-  --clickedBeige: #f1dfc6;
+  --clickedBeige: #f6e2ce;
 
-  --lightGrey: #E6E7E8;
+  --lightGrey: #939598;
   --grey: #58595B;
   --black: #231F20;
 
-  --lightAqua: #e8f1f1;
-  --aqua: #00746C;
-  --clickedAqua: #005a53;
-  --darkAqua: #002e2a;
+  --lightAqua: #3C8985;
+  --aqua: #006A62;
+  --clickedAqua: #014943;
 
-  --lightOrange: #E9BA76;
+  --lightOrange: #F8AF82;
   --orange: #FF914D;
-  --contactOrange: #e77c39;
-  --clickedOrange: #CF7136;
-
-  --lightBlue: #dfece7;
-  --midBlue: #869E95;
-  --lightBlueClicked: #43695B;
+  --darkOrange: #EB7E3C;
 }
 
 /* * {
@@ -40,6 +34,7 @@
 } */
 
 html {
+  overflow: scroll;
   background-color: var(--lightBeige);
   margin: 1vh 2vw 0 2vw;
   height: 100vh;
@@ -72,7 +67,6 @@ h1 {
   font-family: 'Lato', serif;
   font-size: 5vmax;
   color:var(--black);
-  margin: 0 0 1vh 1vw;
   font-weight:bold;
 }
 
@@ -81,13 +75,11 @@ h1 {
   font-family: 'Lato', serif;
   font-size: 3vmax;
   color:var(--black);
-  margin: 0 0 1vh 0;
   font-weight:bold;
 }
 
 .subtitle {
   font-family: 'Lato Light', serif;
-  margin: 0 0 1vh 0;
   font-size: 1vmax;
   color:var(--grey);
   line-height: 1.8vmax;
@@ -138,7 +130,7 @@ h1 {
     display: inline-flex;
     position: relative;
     width: fit-content;
-    height: 10vmax;
+    height: 20vh;
     justify-content: space-between;
     align-items: center;
     text-decoration: none;
@@ -157,7 +149,7 @@ h1 {
 /* Navbar */
 
 .navbarContainer {
-  height: 10vh;
+  height: 8vh;
   width: 40vw;
   flex-wrap: nowrap;
   background-color: var(--aqua);
@@ -212,8 +204,9 @@ h1 {
 
 .homepageContainer {
   display: flex;
-  flex-wrap: wrap;
-  align-content: space-between;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-between;
   min-height: 80vh;
   height: fit-content;
   .infoContainer {
@@ -250,12 +243,11 @@ h1 {
 
 .carrouselContainer {
   height: fit-content;
-  margin: 3vh 0 0 0;
   width: 100%;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   .carrousel {
     display: flex;
     justify-content: center;
@@ -300,8 +292,8 @@ h1 {
 
 .aboutContainer {
   display: flex;
-  flex-wrap: wrap;
-  align-content: space-between;
+  flex-direction: column;
+  justify-content: space-between;
   min-height: 80vh;
   height: fit-content;
   .info {
@@ -310,6 +302,9 @@ h1 {
     width: 100%;
   }
   .ourTeamContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: fit-content;
     width: 100%;
     .ourTeamTitle {
@@ -328,12 +323,14 @@ h1 {
     }
     .photos {
       width: 100%;
+      border-radius: 2vmax;
       height: fit-content;
-      margin: 2vh 0 2vh 0;
+      margin: 0 0 3vh 0;
       display: inline-flex;
       justify-content: space-between;
       align-items: center;
       .employeePhotoContainer {
+        margin: 0 2vw 0 2vw;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -403,10 +400,11 @@ h1 {
 /* Spectra */
 
 .spectraContainer {
-  margin: 4vh 0 0 0;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 80vh;
   height: fit-content;
-  width: 100%;
   .header {
     display:flex;
     width: 100%;
@@ -609,42 +607,36 @@ h1 {
 .contactContainer {
   width: 100%;
   height: 100vh;
-  margin: 3vh 0 1vh 0;
-  display: grid;
-  gap: 1px;
-  grid-template-columns: repeat(2, 1fr);
-  .divisor {
+  justify-content: space-between;
+  border-radius: 5vmax;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 1vh 0;
+  .links {
+    width: 98%;
+    height: 100%;
+    border-radius: 2vmax;
+    background-color: var(--beige);
+    padding: 1vh 1vw 1vh 1vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: fit-content;
-    .icon:hover + .link {
-      opacity: 100;
-    }
+    justify-content: space-between;
     .link {
-      position: relative;
-      margin: auto 0 auto 0;
-      opacity: 0;
-      text-decoration: none;
-      text-align: center;
+      gap: 2vw;
+      display: flex;
+      align-items: center;
+      height: fit-content;
       .subtitle {
-        padding: 1vh 1vw 1vh 1vw;
         border-radius: 2vmax;
-        margin: 0 2vw 0 2vw;
         color: var(--black);
         text-decoration: none;
       }
     }
-    .link:hover {
-      opacity: 100;
-    }
-    .logos {
-      width: fit-content;
-      display: inline-flex;
-      justify-content:center;
-    }
+  }
+  .logos {
+    width: fit-content;
+    display: inline-flex;
+    justify-content:center;
   }
 }
 

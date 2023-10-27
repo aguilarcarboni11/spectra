@@ -13,7 +13,9 @@ export enum ContactTypes {
     EMAIL = 2,
     COMMENTS = 3,
     WEBSITE = 4,
-    SOCIALS = 5
+    LINKEDIN = 5,
+    INSTAGRAM = 6,
+    FACEBOOK = 7
 }
 
 export enum RouteTypes {
