@@ -6,14 +6,15 @@ import { spectraState } from '../../../../misc/types/types.tsx'
 
 import SpectraGraph from '../misc/SpectraGraph'
 import TableInfo from './components/TableInfo'
-import TableFilters from '../Filters'
+import TableFilters from '../misc/Filters'
 import ClearButton from '../misc/ClearButton'
 import TableLoadingComponent from '../misc/LoadingComponent'
-import NoDataComponent from './components/NoDataComponent'
+import NoDataComponent from '../misc/NoDataComponent'
 
 const SpectraTable = ({state, setState, formulario, setFormulario, informacion, setInformacion}) => {
 
     const {data,Post,isError,isLoading} = useFetch()
+
     var query = `SELECT * from "Formulario"`
 
     var height
@@ -23,16 +24,17 @@ const SpectraTable = ({state, setState, formulario, setFormulario, informacion, 
 
     useEffect(() => {
         Post(query)
+    },[query]) // Run when query changes
+
+    useEffect(() => {
         if (isLoading) {
             setState(spectraState.LOADING)
         } if (isError) {
             setState(spectraState.ERROR)
-        } else {
-            setState(spectraState.HOME)
-        } // eslint-disable-next-line
-    },[query]) // Run when query changes
+        }
+    }, [isLoading, isError])
 
-    if (data[0]) { // fill columns array
+    if (data[0]) { // fill columns array -- fix rerun
         Object.keys(data[0]).forEach((element) => {
             columns.push({name: element, selector: (row => row[element])})
         }, {});
@@ -44,7 +46,7 @@ const SpectraTable = ({state, setState, formulario, setFormulario, informacion, 
                 if (entry['ID'] === row['ID']) { // check matches
                     switch(state) {
                         case spectraState.HOME:
-                            Post(`SELECT "ID","NumeroPlanta","EstadoFenologico" from "Informacion" WHERE "IDFormulario" : ${entry['ID']}`)
+                            Post(`SELECT "ID","NumeroPlanta","EstadoFenologico" from "Informacion" WHERE "IDFormulario" : ${entry['ID']}`) // change to query change
                             setState(spectraState.FORMULARIO)
                             setFormulario(entry)
                             break

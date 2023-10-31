@@ -36,10 +36,9 @@
 html {
   overflow: scroll;
   background-color: var(--lightBeige);
-  margin: 1vh 2vw 0 2vw;
-  height: 100vh;
+  margin: 1vh 2vw 1vh 2vw;
+  height: 100%;
 }
-
 
 body {
   margin: 0;
@@ -56,6 +55,7 @@ button {
 
 img {
   width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
@@ -150,7 +150,7 @@ h1 {
 
 .navbarContainer {
   height: 8vh;
-  width: 40vw;
+  width: 50%;
   flex-wrap: nowrap;
   background-color: var(--aqua);
   border-radius: 2vmax;
@@ -262,7 +262,8 @@ h1 {
       width: 100%;
       .carrouselPhotoContainer {
         z-index: 1;
-        height: inherit;
+        height: 100%;
+        width: 100%;
         border-radius: 2vmax;
       }
       .image {
@@ -373,11 +374,7 @@ h1 {
       margin: auto;
       width: 80%;
       height: 80%;
-      .image {
-        opacity: 100%;
-        height: fit-content;
-        border-radius: 2vmax;
-      }
+      padding: 1vh 1vw 1vh 1vw;
       .foreground {
         border-radius: 2vmax;
         z-index: 50;
@@ -389,6 +386,18 @@ h1 {
         margin: auto;
         width: 100%;
         height: 100%;
+      }
+      .content {
+        display: flex;
+        flex-direction: column;
+        .info {
+          display: flex;
+          .image {
+            opacity: 100%;
+            height: 40vh;
+            border-radius: 2vmax;
+          }
+        }
       }
     }
     .foreground:hover {
@@ -606,12 +615,9 @@ h1 {
 
 .contactContainer {
   width: 100%;
-  height: 100vh;
-  justify-content: space-between;
-  border-radius: 5vmax;
+  height: 100%;
   display: flex;
-  flex-direction: column;
-  margin: 0 0 1vh 0;
+  justify-content: space-between;
   .links {
     width: 98%;
     height: 100%;
@@ -628,15 +634,13 @@ h1 {
       height: fit-content;
       .subtitle {
         border-radius: 2vmax;
-        color: var(--black);
         text-decoration: none;
       }
     }
   }
-  .logos {
-    width: fit-content;
-    display: inline-flex;
-    justify-content:center;
+  .messageContainer {
+    width: 100%;
+    font-size: 5vmax;
   }
 }
 

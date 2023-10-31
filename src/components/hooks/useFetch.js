@@ -21,6 +21,9 @@ export const useFetch = () => {
             })
         } catch(e) {
             console.error('Error posting query')
+            setError(true)
+            setLoading(false)
+            return {data, Post, isError, isLoading};
         }
         try {
             await fetch(`http://${hostname}:${port}/requests`, {
