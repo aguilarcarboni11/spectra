@@ -8,85 +8,86 @@ import SpectraGraph from '../misc/SpectraGraph'
 import TableInfo from './components/TableInfo'
 import TableFilters from '../misc/Filters'
 import ClearButton from '../misc/ClearButton'
-import TableLoadingComponent from '../misc/LoadingComponent'
+import LoadingComponent from '../misc/LoadingComponent'
 import NoDataComponent from '../misc/NoDataComponent'
 
 const SpectraTable = ({state, setState, formulario, setFormulario, informacion, setInformacion}) => {
 
     const {data,Post,isError,isLoading} = useFetch()
-
-    var query = `SELECT * from "Formulario"`
+    const [prevState, setPrevState] = useState(state);
 
     var height
     var wavelength // pass down
-    
+
     var columns = []
 
-    useEffect(() => {
-        Post(query)
-    },[query]) // Run when query changes
+    useEffect(() => { // Initialize spectra -- pass to parent
+        Post(`SELECT * from "Formulario"`)
+        setState(spectraState.HOME);
+    },[]) // Run once
 
-    useEffect(() => {
+    useEffect(() => { // Loading and error handler
         if (isLoading) {
             setState(spectraState.LOADING)
-        } if (isError) {
+        } else if (isError) {
             setState(spectraState.ERROR)
+        } else {
+            setState(prevState)
         }
-    }, [isLoading, isError])
+    }, [isError, isLoading]) // run when isError or isLoading change
 
-    if (data[0]) { // fill columns array -- fix rerun
+    useEffect(() => { // Create previous state variable for loading control
+        if (state > 1) {
+            setPrevState(state)
+        }
+    }, [state]) // run when state changes
+
+    if (data[0]) { // Create columns for data on each rerender
         Object.keys(data[0]).forEach((element) => {
             columns.push({name: element, selector: (row => row[element])})
         }, {});
     }
 
-    const selectRows = (row) => {
+    const selectRow = (row) => {
+        var selected = {}
         if (data.length > 0) {
-            data.forEach((entry) => { // loop through data
-                if (entry['ID'] === row['ID']) { // check matches
-                    switch(state) {
-                        case spectraState.HOME:
-                            Post(`SELECT "ID","NumeroPlanta","EstadoFenologico" from "Informacion" WHERE "IDFormulario" : ${entry['ID']}`) // change to query change
-                            setState(spectraState.FORMULARIO)
-                            setFormulario(entry)
-                            break
-                        case spectraState.FORMULARIO:
-                            setState(spectraState.INFORMACION)
-                            setInformacion(entry)
-                            Post(`SELECT * from "Registro" WHERE "IDInformacion" : ${entry['ID']}`)
-                            break;
-                        case spectraState.INFORMACION:
-                            setState(spectraState.REGISTRO)
-                            Post(`SELECT * from "Registro" WHERE "CodigoRegistro" : ${entry['ID']}`)
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            })
+            selected = data.filter((entry) => entry['ID'] === row['ID'])[0]
+            switch(state) {
+                case spectraState.HOME:
+                    Post(`SELECT "ID","NumeroPlanta","EstadoFenologico" from "Informacion" WHERE "IDFormulario" : ${selected['ID']}`) // change to query change
+                    setFormulario(selected)
+                    break;
+                case spectraState.FORMULARIO:
+                    Post(`SELECT * from "Registro" WHERE "IDInformacion" : ${selected['ID']}`)
+                    setInformacion(selected)
+                    break;
+                case spectraState.INFORMACION:
+                    Post(`SELECT * from "Registro" WHERE "CodigoRegistro" : ${selected['ID']}`)
+                    break;
+                default:
+                    break;
+            }
+            setState(state+1)
         }
     }
 
-      
     const clearSelection = () => {
         switch(state) {
             case spectraState.FORMULARIO:
-                setState(spectraState.HOME)
                 Post(`SELECT * from "Formulario"`)
                 setFormulario(null)
                 break;
             case spectraState.INFORMACION:
-                setState(spectraState.FORMULARIO)
                 Post(`SELECT * from "Informacion" WHERE "IDFormulario" : ${formulario['ID']}`)
                 setInformacion(null)
                 break;
             case spectraState.REGISTRO:
-                setState(spectraState.INFORMACION)
                 Post(`SELECT * from "Registro" WHERE "IDInformacion" : ${informacion['ID']}`)
                 break;
             default:
                 break;
         }
+        setState(state-1)
     }
 
     switch(state) {
@@ -106,40 +107,48 @@ const SpectraTable = ({state, setState, formulario, setFormulario, informacion, 
         default:
             break;
     }
-    
-  return (
-    <div className='tableContainer'>
-        <div className='header'>
-            <p className='subtitle'> {state === spectraState.FORMULARIO ? `Formulario #${formulario['ID']}`: 
-                                        state === spectraState.INFORMACION ? `Formulario #${formulario['ID']} > Informacion #${informacion['ID']}`: 
-                                            state === spectraState.REGISTRO ? `Formulario #${formulario['ID']} > Informacion #${informacion['ID']} > Registro #${data[0]['ID']}`:
-                                                'De click en una fila para ver más informacion acerca del formulario'} 
-            </p>
-        <ClearButton clearSelection={clearSelection} state={state}/>
-        </div>
-        <TableFilters state={state}/>
-        <div className={state === spectraState.FORMULARIO && formulario !== null? 'infoContainer':'infoContainer hidden'}> {/* Elegant solution for adding boxes? Inline switch */}
-            <TableInfo info = {formulario}/>
-        </div>
-        <div className={state === spectraState.INFORMACION && informacion !== null ? 'infoContainer':'infoContainer hidden'}>
-            <TableInfo info = {formulario}/>
-            <TableInfo info = {informacion}/>
-        </div>
-        <div className={state === spectraState.REGISTRO ? 'infoContainer':'infoContainer hidden'}>
-            <TableInfo info = {formulario}/>
-            <TableInfo info = {informacion}/>
-            <div className={state === spectraState.REGISTRO ? 'tableGraphContainer':'tableGraphContainer hidden'}>
-                <SpectraGraph height={"100%"} width={"100%"} wavelength = {wavelength}/>
+
+    if (state === spectraState.LOADING) {
+        return (
+            <LoadingComponent />
+        )
+    } else if (state === spectraState.ERROR) {
+        return (
+            <NoDataComponent isError = {isError}/>
+        )
+    } else {
+        return (
+            <div className='tableContainer'>
+                <div className='header'>
+                    <p className='subtitle'> {state === spectraState.FORMULARIO ? `Formulario #${formulario['ID']}`: 
+                                                state === spectraState.INFORMACION ? `Formulario #${formulario['ID']} > Informacion #${informacion['ID']}`: 
+                                                    state === spectraState.REGISTRO ? `Formulario #${formulario['ID']} > Informacion #${informacion['ID']} > Registro #${data[0]['ID']}`:
+                                                        'De click en una fila para ver más informacion acerca del formulario'} 
+                    </p>
+                <ClearButton clearSelection={clearSelection} state={state}/>
+                </div>
+                <TableFilters state={state}/>
+                <div className={state === spectraState.FORMULARIO && formulario !== null? 'infoContainer':'infoContainer hidden'}> {/* Elegant solution for adding boxes? Inline switch */}
+                    <TableInfo info = {formulario}/>
+                </div>
+                <div className={state === spectraState.INFORMACION && informacion !== null ? 'infoContainer':'infoContainer hidden'}>
+                    <TableInfo info = {formulario}/>
+                    <TableInfo info = {informacion}/>
+                </div>
+                <div className={state === spectraState.REGISTRO ? 'infoContainer':'infoContainer hidden'}>
+                    <TableInfo info = {formulario}/>
+                    <TableInfo info = {informacion}/>
+                    <div className={state === spectraState.REGISTRO ? 'tableGraphContainer':'tableGraphContainer hidden'}>
+                        <SpectraGraph height={"100%"} width={"100%"} wavelength = {wavelength}/>
+                    </div>
+                </div>
+                <Table data = {data} columns = {columns} theme="spectra" 
+                    customStyles = {customStyles} 
+                    fixedHeader fixedHeaderScrollHeight={height} onRowClicked={selectRow}>
+                </Table>
             </div>
-        </div>
-        <Table data = {data} columns = {columns} theme="spectra" 
-            customStyles = {customStyles} 
-            fixedHeader fixedHeaderScrollHeight={height} onRowClicked={selectRows}
-            noDataComponent = {<NoDataComponent isError = {isError}/>}
-            progressPending = {isLoading ? true:false} progressComponent={<TableLoadingComponent/>}>
-        </Table>
-    </div>
-  )
+        )
+    }
 }
 
 export default SpectraTable

@@ -11,7 +11,7 @@ import SpectraTable from './components/table/SpectraTable'
 
 const Spectra = () => {
 
-  const [state, setState] = useState(null)
+  const [state, setState] = useState(2)
   const [isMap, setIsMap] = useState(null)
 
   const [formulario, setFormulario] = useState({})
@@ -21,15 +21,11 @@ const Spectra = () => {
   const location = useLocation()
 
   useEffect(() => { // initialize Spectra
-      if (location.state === RouteTypes.TABLE) {
-        setIsMap(false)
-      } else {
-        setIsMap(true)
-      }
-  }, [location.state]); // Run when Spectra gets mounted and when location.state changes
+      changeView(location.state === RouteTypes.TABLE)
+  }, [location.state]); // Run when Spectra gets mounted and when location.state changes -- should only change at home
 
- function changeView () {
-    if (isMap) {
+ function changeView (table) {
+    if (table) {
       setIsMap(false)
     } else {
       setIsMap(true)
@@ -40,7 +36,7 @@ const Spectra = () => {
     <div className='spectraContainer'>
       <div className='header'>
         <p className='title'>Firmas Espectrales</p>
-        <Slider isMap = {isMap} onClick = {changeView}/>
+        <Slider isMap = {isMap} onClick = {() => changeView(isMap)}/>
       </div>
       {isMap && state < spectraState.INFORMACION ?
         <SpectraMap state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario} informacion = {informacion} setInformacion = {setInformacion}/>

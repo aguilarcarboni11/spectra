@@ -20,25 +20,33 @@ const SpectraMap = ({state, setState, formulario, setFormulario}) => {
 
     const dataFetch = useFetch()
     const coordsFetch = useFetch()
+    const [prevState, setPrevState] = useState(state);
 
-    var query = `SELECT * from "Formulario"`
-
-    useEffect(() => {
-        dataFetch.Post(query)
-    },[query]) // Run when query changes
+    useEffect(() => { // Initialize spectra
+        dataFetch.Post(`SELECT * from "Formulario"`)
+        setState(spectraState.HOME);
+    },[]) // Run once
 
     useEffect(() => {
         setTimeout(() => {
             coordsFetch.Post(`SELECT "ID",ST_X("Punto"), ST_Y("Punto") from "Formulario"`)
-          }, 250); // eslint-disable-next-line
+          }, 100); // eslint-disable-next-line
     },[coordsFetch.data.length]) // Run until data gets filled up, just once
+
+    useEffect(() => { // Create previous state variable for loading control
+        if (state > 1) {
+            setPrevState(state)
+        }
+    }, [state]) // run when state changes
 
     useEffect(() => {
         if (dataFetch.isError || coordsFetch.isError) {
             setState(spectraState.ERROR)
         } else if (dataFetch.isLoading || coordsFetch.isLoading) {
             setState(spectraState.LOADING)
-        }
+        } else {
+            setState(prevState)
+        } 
     }, [dataFetch.isLoading, dataFetch.isError, coordsFetch.isLoading, coordsFetch.isError])
 
     function Listen () {
