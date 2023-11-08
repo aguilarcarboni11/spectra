@@ -10,7 +10,7 @@ import SpectraTable from './components/table/SpectraTable'
 
 const Spectra = () => {
 
-  const [state, setState] = useState(null)
+  const [state, setState] = useState(spectraState.HOME)
   const [isMap, setIsMap] = useState(null)
 
   const [formulario, setFormulario] = useState({})
@@ -31,10 +31,6 @@ const Spectra = () => {
     }
   }
 
-  function handleStateChange() {
-    setState(spectraState.LOADING)
-  }
-
   return (
     <div className='spectraContainer'>
       <div className='header'>
@@ -44,7 +40,7 @@ const Spectra = () => {
       {isMap && state < spectraState.INFORMACION ?
         <SpectraMap state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario} informacion = {informacion} setInformacion = {setInformacion}/>
         :
-        <SpectraTable handleStateChange = {handleStateChange} state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario} informacion = {informacion} setInformacion = {setInformacion}/>
+        <SpectraTable state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario} informacion = {informacion} setInformacion = {setInformacion}/>
       }
     </div>
   )

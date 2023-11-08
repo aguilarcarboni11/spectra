@@ -14,7 +14,7 @@ import ClearButton from '../misc/ClearButton'
 import LoadingComponent from '../misc/LoadingComponent'
 import NoDataComponent from '../misc/NoDataComponent'
 
-const SpectraTable = ({handleStateChange, state, setState, formulario, setFormulario, informacion, setInformacion}) => {
+const SpectraTable = ({state, setState, formulario, setFormulario, informacion, setInformacion}) => {
 
     var height
     var wavelength // pass down
@@ -23,23 +23,14 @@ const SpectraTable = ({handleStateChange, state, setState, formulario, setFormul
     const {data,isError,isLoading} = useFetch(query)
 
     // Create copy of state variable for loading control
-    const [prevState, setPrevState] = useState(state)
-    if (state > 1) {
-        setPrevState(state)
-    }
-
-    // Loading and error handler -- let parent handle?
+    const [currentState, setCurrentState] = useState(state)
     useEffect(() => {
-        if (isLoading) {
-            handleStateChange()
-        } else if (isError) {
-            setState(spectraState.ERROR)
-        } else {
-            setState(prevState)
+        if (state > 1) {
+            setCurrentState(state)
         }
-    }, [isError, isLoading]) // run when isError or isLoading change
+    }, [state])
 
-    console.log(state)
+    console.log(state, currentState)
 
     // Create columns
     var columns = []
@@ -52,10 +43,10 @@ const SpectraTable = ({handleStateChange, state, setState, formulario, setFormul
     const selectRow = (row) => {
         var selected = {}
         if (data.length > 0) {
-            selected = data.filter((entry) => entry['ID'] === row['ID'])[0]
+            selected = data.find((entry) => entry['ID'] === row['ID'])
             switch(state) {
                 case spectraState.HOME:
-                    setQuery(`SELECT "ID","NumeroPlanta","EstadoFenologico" from "Informacion" WHERE "IDFormulario" : ${selected['ID']}`) // change to query change
+                    setQuery(`SELECT "ID","NumeroPlanta","EstadoFenologico" from "Informacion" WHERE "IDFormulario" : ${selected['ID']}`)
                     setFormulario(selected)
                     break;
                 case spectraState.FORMULARIO:
@@ -72,7 +63,7 @@ const SpectraTable = ({handleStateChange, state, setState, formulario, setFormul
         }
     }
 
-    const clearSelection = () => {
+    const goBack = () => {
         switch(state) {
             case spectraState.FORMULARIO:
                 setQuery(`SELECT * from "Formulario"`)
@@ -92,8 +83,6 @@ const SpectraTable = ({handleStateChange, state, setState, formulario, setFormul
     }
 
     switch(state) {
-        case spectraState.LOADING:
-        case spectraState.ERROR: 
         case spectraState.HOME:
             height = '45vh'
             break;
@@ -109,11 +98,11 @@ const SpectraTable = ({handleStateChange, state, setState, formulario, setFormul
             break;
     }
 
-    if (state === spectraState.LOADING) {
+    if (isLoading) {
         return (
             <LoadingComponent />
         )
-    } else if (state === spectraState.ERROR) {
+    } else if (isError) {
         return (
             <NoDataComponent isError = {isError}/>
         )
@@ -126,7 +115,7 @@ const SpectraTable = ({handleStateChange, state, setState, formulario, setFormul
                                                     state === spectraState.REGISTRO ? `Formulario #${formulario['ID']} > Informacion #${informacion['ID']} > Registro #${data[0]['ID']}`:
                                                         'De click en una fila para ver más informacion acerca del formulario'} 
                     </p>
-                <ClearButton clearSelection={clearSelection} state={state}/>
+                <ClearButton clearSelection={goBack} state={state}/>
                 </div>
                 <Filters state={state}/>
                 <div className={state === spectraState.FORMULARIO && formulario !== null? 'infoContainer':'infoContainer hidden'}> {/* Elegant solution for adding boxes? Inline switch */}

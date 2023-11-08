@@ -1,10 +1,8 @@
 export enum spectraState {
-    LOADING = 0,
-    ERROR = 1,
-    HOME = 2,
-    FORMULARIO = 3,
-    INFORMACION = 4,
-    REGISTRO = 5
+    HOME = 0,
+    FORMULARIO = 1,
+    INFORMACION = 2,
+    REGISTRO = 3
 }
 
 export enum ContactTypes {
