@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import { spectraState } from '../../../../misc/types/types.tsx'
 
-import {MapContainer, TileLayer, Marker, Popup, useMap, useMapEvent} from 'react-leaflet'
+import {MapContainer, TileLayer, Marker, useMapEvent} from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-import L, { latLng } from 'leaflet'
+import L from 'leaflet'
 
 import { useFetch } from '../../../../hooks/useFetch.js'
 
@@ -18,36 +18,8 @@ const SpectraMap = ({state, setState, formulario, setFormulario}) => {
 
     const [center, setCenter] = useState([9.7489, -83.7535])
 
-    const dataFetch = useFetch()
-    const coordsFetch = useFetch()
-    const [prevState, setPrevState] = useState(state);
-
-    useEffect(() => { // Initialize spectra
-        dataFetch.Post(`SELECT * from "Formulario"`)
-        setState(spectraState.HOME);
-    },[]) // Run once
-
-    useEffect(() => {
-        setTimeout(() => {
-            coordsFetch.Post(`SELECT "ID",ST_X("Punto"), ST_Y("Punto") from "Formulario"`)
-          }, 100); // eslint-disable-next-line
-    },[coordsFetch.data.length]) // Run until data gets filled up, just once
-
-    useEffect(() => { // Create previous state variable for loading control
-        if (state > 1) {
-            setPrevState(state)
-        }
-    }, [state]) // run when state changes
-
-    useEffect(() => {
-        if (dataFetch.isError || coordsFetch.isError) {
-            setState(spectraState.ERROR)
-        } else if (dataFetch.isLoading || coordsFetch.isLoading) {
-            setState(spectraState.LOADING)
-        } else {
-            setState(prevState)
-        } 
-    }, [dataFetch.isLoading, dataFetch.isError, coordsFetch.isLoading, coordsFetch.isError])
+    const dataFetch = useFetch(`SELECT * from "Formulario"`)
+    const coordsFetch = useFetch((`SELECT "ID",ST_X("Punto"), ST_Y("Punto") from "Formulario"`))
 
     function Listen () {
         const map = useMapEvent('click', () => {
@@ -62,15 +34,15 @@ const SpectraMap = ({state, setState, formulario, setFormulario}) => {
         html: `<i class="bi bi-geo-alt-fill"></i>`
     });
 
-    if (state === spectraState.LOADING) {
+    if (dataFetch.isLoading || coordsFetch.isLoading) {
         return (
             <LoadingComponent />
         )
-    } else if (state === spectraState.ERROR) {
+    } else if (dataFetch.isError || coordsFetch.isError) {
         return (
             <NoDataComponent isError = {coordsFetch.isError || dataFetch.isError}/>
         )
-    } else {
+    } else if (state != null) {
         return (
             <div className='mapContainer'>
                 <div className='header'>

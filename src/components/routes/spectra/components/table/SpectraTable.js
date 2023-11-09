@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useEffect } from 'react'
 
 import { useFetch } from '../../../../hooks/useFetch'
 import { spectraState } from '../../../../misc/types/types.tsx'
@@ -22,16 +21,6 @@ const SpectraTable = ({state, setState, formulario, setFormulario, informacion, 
     const[query, setQuery] = useState(`SELECT * from "Formulario"`)
     const {data,isError,isLoading} = useFetch(query)
 
-    // Create copy of state variable for loading control
-    const [currentState, setCurrentState] = useState(state)
-    useEffect(() => {
-        if (state > 1) {
-            setCurrentState(state)
-        }
-    }, [state])
-
-    console.log(state, currentState)
-
     // Create columns
     var columns = []
     if (data[0]) { // Create columns for data on each rerender -- add to state effect
@@ -40,7 +29,7 @@ const SpectraTable = ({state, setState, formulario, setFormulario, informacion, 
         }, {});
     }
 
-    const selectRow = (row) => {
+    const selectRow = (row) => { // add row functionality
         var selected = {}
         if (data.length > 0) {
             selected = data.find((entry) => entry['ID'] === row['ID'])
@@ -106,7 +95,7 @@ const SpectraTable = ({state, setState, formulario, setFormulario, informacion, 
         return (
             <NoDataComponent isError = {isError}/>
         )
-    } else {
+    } else if (state != null) {
         return (
             <div className='tableContainer'>
                 <div className='header'>

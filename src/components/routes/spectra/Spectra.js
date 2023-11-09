@@ -11,6 +11,7 @@ import SpectraTable from './components/table/SpectraTable'
 const Spectra = () => {
 
   const [state, setState] = useState(spectraState.HOME)
+
   const [isMap, setIsMap] = useState(null)
 
   const [formulario, setFormulario] = useState({})
@@ -37,8 +38,11 @@ const Spectra = () => {
         <p className='title'>Firmas Espectrales</p>
         <Slider isMap = {isMap} onClick = {() => changeView(isMap)}/>
       </div>
+      {/* Create subtitle component*/}
+      {/* Create clear button*/}
+      {/* Create info component*/}
       {isMap && state < spectraState.INFORMACION ?
-        <SpectraMap state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario} informacion = {informacion} setInformacion = {setInformacion}/>
+        <SpectraMap state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario} informacion = {informacion} setInformacion = {setInformacion}/> // pass info components outside
         :
         <SpectraTable state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario} informacion = {informacion} setInformacion = {setInformacion}/>
       }
