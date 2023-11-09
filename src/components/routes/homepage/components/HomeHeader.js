@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { RouteTypes } from '../../../misc/types/types.tsx'
+import { RouteTypes } from '../../../types/types.tsx'
 
 const HomeHeader = () => {
   return (

@@ -412,13 +412,13 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 80vh;
-  height: fit-content;
+  height: 100%;
   .header {
     display:flex;
     width: 100%;
-    height: fit-content;
+    height: 100%;
     justify-content:space-between;
+    align-items: center;
     .slider {
       padding: 1vh 0.5vw 1vh 0.5vw;
       border-radius: 2vmax;
@@ -504,12 +504,14 @@ h1 {
     }
   }
   .tableContainer {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     margin: 0 0 0 0;
-    height: fit-content;
+    height: 100%;
     width: 100%;
     .header {
-      width: 99%;
+      width: 100%;
       height: fit-content;
       display:flex;
       justify-content: space-between;
@@ -539,28 +541,28 @@ h1 {
     }    
   }
   .filtersContainer {
-    width: 99%;
+    width: fit-content;
     height: fit-content;
     display:flex;
     justify-content: space-between;
     .block {
       width: fit-content;
-      height: 7vh;
+      height: 5vh;
       display: inline-flex;
       justify-content: space-between;
       overflow: hidden;
       .filter {
         display: flex;
         background-color: var(--orange);
-        margin: 2vh 2vw 0 0;
         justify-content: center;
         align-items: center;
         border-radius: 2vmax;
-        width: 14vw;
-        height: fit-content;
+        width: 8vw;
+        height: 100%;
         overflow: hidden;
         .title {
-          font-size: 1.5vmax;
+          color: white;
+          font-size: 1vmax;
         }
       }
     }
@@ -572,7 +574,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40vh;
+  height: 100%;
 }
 
 .noDataComponent {
@@ -580,30 +582,24 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20vh;
+  height: 100%;
 }
 
-
 .loadingContainer {
-  height: 50vh;
+  height: 100%;
   width: 100%;
-  display: block;
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  .spinnerContainer {
-    margin: 15vh 0 2vh 0;
-    width: inherit;
+  align-items: center;
+  justify-content: center;
+  .spinner {
     height: fit-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .spinner {
-      height: 8vh;
-      width: 4vw;
-      border: 0.5vmax solid var(--black);
-      border-color: var(--black) transparent var(--black) transparent;
-      border-radius: 10vmax;
-      animation: spin 2s linear infinite;
-    }
+    width: fit-content;
+    border: 2vmax solid var(--black);
+    border-color: var(--black) transparent var(--black) transparent;
+    border-radius: 10vmax;
+    animation: spin 2s linear infinite;
   }
 }
 

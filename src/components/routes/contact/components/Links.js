@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-import {ContactTypes} from '../../../misc/types/types.tsx'
+import {ContactTypes} from '../../../types/types.tsx'
 
 const Links = () => {
     const orange = '#e77c39'

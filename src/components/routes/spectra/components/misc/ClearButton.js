@@ -1,5 +1,5 @@
 import React from 'react'
-import { spectraState } from '../../../../misc/types/types.tsx'
+import { spectraState } from '../../../../types/types.tsx'
 
 const ClearButton = ({clearSelection, state}) => {
 

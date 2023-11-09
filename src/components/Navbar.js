@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link,useLocation} from 'react-router-dom'
 
-import { RouteTypes } from './misc/types/types.tsx'
+import { RouteTypes } from './types/types.tsx'
 const Navbar = () => {
     var location = useLocation()
 

@@ -2,11 +2,11 @@ import React from 'react'
 import {useEffect, useState} from 'react'
 import {useLocation} from 'react-router-dom'
 
-import { RouteTypes, spectraState } from '../../misc/types/types.tsx'
+import { RouteTypes, spectraState } from '../../types/types.tsx'
 
 import Slider from './components/misc/Slider'
-import SpectraMap from './components/map/SpectraMap'
-import SpectraTable from './components/table/SpectraTable'
+import MapMode from './components/map/MapMode.js'
+import TableMode from './components/table/TableMode.js'
 
 const Spectra = () => {
 
@@ -14,9 +14,11 @@ const Spectra = () => {
 
   const [isMap, setIsMap] = useState(null)
 
-  const [formulario, setFormulario] = useState({})
-  const [informacion, setInformacion] = useState({})
-  const [registro, setRegistro] = useState({})
+  const [cache, setCache] = useState({
+    formulario: null,
+    informacion: null,
+    registro: null
+  })
 
   const location = useLocation()
 
@@ -38,13 +40,10 @@ const Spectra = () => {
         <p className='title'>Firmas Espectrales</p>
         <Slider isMap = {isMap} onClick = {() => changeView(isMap)}/>
       </div>
-      {/* Create subtitle component*/}
-      {/* Create clear button*/}
-      {/* Create info component*/}
       {isMap && state < spectraState.INFORMACION ?
-        <SpectraMap state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario} informacion = {informacion} setInformacion = {setInformacion}/> // pass info components outside
+        <MapMode state = {state} setState = {setState} cache={cache} setCache={setCache}/> // pass info components outside
         :
-        <SpectraTable state = {state} setState = {setState} formulario = {formulario} setFormulario = {setFormulario} informacion = {informacion} setInformacion = {setInformacion}/>
+        <TableMode state = {state} setState = {setState} cache = {cache} setCache = {setCache}/>
       }
     </div>
   )
