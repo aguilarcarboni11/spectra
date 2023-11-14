@@ -12,7 +12,7 @@ const LocationHandler = ({state, cache}) => {
             case spectraState.INFORMACION:
                     return `Formulario #${cache.formulario['ID']} > Informacion #${cache.informacion['ID']}`
             case spectraState.REGISTRO:
-                    return `Formulario #${cache.formulario['ID']} > Informacion #${cache.informacion['ID']} > Registro #${cache.registro[0]['ID']}`
+                    return `Formulario #${cache.formulario['ID']} > Informacion #${cache.informacion['ID']} > Registro #${cache.registro['ID']}`
         }
     }
     

@@ -16,8 +16,6 @@ const TableMode = ({state, setState, cache, setCache}) => {
     var height
     var wavelength // pass down
 
-    console.log(cache)
-
     const[query, setQuery] = useState(`SELECT * from "Formulario"`)
     const {data,isError,isLoading} = useFetch(query)
 

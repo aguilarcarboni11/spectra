@@ -64,7 +64,7 @@ const Links = () => {
       }
 
   return (
-    <div className='links'>
+    <div className='linksContainer'>
         <p className='title'> Contacto</p>
         {contactLinks.slice(0, 2).map((element) => (
           <div key = {element.id} className='link indented' id={element.id} onMouseEnter={onMouseEnter} onMouseLeave={() => setActive(null)}>

@@ -14,7 +14,7 @@
 :root {
   --lightBeige: #fff8f2;
   --beige: #FFF3E8;
-  --clickedBeige: #f6e2ce;
+  --darkBeige: #f6e2ce;
 
   --lightGrey: #939598;
   --grey: #58595B;
@@ -22,7 +22,7 @@
 
   --lightAqua: #3C8985;
   --aqua: #006A62;
-  --clickedAqua: #014943;
+  --darkAqua: #014943;
 
   --lightOrange: #F8AF82;
   --orange: #FF914D;
@@ -177,7 +177,7 @@ h1 {
     }
   }
   .active {
-    background-color: var(--clickedAqua);
+    background-color: var(--darkAqua);
   }
 }
 
@@ -424,7 +424,7 @@ h1 {
       border-radius: 2vmax;
       float: right; /* fix */
       display: flex;
-      background-color: var(--clickedAqua);
+      background-color: var(--darkAqua);
       width: fit-content;
       height: fit-content;
       .background {
@@ -614,8 +614,8 @@ h1 {
   height: 100%;
   display: flex;
   justify-content: space-between;
-  .links {
-    width: 98%;
+  .linksContainer {
+    width: 50%;
     height: 100%;
     border-radius: 2vmax;
     padding: 1vh 1vw 1vh 1vw;
@@ -635,7 +635,31 @@ h1 {
   }
   .messageContainer {
     width: 100%;
+    height: 100%;
     font-size: 5vmax;
+    .divisor {
+      display: flex;
+      margin: 1vh 0 1vh 0;
+      justify-content: space-between;
+      .input {
+        display: flex;
+        text-align: left;
+        height: 5vh;
+        margin: 0 0 0 1vw;
+        padding: 0 0 0 1vw;
+        width: 87%;
+        background-color: var(--darkBeige);
+        border: none;
+        border-radius: 1vmax;
+      }
+      .input:focus {
+        outline: none;
+      }
+      .message {
+        height: 50vh;
+        border-radius: 1vmax;
+      }
+    }
   }
 }
 
@@ -662,7 +686,7 @@ h1 {
 
 @keyframes buttonHover {
   from {background-color: var(--aqua);}
-  to {background-color: var(--clickedAqua);}
+  to {background-color: var(--darkAqua);}
 }
 
 @keyframes buttonHoverOrange {
