@@ -3,7 +3,6 @@ import React from 'react'
 const EmployeeInfo = ({employee, handleExit}) => {
   return (
     <div className='employeeInfo'>
-        <div className='foreground' onClick={() => handleExit()}></div>
         <div className='content'>
           <p className='title'>{employee.name} {employee.lastNames}</p>
           <p className='subtitle'> {employee.position} </p>
@@ -12,6 +11,7 @@ const EmployeeInfo = ({employee, handleExit}) => {
             <img className='image' src={require('../../../../assets/fotos/team/' + employee.path)} alt={employee.name}></img>
           </div>
         </div>
+        <div className='background' onClick={() => handleExit()}></div>
     </div>
   )
 }

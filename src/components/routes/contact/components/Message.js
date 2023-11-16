@@ -37,7 +37,7 @@ const Message = () => {
             <p className='subtitle indented'>Correo</p>
             <input className='input' name='email' type='email'></input>
           </div>
-          <div className='divisor'>
+          <div className='divisor' style={{alignItems: 'start'}}>
             <p className='subtitle indented'>Mensaje</p>
             <input className='input message' name='message' type='text'></input>
           </div>

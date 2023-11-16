@@ -6,9 +6,11 @@ import { spectraState } from '../../../../types/types.tsx'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 import {MapContainer, TileLayer, useMapEvent} from 'react-leaflet'
-import { SpectraMarker } from './components/MapComponents.js' 
 
-import ClearButton from '../misc/ClearButton.js'
+import { SpectraMarker } from './components/MapComponents.js' 
+import LocationHandler from '../misc/LocationHandler.js'
+
+import Filters from '../misc/Filters.js'
 
 const SpectraMap = ({state, setState, cache, setCache}) => {
     

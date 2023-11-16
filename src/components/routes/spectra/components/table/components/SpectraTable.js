@@ -4,7 +4,7 @@ import Table, {createTheme} from 'react-data-table-component'
 import LoadingComponent from '../../misc/LoadingComponent'
 import NoDataComponent from '../../misc/NoDataComponent'
 
-const SpectraTable = ({data, isLoading, isError, selectRow}) => {
+const SpectraTable = ({data, isLoading, isError, selectRow, height}) => {
 
     function createColunns() {
         var columns = []
@@ -23,7 +23,7 @@ const SpectraTable = ({data, isLoading, isError, selectRow}) => {
         )
     } else if (isError) {
         return (
-            <NoDataComponent isError = {isError}/>
+            <NoDataComponent isError = {isError}/> // fix
         )
     } else {
         return (

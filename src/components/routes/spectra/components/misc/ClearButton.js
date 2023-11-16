@@ -1,15 +1,15 @@
 import React from 'react'
 import { spectraState } from '../../../../types/types.tsx'
 
-const ClearButton = ({clearSelection, state}) => {
+import { FolderSymlinkFill } from 'react-bootstrap-icons'
+
+const ClearButton = ({state, goBack}) => {
 
   return (
-    <div>
+    <div className='clearButton'>
       {state > spectraState.HOME ? 
-          <button className='clearButton' onClick = {clearSelection}> 
-              <svg className = 'clearButtonSVG' xmlns="http://www.w3.org/2000/svg" width="2vw" height="3vh" fill="currentColor" viewBox="0 0 16 16" style={{margin: '0 0 0 -1vw'}}>
-                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
-              </svg> 
+          <button className='button' onClick = {goBack}> 
+            <FolderSymlinkFill className='svg' />
           </button>:''}
     </div>
   )

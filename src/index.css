@@ -34,7 +34,8 @@
 } */
 
 html {
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
   background-color: var(--lightBeige);
   margin: 1vh 2vw 1vh 2vw;
   height: 100%;
@@ -185,6 +186,7 @@ h1 {
 
 .footerContainer {
   display: flex;
+  z-index: -1;
   position: relative;
   justify-content: center;
   align-items: center;
@@ -232,7 +234,6 @@ h1 {
         width: fit-content;
         padding: 1vh 2vw 1vh 2vw;
         margin: 0 2vw 0 2vw;
-        z-index: 100;
         display: flex;
         border-radius: 2vmax;
         text-decoration: none;
@@ -257,11 +258,9 @@ h1 {
       border-radius: 2vmax;
       justify-content: center;
       display: flex;
-      z-index: 0;
       height: fit-content;
       width: 100%;
       .carrouselPhotoContainer {
-        z-index: 1;
         height: 100%;
         width: 100%;
         border-radius: 2vmax;
@@ -353,19 +352,16 @@ h1 {
           bottom: 25vh;
         }
       }
-      .employeePhotoContainer:hover > .image {
+      .employeePhotoContainer:not(.noHover):hover > .image {
         opacity: 50%;
       }
-      .employeePhotoContainer:hover > .description {
+      .employeePhotoContainer:not(.noHover):hover > .description {
           opacity: 100%;
       }
     }
     .employeeInfo {
       display: flex;
       justify-content: space-between;
-      border-radius: 2vmax;
-      z-index: 100;
-      background-color: var(--beige);
       position: fixed;
       left: 0;
       right: 0;
@@ -374,10 +370,9 @@ h1 {
       margin: auto;
       width: 80%;
       height: 80%;
-      padding: 1vh 1vw 1vh 1vw;
-      .foreground {
-        border-radius: 2vmax;
-        z-index: 50;
+      .background {
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 10;
         position: fixed;
         left: 0;
         right: 0;
@@ -388,6 +383,10 @@ h1 {
         height: 100%;
       }
       .content {
+        background-color: var(--beige);
+        border-radius: 2vmax;
+        padding: 1vh 1vw 1vh 1vw;
+        z-index: 100;
         display: flex;
         flex-direction: column;
         .info {
@@ -400,7 +399,7 @@ h1 {
         }
       }
     }
-    .foreground:hover {
+    .background:hover {
       cursor: pointer;
     }
   }
@@ -458,17 +457,10 @@ h1 {
   .mapContainer {
     width: 100%;
     .header {
-      .clearButton {
-        background-color: rgba(0, 0, 0, 0);
-        width: 3vw;
-        height: 5vh;
-        position: relative;
-        float: right;
-      }
-      .clearButton:hover > .backArrow {
-        opacity: 50%;
-        cursor: pointer;
-      }
+      width: 100%;
+      height: fit-content;
+      display:flex;
+      justify-content: space-between;
     }
     .mapAndInfo {
       display: flex;
@@ -542,30 +534,46 @@ h1 {
   }
   .filtersContainer {
     width: fit-content;
-    height: fit-content;
-    display:flex;
-    justify-content: space-between;
-    .block {
-      width: fit-content;
-      height: 5vh;
-      display: inline-flex;
-      justify-content: space-between;
-      overflow: hidden;
-      .filter {
-        display: flex;
-        background-color: var(--orange);
-        justify-content: center;
-        align-items: center;
-        border-radius: 2vmax;
-        width: 8vw;
-        height: 100%;
-        overflow: hidden;
-        .title {
-          color: white;
-          font-size: 1vmax;
-        }
-      }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    .menu {
+      z-index: 100;
+      width: 20vw;
+      height: 80%;
+      top: 10vh;
+      right: 0;
+      background-color: var(--beige);
+      border-radius: 2vmax 0 0 2vmax;
+      position: absolute;
     }
+    .background {
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 10;
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.filterButton {
+  background-color: var(--orange);
+  justify-content: center;
+  align-items: center;
+  border-radius: 2vmax;
+  width: 2.5vw;
+  height: 5vh;
+  overflow: hidden;
+  .svg {
+    font-size: 1vmax;
+    color: var(--beige)
   }
 }
 
@@ -603,6 +611,36 @@ h1 {
   }
 }
 
+.locationHandler {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  .clearButton {
+    height: fit-content;
+    width: fit-content;
+    .button {
+      background-color: rgba(0, 0, 0, 0);
+      transform: rotateY(180deg);
+      .svg {
+        font-size: 1.5vmax;
+        color: var(--grey)
+      }
+    }
+  }
+  .location {
+    display: flex;
+    .button {
+      background-color: rgba(0, 0, 0, 0);
+      text-decoration: none;
+    }
+    .button:hover {
+      text-decoration: underline var(--grey);
+      cursor: pointer;
+    }
+  }
+}
+
 /* Tools */
 
 /* Works */
@@ -613,6 +651,7 @@ h1 {
   width: 100%;
   height: 100%;
   display: flex;
+  margin: 0 0 2vh 0;
   justify-content: space-between;
   .linksContainer {
     width: 50%;
@@ -639,12 +678,13 @@ h1 {
     font-size: 5vmax;
     .divisor {
       display: flex;
-      margin: 1vh 0 1vh 0;
+      margin: 5vh 0 5vh 0;
       justify-content: space-between;
+      align-items: center;
       .input {
         display: flex;
         text-align: left;
-        height: 5vh;
+        height: 6vh;
         margin: 0 0 0 1vw;
         padding: 0 0 0 1vw;
         width: 87%;
@@ -657,6 +697,9 @@ h1 {
       }
       .message {
         height: 50vh;
+        display: flex;
+        align-items: start;
+        top: 0;
         border-radius: 1vmax;
       }
     }

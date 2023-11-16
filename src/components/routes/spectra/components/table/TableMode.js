@@ -4,17 +4,19 @@ import { useFetch } from '../../../../hooks/useFetch'
 import { spectraState } from '../../../../types/types.tsx'
 
 import TableInfo from './components/TableInfo'
-
 import SpectraTable from './components/SpectraTable'
-
 import SpectraGraph from '../misc/Graph'
 import Filters from '../misc/Filters'
 import LocationHandler from '../misc/LocationHandler'
+
+import { FunnelFill } from 'react-bootstrap-icons'
 
 const TableMode = ({state, setState, cache, setCache}) => {
 
     var height
     var wavelength // pass down
+
+    const [showFilters, setShowFilters] = useState(false)
 
     const[query, setQuery] = useState(`SELECT * from "Formulario"`)
     const {data,isError,isLoading} = useFetch(query)
@@ -39,7 +41,9 @@ const TableMode = ({state, setState, cache, setCache}) => {
                 default:
                     break;
             }
-            setState(state+1)
+            if (state < spectraState.REGISTRO) {
+                setState(state+1)
+            }
         }
     }
 
@@ -50,7 +54,7 @@ const TableMode = ({state, setState, cache, setCache}) => {
                 setCache({...cache,formulario: null})
                 break;
             case spectraState.INFORMACION:
-                setQuery(`SELECT * from "Informacion" WHERE "IDFormulario" : ${cache.formulario['ID']}`)
+                setQuery(`SELECT "ID", "NumeroPlanta", "EstadoFenologico" from "Informacion" WHERE "IDFormulario" : ${cache.formulario['ID']}`)
                 setCache({...cache,informacion: null})
                 break;
             case spectraState.REGISTRO:
@@ -60,7 +64,9 @@ const TableMode = ({state, setState, cache, setCache}) => {
             default:
                 break;
         }
-        setState(state-1)
+        if (state > spectraState.HOME) {
+            setState(state-1)
+        }
     }
 
     function calculateTableHeight(state) {
@@ -87,8 +93,11 @@ const TableMode = ({state, setState, cache, setCache}) => {
     return (
         <div className='tableContainer'>
             <div className='header'>
-                <LocationHandler state={state} cache={cache}/>
-                <Filters state={state}/>
+                <LocationHandler state={state} cache={cache} goBack = {goBack} setQuery={setQuery} setCache={setCache} setState={setState}/>
+                <button className='filterButton' onClick={() => setShowFilters(true)}>
+                    <FunnelFill className='svg' />
+                </button>
+                {showFilters && <Filters setShowFilters={setShowFilters}/>}
             </div>
             <div className={state === spectraState.FORMULARIO && cache.formulario !== null? 'infoContainer':'infoContainer hidden'}> {/* Elegant solution for adding boxes? Inline switch  */}
                 <TableInfo info = {cache.formulario}/>
@@ -104,7 +113,7 @@ const TableMode = ({state, setState, cache, setCache}) => {
                     <SpectraGraph height={"100%"} width={"100%"} wavelength = {wavelength}/>
                 </div>
             </div>
-            <SpectraTable data = {data} isLoading = {isLoading} isError = {isError} selectRow={selectRow} />
+            <SpectraTable data = {data} isLoading = {isLoading} isError = {isError} selectRow={selectRow} height={height}/>
         </div>
     )
 }
