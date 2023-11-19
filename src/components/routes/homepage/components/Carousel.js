@@ -5,6 +5,7 @@ import {motion, LayoutGroup, AnimatePresence} from "framer-motion"
 
 const Carousel = () => {
   const [index,setIndex] = useState(0)
+
   const carouselPhotos = []
 
   for (var i = 1; i < 15; i++) {
@@ -38,7 +39,6 @@ const Carousel = () => {
   return (
     <div className='carouselContainer'>
       <div className='background'>
-        <ArrowButton id = 'left' onClick={prevSlide}/>
         <div className='photos'>
           <LayoutGroup >
           <AnimatePresence initial={false} >
@@ -57,10 +57,11 @@ const Carousel = () => {
           </AnimatePresence>
           </LayoutGroup>
         </div>
-        <ArrowButton id = 'right' onClick={nextSlide} height={2} width={2}/>
       </div>
       <div className='textContainer'>
+        <ArrowButton id = 'left' onClick={prevSlide}/>
         <p className='subtitle'> Biblioteca de fotos del PRIAS</p>
+        <ArrowButton id = 'right' onClick={nextSlide} height={2} width={2}/>
       </div>
     </div>
   )

@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom'
 
 import { RouteTypes } from '../../../types/types.tsx'
 
-import {AnimatePresence, motion, useAnimate} from 'framer-motion'
+import {AnimatePresence, motion} from 'framer-motion'
 
 import { Table } from 'react-bootstrap-icons'
 import { GeoAltFill } from 'react-bootstrap-icons'
 
 const RouteButtons = () => {
-    const [scope, animate] = useAnimate()
     const [active, setActive] = useState(null)
 
     console.log(active)
@@ -19,20 +18,20 @@ const RouteButtons = () => {
         <div className='buttons'>
             <Link 
                 className='homeButton' 
-                id = {RouteTypes.TABLE} 
-                to='/spectra' 
-                onMouseEnter={(e) => setActive(e.target.id)} 
-                onMouseLeave={() => setActive(null)} 
+                id = {RouteTypes.TABLE}
                 state = {RouteTypes.TABLE}
+                to='/spectra' 
+                onMouseEnter={(e) => setActive(parseInt(e.target.id))} 
+                onMouseLeave={() => setActive(null)} 
             >
                 <AnimatePresence>
-                    {active == RouteTypes.TABLE && 
+                    {active === RouteTypes.TABLE && 
                         <motion.div 
-                            style={{transformOrigin: 'right'}} 
+                            style={{originX: 1, padding: '1vh 2vw 1vh 1vw'}}
                             className='sidebar'
-                            initial={{x: 0}}
-                            animate={{x:-70}}
-                            exit={{x:0}}
+                            initial={{x: 0, width: 0}}
+                            animate={{x:'-4vmax', width: 'fit-content'}}
+                            exit={{x:0, width: 0}}
                         >
                             <p className='subtitle'>Modo tabla</p>
                         </motion.div>
@@ -42,27 +41,26 @@ const RouteButtons = () => {
             </Link>
             <Link 
                 className='homeButton' 
-                id = {RouteTypes.MAP} 
-                to='/spectra' 
-                onMouseEnter={(e) => setActive(e.target.id)} 
-                onMouseLeave={() => setActive(null)} 
+                id = {RouteTypes.MAP}
                 state = {RouteTypes.MAP}
+                to='/spectra' 
+                onMouseEnter={(e) => setActive(parseInt(e.target.id))} 
+                onMouseLeave={() => setActive(null)} 
             >
-                <GeoAltFill className='icon'/>
                 <AnimatePresence>
-                    {active == RouteTypes.MAP && 
+                    {active === RouteTypes.MAP && 
                         <motion.div 
-                            layoutId={active}
-                            style={{transformOrigin: 'right'}} 
+                            style={{originX: 1, padding: '1vh 1vw 1vh 2vw'}} 
                             className='sidebar'
-                            initial={{x: 0}}
-                            animate={{x:75}}
-                            exit={{x:0}}
+                            initial={{x: 0, width: 0}}
+                            animate={{x:'4vmax', width: 'fit-content'}}
+                            exit={{x:0, width: 0}}
                         >
                             <p className='subtitle'>Modo mapa</p>
                         </motion.div>
                     }
                 </AnimatePresence>
+                <GeoAltFill className='icon' style={{fontSize: '2.5vmax', color: 'white'}} />
             </Link>
         </div>
     </div>
