@@ -1,7 +1,12 @@
-import React from 'react'
-import OurTeam from '../about/components/OurTeam'
+import React, {useState} from 'react'
+
+import Carousel from './components/Carousel'
+import EmployeeInfo from './components/EmployeeInfo'
 
 const About = () => {
+
+  const [selected, setSelected] = useState(null)
+
   return (
     <div className='aboutContainer'>
       <div className='info'>
@@ -24,7 +29,12 @@ const About = () => {
           a través de la articulación intersectorial.
         </p>
       </div>
-      <OurTeam/>
+      <div className='ourTeamTitle'>
+        <p className='title'> Equipo PRIAS: </p>
+        <div className='bar'></div>
+      </div>
+      <Carousel selected = {selected} setSelected={setSelected}/>
+      <EmployeeInfo selected = {selected} setSelected={setSelected}/>
     </div>
   )
 }

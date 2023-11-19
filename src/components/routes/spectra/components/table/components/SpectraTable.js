@@ -1,10 +1,34 @@
 import React from 'react'
 import Table, {createTheme} from 'react-data-table-component'
 
+import { spectraState } from '../../../../../types/types.tsx'
+
 import LoadingComponent from '../../misc/LoadingComponent'
 import NoDataComponent from '../../misc/NoDataComponent'
 
-const SpectraTable = ({data, isLoading, isError, selectRow, height}) => {
+const SpectraTable = ({state, data, isLoading, isError, selectRow}) => {
+
+    var height
+
+    function calculateTableHeight(state) {
+        switch(state) {
+            case spectraState.HOME:
+                height = '40vh'
+                break;
+            case spectraState.FORMULARIO:
+            case spectraState.INFORMACION: 
+                height = '25vh'
+                break;
+            case spectraState.REGISTRO:
+                height = '25vh'
+                break;
+            default:
+                break;
+        }
+        return height;
+    }
+
+    height = calculateTableHeight(state)
 
     function createColunns() {
         var columns = []
@@ -36,6 +60,20 @@ const SpectraTable = ({data, isLoading, isError, selectRow, height}) => {
 }
 
 export default SpectraTable
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const beige = '#fae7d4'
 const orange = '#FF914D'

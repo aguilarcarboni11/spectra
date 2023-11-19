@@ -1,6 +1,6 @@
 import React from 'react'
 import { spectraState } from '../../../../types/types.tsx'
-import ClearButton from './ClearButton.js'
+import BackButton from './BackButton.js'
 
 const LocationHandler = ({state, cache, goBack, setQuery, setCache, setState}) => {
     
@@ -30,6 +30,8 @@ const LocationHandler = ({state, cache, goBack, setQuery, setCache, setState}) =
                                 </button>
                                 <p className='subtitle'>{`> Registro #${cache.registro['ID']}`}</p>
                             </div>)
+            default:
+                break;
         }
     }
 
@@ -51,7 +53,7 @@ const LocationHandler = ({state, cache, goBack, setQuery, setCache, setState}) =
 
     return (
         <div className='locationHandler'>
-            <ClearButton state={state} goBack = {goBack} />
+            <BackButton state={state} goBack = {goBack} />
             {switchText(state)}
         </div>
     )

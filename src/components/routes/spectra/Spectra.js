@@ -12,7 +12,7 @@ const Spectra = () => {
 
   const [state, setState] = useState(spectraState.HOME)
 
-  const [isMap, setIsMap] = useState(null)
+  const [isMap, setIsMap] = useState(false)
 
   const [cache, setCache] = useState({
     formulario: null,
@@ -23,22 +23,22 @@ const Spectra = () => {
   const location = useLocation()
 
   useEffect(() => { // initialize Spectra
-      changeView(location.state === RouteTypes.TABLE)
+      if (location.state === RouteTypes.TABLE) {
+        setIsMap(false)
+      } else {
+        setIsMap(true)
+      }
   }, [location.state]); // Run when Spectra gets mounted and when location.state changes -- should only change at home
 
- function changeView (isTable) {
-    if (isTable) {
-      setIsMap(false)
-    } else {
-      setIsMap(true)
-    }
+  function changeView() {
+    setIsMap(!isMap)
   }
 
   return (
     <div className='spectraContainer'>
       <div className='header'>
         <p className='title'>Firmas Espectrales</p>
-        <Slider isMap = {isMap} onClick = {() => changeView(isMap)}/>
+        <Slider isMap = {isMap} changeView = {changeView}/>
       </div>
       {isMap && state < spectraState.INFORMACION ?
         <MapMode state = {state} setState = {setState} cache={cache} setCache={setCache}/> // pass info components outside

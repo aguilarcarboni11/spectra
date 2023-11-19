@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import {RouteTypes} from '../../../../../types/types.tsx'
 
 import L from 'leaflet'

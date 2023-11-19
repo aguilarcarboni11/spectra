@@ -3,16 +3,16 @@ import { spectraState } from '../../../../types/types.tsx'
 
 import { FolderSymlinkFill } from 'react-bootstrap-icons'
 
-const ClearButton = ({state, goBack}) => {
+const BackButton = ({state, goBack}) => {
 
   return (
     <div className='clearButton'>
-      {state > spectraState.HOME ? 
+      {state > spectraState.HOME && 
           <button className='button' onClick = {goBack}> 
             <FolderSymlinkFill className='svg' />
-          </button>:''}
+          </button>}
     </div>
   )
 }
 
-export default ClearButton
+export default BackButton

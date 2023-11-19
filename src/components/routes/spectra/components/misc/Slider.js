@@ -1,16 +1,18 @@
 import React from 'react'
+import { motion } from "framer-motion";
+import { MapFill } from 'react-bootstrap-icons';
 
-const Slider = ({isMap, onClick}) => {
+const Slider = ({isMap, changeView}) => {
+  const spring = {
+    type: "spring",
+    stiffness: 700,
+    damping: 30
+  };
   return (
-    <div className='slider'>
-        <div className='background'>
-            <button className={isMap ? 'button':'button active'} onClick = {onClick}>
-              <p className='subtitle'>Modo base de datos</p>
-            </button>
-            <button className={!isMap ? 'button':'button active'} onClick = {onClick}>
-              <p className='subtitle'>Modo mapa</p>
-            </button>
-        </div>
+    <div className='slider' data-isMap={isMap} onClick={changeView}>
+        <motion.div className="button" layout transition={spring}>
+          <MapFill className='icon'/>
+        </motion.div>
     </div>
   )
 }

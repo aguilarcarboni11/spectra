@@ -1,8 +1,7 @@
 import React from 'react'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import RouteButtons from './RouteButtons.js'
 
-import { RouteTypes } from '../../../types/types.tsx'
+
 
 const HomeHeader = () => {
   return (
@@ -24,19 +23,12 @@ const HomeHeader = () => {
             disponer de el primer catálogo de firmas espectrales de diferentes objetos en Costa Rica, con 
             un enfoque inicial en vegetación y cuerpos de agua.  
         </p>
-        <p className='subtitle indented' style={{marginTop: '2vh'}}>
+        <p className='subtitle indented'>
           En esta biblioteca tenés la opción de visualizar los datos que ha recolectado el
           PRIAS (o datos que vos hayás recolectado) como una base de datos o en un mapa. Presioná alguno de los dos botones siguientes para continuar:
         </p>
       </div>
-      <div className='buttons'>
-        <Link className='homeButton' to='/spectra' state = {RouteTypes.TABLE}>
-          <i className="bi bi-table" style={{fontSize: '2.5vmax', color: 'white'}}></i>
-        </Link>
-        <Link className='homeButton' to='/spectra' state = {RouteTypes.MAP}>
-          <i className="bi bi-geo-alt-fill" style={{fontSize: '2.5vmax', color: 'white'}}></i>
-        </Link>
-      </div>
+      <RouteButtons />
     </div>
   )
 }
