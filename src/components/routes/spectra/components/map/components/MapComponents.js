@@ -22,20 +22,22 @@ export const SpectraMarker = ({data, setQuery, isLoading, isError}) => {
             <NoDataComponent isError={isError} />
         )
     }
-    return (
-        data.map((point, index) => (
-            <Marker 
-                className='marker' 
-                position={[point['st_y'], point['st_x']]} 
-                icon={markerIcon}
-                key={index}
-                eventHandlers={{
-                    click: () => {
-                        setQuery(`SELECT "ID","NombreComun",ST_X("Punto"), ST_Y("Punto") from "Formulario" WHERE "ID" : ${point['ID']}`)
-                    },
-                }}
-            >
-            </Marker>
-        ))
-    )
+    else if (data) {
+        return (
+            data.map((point, index) => (
+                <Marker 
+                    className='marker' 
+                    position={[point['st_y'], point['st_x']]} 
+                    icon={markerIcon}
+                    key={index}
+                    eventHandlers={{
+                        click: () => {
+                            setQuery(`SELECT "ID","NombreComun",ST_X("Punto"), ST_Y("Punto") from "Formulario" WHERE "ID" : ${point['ID']}`)
+                        },
+                    }}
+                >
+                </Marker>
+            ))
+        )
+    }
 }

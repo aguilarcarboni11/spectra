@@ -43,6 +43,7 @@ const MapMode = ({state, cache}) => {
                     center={center} zoom={8} minZoom={8}
                     scrollWheelZoom={true}>
                         <Listen />
+                        <SpectraMarker data={data} setQuery={setQuery} isLoading={isLoading} isError={isError}/>
                         <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>

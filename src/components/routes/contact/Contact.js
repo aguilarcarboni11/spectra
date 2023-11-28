@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 import Links from './components/Links'
 import Message from './components/Message'

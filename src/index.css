@@ -392,7 +392,7 @@ h1 {
         justify-content: center;
         align-items: center;
         .image {
-          height: fit-content;
+          height: 30vh;
           width: 100%;
           border-radius: 30vmax;
         }
