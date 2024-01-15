@@ -3,14 +3,14 @@ import React, { useState } from 'react'
 import FilterButton from './components/FilterButton'
 import FilterMenu from './components/FilterMenu'
 
-const Filters = () => {
+const Filters = ({data}) => {
 
   const [canShowFilters, setShowFilters] = useState(false)
 
   return (
     <div>
       <FilterButton setShowFilters={setShowFilters}/>
-      <FilterMenu canShowFilters={canShowFilters} setShowFilters={setShowFilters}/>
+      <FilterMenu data = {data} canShowFilters={canShowFilters} setShowFilters={setShowFilters}/>
     </div>
   )
 }

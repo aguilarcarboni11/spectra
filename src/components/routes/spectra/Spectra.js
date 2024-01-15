@@ -21,7 +21,6 @@ const Spectra = () => {
   })
 
   const location = useLocation()
-  console.log(location.state)
 
   useEffect(() => { // initialize Spectra
       if (location.state === RouteTypes.TABLE) {

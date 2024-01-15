@@ -17,20 +17,20 @@ const EmployeeInfo = ({selected, setSelected}) => {
           animate={{opacity: 1}}
           exit={{opacity: 0}}
         >
-        <motion.div 
-          className='content'
-          initial={{scale:0}}
-          animate={{scale: 1}}
-          exit={{scale: 0}}
-        >
-          <p className='title'>{selected.name} {selected.lastNames}</p>
-          <p className='subtitle'> {selected.position} </p>
-          <div className='info'>
-            <p className='subtitle'> {selected.info} </p>
-            <img className='image' src={require('../../../../assets/fotos/team/' + selected.path)} alt={selected.name}></img>
-          </div>
-        </motion.div>
-        <button onClick={handleEmployeeClick}></button>
+          <motion.div 
+            className='content'
+            initial={{scale:0}}
+            animate={{scale: 1}}
+            exit={{scale: 0}}
+          >
+            <p className='title'>{selected.name} {selected.lastNames}</p>
+            <p className='subtitle'> {selected.position} </p>
+            <div className='info'>
+              <p className='subtitle'> {selected.info} </p>
+              <img className='image' src={require('../../../../assets/fotos/team/' + selected.path)} alt={selected.name}></img>
+            </div>
+          </motion.div>
+          <button onClick={handleEmployeeClick}></button>
         </motion.div>
       )}
     </AnimatePresence>

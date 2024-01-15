@@ -63,11 +63,23 @@ const TableMode = ({state, setState, cache, setCache}) => {
         }
     }
 
+    function createColunns() {
+        var columns = []
+        if (data[0]) { // Create columns for data on each rerender
+            Object.keys(data[0]).forEach((element) => {
+                columns.push({name: element, selector: (row => row[element])})
+            }, {});
+        }
+        return columns
+    }
+
+    const columns = createColunns()
+
     return (
         <div className='tableContainer'>
             <div className='header'>
                 <LocationHandler state={state} cache={cache} goBack = {goBack} setQuery={setQuery} setCache={setCache} setState={setState}/>
-                <Filters />
+                <Filters data = {data}/>
             </div>
             <div className={state === spectraState.FORMULARIO && cache.formulario !== null? 'infoContainer':'infoContainer hidden'}> {/* Elegant solution for adding boxes? Inline switch  */}
                 <TableInfo info = {cache.formulario}/>
@@ -83,7 +95,7 @@ const TableMode = ({state, setState, cache, setCache}) => {
                     <SpectraGraph height={"100%"} width={"100%"} cache = {cache}/> {/*fix inside*/}
                 </div>
             </div>
-            <SpectraTable state = {state} data = {data} isLoading = {isLoading} isError = {isError} selectRow={selectRow}/>
+            <SpectraTable state = {state} data = {data} isLoading = {isLoading} isError = {isError} selectRow={selectRow} columns={columns}/>
         </div>
     )
 }

@@ -6,14 +6,14 @@ import { spectraState } from '../../../../../types/types.tsx'
 import LoadingComponent from '../../misc/LoadingComponent'
 import NoDataComponent from '../../misc/NoDataComponent'
 
-const SpectraTable = ({state, data, isLoading, isError, selectRow}) => {
+const SpectraTable = ({state, data, isLoading, isError, selectRow, columns}) => {
 
     var height
 
     function calculateTableHeight(state) {
         switch(state) {
             case spectraState.HOME:
-                height = '40vh'
+                height = '52.5vh'
                 break;
             case spectraState.FORMULARIO:
             case spectraState.INFORMACION: 
@@ -29,18 +29,7 @@ const SpectraTable = ({state, data, isLoading, isError, selectRow}) => {
     }
 
     height = calculateTableHeight(state)
-
-    function createColunns() {
-        var columns = []
-        if (data[0]) { // Create columns for data on each rerender -- add to state effect
-            Object.keys(data[0]).forEach((element) => {
-                columns.push({name: element, selector: (row => row[element])})
-            }, {});
-        }
-        return columns
-    }
-
-    const columns = createColunns()
+    
     if (isLoading) {
         return (
             <LoadingComponent />
