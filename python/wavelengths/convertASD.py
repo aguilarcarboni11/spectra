@@ -1,10 +1,24 @@
-file_path = 'your_file.asd'
+import specdal
+import numpy as np
+import pandas as pd
 
-try:
-    with open(file_path, 'r') as file:
-        content = file.read()
-        print(content)
-except FileNotFoundError:
-    print(f"The file {file_path} was not found.")
-except Exception as e:
-    print(f"An error occurred: {e}")
+file_path = 'C:/Users/Usuariopasante1/Desktop/DEPURACION/1. SAPSIGU/FIRMAS/SAPSIGU00001.asd'
+
+# Load the .asd file
+spectrum = specdal.Spectrum(filepath=file_path).measurement
+
+# Initialize data collectors
+wavelengths = []
+reflections = []
+
+# Loop through all wavelengths
+for i in range(325,1075):
+    # Add data to arrays
+    wavelengths.append(float(i))
+    reflections.append(spectrum.iloc[i-325])
+
+# Create dataframe from data
+df = pd.DataFrame(wavelengths, columns=['Wavelength'])
+df['Reflection'] = reflections
+
+print(df)

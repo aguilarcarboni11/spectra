@@ -23,6 +23,7 @@ const FilterMenu = ({setShowFilters, canShowFilters, data}) => {
   })
 
   console.log(filters)
+  let f = new Set(data.map(item => item['Anotador']))
 
   return (
     <AnimatePresence>

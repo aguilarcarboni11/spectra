@@ -24,7 +24,7 @@ const MapMode = ({state, cache}) => {
     function Listen () {
         const map = useMapEvent('click', () => {
             console.log(center)
-            map.setView(center, map.getZoom())
+            map.setView(center, map.getZoom() + 2)
         })    
     }
 
